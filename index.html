@@ -15,15 +15,13 @@
   <p>c'est ici qu'on pourra acheter le vrai vacre.</p>
 </body>
 </html>
-
 <!DOCTYPE html>
 <html lang="fr">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>VACRE — Galerie & Boutique</title>
+  <title>VACRE — Boutique officielle</title>
 
   <style>
     * {
@@ -33,36 +31,36 @@
     }
 
     :root {
-      --orange: #ff6b00;
-      --orange-clair: #fff0e5;
+      --vert: #15966a;
+      --vert-fonce: #0d7452;
+      --vert-clair: #e8f7f1;
       --noir: #111111;
       --blanc: #ffffff;
     }
 
     body {
       font-family: Arial, sans-serif;
-      background: #fafafa;
+      background: var(--blanc);
       color: var(--noir);
     }
 
-    /* HEADER */
-
     header {
-      background: var(--orange);
-      border-bottom: 4px solid var(--noir);
-      padding: 20px 6%;
+      height: 80px;
+      padding: 0 6%;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
+      background: var(--blanc);
+      border-bottom: 3px solid var(--noir);
       position: sticky;
       top: 0;
       z-index: 50;
     }
 
     .logo {
-      font-size: 34px;
+      font-size: 32px;
       font-weight: 900;
-      letter-spacing: 3px;
+      letter-spacing: 4px;
     }
 
     nav {
@@ -78,200 +76,170 @@
     }
 
     .cart-button {
-      background: var(--blanc);
+      background: var(--vert);
+      color: white;
       border: 3px solid var(--noir);
       border-radius: 10px;
-      padding: 10px 15px;
+      padding: 11px 17px;
       font-weight: bold;
       cursor: pointer;
       box-shadow: 4px 4px 0 var(--noir);
     }
 
-    /* ACCUEIL */
-
     .hero {
-      min-height: 520px;
-      background: var(--orange);
-      border-bottom: 4px solid var(--noir);
-      display: flex;
-      align-items: center;
-      padding: 70px 7%;
-    }
-
-    .hero-content {
-      max-width: 900px;
-    }
-
-    .mini-title {
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      margin-bottom: 20px;
+      background: var(--vert);
+      border-bottom: 3px solid var(--noir);
+      padding: 85px 7%;
+      text-align: center;
     }
 
     .hero h1 {
-      font-size: clamp(55px, 10vw, 120px);
-      line-height: 0.9;
+      font-size: clamp(60px, 12vw, 140px);
       font-weight: 900;
-      margin-bottom: 30px;
+      letter-spacing: -5px;
+      line-height: 0.85;
     }
 
     .hero p {
-      max-width: 650px;
-      font-size: 20px;
-      line-height: 1.5;
-      margin-bottom: 30px;
+      margin-top: 30px;
+      font-size: 22px;
+      font-weight: bold;
     }
 
     .hero-button {
       display: inline-block;
-      background: var(--blanc);
-      color: var(--noir);
-      text-decoration: none;
-      border: 3px solid var(--noir);
-      padding: 15px 25px;
+      margin-top: 30px;
+      background: white;
+      color: black;
+      border: 3px solid black;
       border-radius: 10px;
+      padding: 14px 25px;
+      text-decoration: none;
       font-weight: 900;
-      box-shadow: 6px 6px 0 var(--noir);
+      box-shadow: 6px 6px 0 black;
     }
 
-    /* CATEGORIES */
-
-    .categories {
-      padding: 35px 5%;
-      border-bottom: 3px solid var(--noir);
-      background: var(--blanc);
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 12px;
+    .banner {
+      overflow: hidden;
+      border-bottom: 3px solid black;
+      background: var(--noir);
+      color: white;
+      padding: 13px;
+      font-weight: 900;
+      white-space: nowrap;
+      text-align: center;
+      letter-spacing: 2px;
     }
-
-    .category {
-      border: 2px solid var(--noir);
-      background: var(--blanc);
-      padding: 10px 18px;
-      border-radius: 100px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .category:hover {
-      background: var(--orange);
-    }
-
-    /* GALERIE */
 
     .shop {
       max-width: 1250px;
       margin: auto;
-      padding: 70px 25px;
+      padding: 70px 25px 100px;
     }
 
-    .section-title {
-      font-size: clamp(38px, 6vw, 70px);
-      margin-bottom: 10px;
+    .shop-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      margin-bottom: 40px;
+      gap: 20px;
     }
 
-    .section-description {
-      font-size: 18px;
-      color: #555;
-      margin-bottom: 45px;
+    .shop h2 {
+      font-size: clamp(40px, 7vw, 70px);
     }
 
-    .gallery {
+    .product-count {
+      font-weight: bold;
+      color: #666;
+    }
+
+    .products {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-      gap: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 28px;
     }
 
-    .artwork {
-      background: var(--blanc);
+    .product {
       border: 3px solid var(--noir);
       border-radius: 18px;
+      background: white;
       overflow: hidden;
       box-shadow: 7px 7px 0 var(--noir);
       transition: 0.2s;
     }
 
-    .artwork:hover {
+    .product:hover {
       transform: translate(-4px, -4px);
       box-shadow: 11px 11px 0 var(--noir);
     }
 
-    .art-image {
-      height: 280px;
+    .product-visual {
+      height: 230px;
+      background: var(--vert-clair);
       border-bottom: 3px solid var(--noir);
       display: flex;
-      align-items: center;
       justify-content: center;
-      font-size: 70px;
+      align-items: center;
+      position: relative;
+    }
+
+    .vacre-symbol {
+      width: 110px;
+      height: 110px;
+      background: var(--vert);
+      border: 4px solid black;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 50px;
+      font-weight: 900;
+      box-shadow: 8px 8px 0 black;
+    }
+
+    .badge {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: white;
+      border: 2px solid black;
+      border-radius: 100px;
+      padding: 7px 11px;
+      font-size: 12px;
       font-weight: 900;
     }
 
-    .orange-art {
-      background: var(--orange);
-    }
-
-    .white-art {
-      background: white;
-    }
-
-    .black-art {
-      background: var(--noir);
-      color: var(--orange);
-    }
-
-    .light-art {
-      background: var(--orange-clair);
-    }
-
-    .art-info {
+    .product-info {
       padding: 23px;
     }
 
-    .type {
-      color: var(--orange);
-      font-size: 13px;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 1px;
+    .product-info h3 {
+      font-size: 25px;
       margin-bottom: 8px;
     }
 
-    .art-info h2 {
-      font-size: 25px;
-      margin-bottom: 10px;
+    .quantity {
+      color: var(--vert-fonce);
+      font-weight: 900;
+      margin-bottom: 25px;
     }
 
-    .description {
-      color: #555;
-      line-height: 1.4;
-      min-height: 60px;
-    }
-
-    .edition {
-      margin-top: 15px;
-      font-size: 14px;
-      font-weight: bold;
-    }
-
-    .bottom-product {
+    .product-bottom {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      gap: 10px;
-      margin-top: 20px;
+      align-items: center;
+      gap: 12px;
     }
 
     .price {
-      font-size: 26px;
+      font-size: 27px;
       font-weight: 900;
     }
 
     .buy {
-      background: var(--orange);
-      border: 3px solid var(--noir);
+      background: var(--vert);
+      border: 3px solid black;
       border-radius: 9px;
       padding: 11px 15px;
       font-weight: 900;
@@ -280,44 +248,45 @@
 
     .buy:hover {
       background: var(--noir);
-      color: var(--blanc);
+      color: white;
     }
 
-    /* MANIFESTE */
-
-    .manifesto {
-      background: var(--orange);
-      border-top: 4px solid var(--noir);
-      border-bottom: 4px solid var(--noir);
-      padding: 80px 8%;
+    .info-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 3px solid black;
+      border-bottom: 3px solid black;
     }
 
-    .manifesto h2 {
-      font-size: clamp(45px, 8vw, 90px);
-      margin-bottom: 25px;
+    .info-box {
+      padding: 40px 25px;
+      text-align: center;
+      background: var(--vert-clair);
     }
 
-    .manifesto p {
-      font-size: 22px;
-      line-height: 1.5;
-      max-width: 800px;
+    .info-box:not(:last-child) {
+      border-right: 3px solid black;
     }
 
-    /* PANIER */
+    .info-box strong {
+      display: block;
+      font-size: 20px;
+      margin-bottom: 7px;
+    }
 
     .cart {
       display: none;
       position: fixed;
       right: 25px;
-      top: 90px;
-      width: min(390px, calc(100% - 50px));
+      top: 95px;
+      width: min(400px, calc(100% - 50px));
       max-height: 75vh;
       overflow-y: auto;
-      background: var(--blanc);
-      border: 3px solid var(--noir);
+      background: white;
+      border: 3px solid black;
       border-radius: 16px;
-      padding: 22px;
-      box-shadow: 8px 8px 0 var(--noir);
+      padding: 23px;
+      box-shadow: 9px 9px 0 black;
       z-index: 100;
     }
 
@@ -331,8 +300,8 @@
     }
 
     .cart-item {
+      padding: 14px 0;
       border-bottom: 2px solid #ddd;
-      padding: 13px 0;
       display: flex;
       justify-content: space-between;
       gap: 10px;
@@ -341,7 +310,7 @@
     .remove {
       border: none;
       background: none;
-      color: var(--orange);
+      color: var(--vert-fonce);
       font-weight: bold;
       cursor: pointer;
     }
@@ -354,35 +323,36 @@
 
     .checkout {
       width: 100%;
-      margin-top: 15px;
-      background: var(--orange);
-      border: 3px solid var(--noir);
-      padding: 13px;
+      margin-top: 17px;
+      padding: 14px;
+      background: var(--vert);
+      border: 3px solid black;
       border-radius: 9px;
       font-weight: 900;
       cursor: pointer;
     }
 
-    /* FOOTER */
-
     footer {
       background: var(--noir);
-      color: var(--blanc);
-      padding: 50px 7%;
+      color: white;
+      padding: 55px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 30px;
     }
 
     .footer-logo {
-      color: var(--orange);
-      font-size: 40px;
+      color: var(--vert);
+      font-size: 45px;
       font-weight: 900;
-      margin-bottom: 15px;
+      letter-spacing: 4px;
     }
 
     footer p {
       color: #aaa;
+      margin-top: 10px;
     }
-
-    /* TELEPHONE */
 
     @media (max-width: 700px) {
       nav a {
@@ -390,20 +360,31 @@
       }
 
       .hero {
-        min-height: 450px;
+        padding: 65px 20px;
       }
 
       .hero h1 {
-        font-size: 60px;
+        font-size: 75px;
+        letter-spacing: -3px;
       }
 
-      .bottom-product {
+      .shop-header {
+        align-items: start;
         flex-direction: column;
-        align-items: stretch;
       }
 
-      .buy {
-        width: 100%;
+      .info-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .info-box:not(:last-child) {
+        border-right: none;
+        border-bottom: 3px solid black;
+      }
+
+      footer {
+        flex-direction: column;
+        align-items: start;
       }
     }
   </style>
@@ -415,8 +396,7 @@
     <div class="logo">VACRE</div>
 
     <nav>
-      <a href="#boutique">Boutique</a>
-      <a href="#manifeste">À propos</a>
+      <a href="#vacre">Vacre</a>
 
       <button class="cart-button" onclick="toggleCart()">
         Panier (<span id="cart-count">0</span>)
@@ -425,242 +405,159 @@
   </header>
 
   <section class="hero">
-    <div class="hero-content">
+    <h1>VACRE.</h1>
+    <p>Disponible maintenant.</p>
 
-      <div class="mini-title">
-        Galerie indépendante — 2026
-      </div>
+    <a href="#vacre" class="hero-button">
+      Acheter du Vacre
+    </a>
+  </section>
 
-      <h1>
-        CRÉER<br>
-        SANS LIMITE.
-      </h1>
+  <div class="banner">
+    VACRE — VACRE — VACRE — VACRE — VACRE — VACRE
+  </div>
 
-      <p>
-        VACRE rassemble objets, images, œuvres originales,
-        éditions limitées et créations numériques.
-        Chaque création existe parce qu'elle devait exister.
-      </p>
+  <main class="shop" id="vacre">
 
-      <a class="hero-button" href="#boutique">
-        Découvrir les créations ↓
-      </a>
-
+    <div class="shop-header">
+      <h2>VACRE</h2>
+      <div class="product-count">6 lots</div>
     </div>
-  </section>
 
-  <section class="categories">
-    <button class="category">Tout</button>
-    <button class="category">Prints</button>
-    <button class="category">Originaux</button>
-    <button class="category">Objets</button>
-    <button class="category">Numérique</button>
-    <button class="category">Éditions limitées</button>
-  </section>
+    <div class="products">
 
-  <main class="shop" id="boutique">
-
-    <h2 class="section-title">
-      LES CRÉATIONS
-    </h2>
-
-    <p class="section-description">
-      Première collection expérimentale VACRE.
-    </p>
-
-    <div class="gallery">
-
-      <!-- CREATION 1 -->
-
-      <article class="artwork">
-
-        <div class="art-image orange-art">
-          V.01
+      <article class="product">
+        <div class="product-visual">
+          <div class="vacre-symbol">1</div>
         </div>
 
-        <div class="art-info">
+        <div class="product-info">
+          <h3>1 Vacre</h3>
+          <div class="quantity">1 Vacre</div>
 
-          <div class="type">Print</div>
-
-          <h2>VACRE Nº01</h2>
-
-          <p class="description">
-            Première expérimentation graphique de la collection VACRE.
-          </p>
-
-          <div class="edition">
-            Édition limitée — 50 exemplaires
-          </div>
-
-          <div class="bottom-product">
-            <div class="price">19 €</div>
-
-            <button class="buy"
-              onclick="addToCart('VACRE Nº01', 19)">
+          <div class="product-bottom">
+            <div class="price">2,99 €</div>
+            <button class="buy" onclick="addToCart('1 Vacre', 2.99)">
               Ajouter
             </button>
           </div>
-
         </div>
       </article>
 
-      <!-- CREATION 2 -->
-
-      <article class="artwork">
-
-        <div class="art-image black-art">
-          Ø
+      <article class="product">
+        <div class="product-visual">
+          <div class="vacre-symbol">5</div>
         </div>
 
-        <div class="art-info">
+        <div class="product-info">
+          <h3>5 Vacres</h3>
+          <div class="quantity">Lot de 5</div>
 
-          <div class="type">Original</div>
-
-          <h2>LE VIDE</h2>
-
-          <p class="description">
-            Pièce originale. Un seul exemplaire existe.
-          </p>
-
-          <div class="edition">
-            Pièce unique — 1/1
-          </div>
-
-          <div class="bottom-product">
-            <div class="price">89 €</div>
-
-            <button class="buy"
-              onclick="addToCart('LE VIDE', 89)">
+          <div class="product-bottom">
+            <div class="price">9,99 €</div>
+            <button class="buy" onclick="addToCart('5 Vacres', 9.99)">
               Ajouter
             </button>
           </div>
-
         </div>
       </article>
 
-      <!-- CREATION 3 -->
-
-      <article class="artwork">
-
-        <div class="art-image white-art">
-          ?
+      <article class="product">
+        <div class="product-visual">
+          <div class="badge">POPULAIRE</div>
+          <div class="vacre-symbol">10</div>
         </div>
 
-        <div class="art-info">
+        <div class="product-info">
+          <h3>10 Vacres</h3>
+          <div class="quantity">Lot de 10</div>
 
-          <div class="type">Objet</div>
-
-          <h2>OBJET INUTILE Nº1</h2>
-
-          <p class="description">
-            Un objet qui n'a aucune raison particulière d'exister.
-          </p>
-
-          <div class="edition">
-            Série de 20 pièces
-          </div>
-
-          <div class="bottom-product">
-            <div class="price">29 €</div>
-
-            <button class="buy"
-              onclick="addToCart('OBJET INUTILE Nº1', 29)">
+          <div class="product-bottom">
+            <div class="price">16,99 €</div>
+            <button class="buy" onclick="addToCart('10 Vacres', 16.99)">
               Ajouter
             </button>
           </div>
-
         </div>
       </article>
 
-      <!-- CREATION 4 -->
-
-      <article class="artwork">
-
-        <div class="art-image light-art">
-          404
+      <article class="product">
+        <div class="product-visual">
+          <div class="vacre-symbol">25</div>
         </div>
 
-        <div class="art-info">
+        <div class="product-info">
+          <h3>25 Vacres</h3>
+          <div class="quantity">Lot de 25</div>
 
-          <div class="type">Numérique</div>
-
-          <h2>404 VACRE</h2>
-
-          <p class="description">
-            Création numérique haute définition de la série 404.
-          </p>
-
-          <div class="edition">
-            Fichier numérique
-          </div>
-
-          <div class="bottom-product">
-            <div class="price">8 €</div>
-
-            <button class="buy"
-              onclick="addToCart('404 VACRE', 8)">
+          <div class="product-bottom">
+            <div class="price">34,99 €</div>
+            <button class="buy" onclick="addToCart('25 Vacres', 34.99)">
               Ajouter
             </button>
           </div>
-
         </div>
       </article>
 
-      <!-- CREATION 5 -->
-
-      <article class="artwork">
-
-        <div class="art-image orange-art">
-          001
+      <article class="product">
+        <div class="product-visual">
+          <div class="vacre-symbol">50</div>
         </div>
 
-        <div class="art-info">
+        <div class="product-info">
+          <h3>50 Vacres</h3>
+          <div class="quantity">Lot de 50</div>
 
-          <div class="type">Édition limitée</div>
-
-          <h2>PREMIÈRE ÉDITION</h2>
-
-          <p class="description">
-            Première pièce numérotée officiellement sous le nom VACRE.
-          </p>
-
-          <div class="edition">
-            10 exemplaires numérotés
-          </div>
-
-          <div class="bottom-product">
-            <div class="price">49 €</div>
-
-            <button class="buy"
-              onclick="addToCart('PREMIÈRE ÉDITION', 49)">
+          <div class="product-bottom">
+            <div class="price">59,99 €</div>
+            <button class="buy" onclick="addToCart('50 Vacres', 59.99)">
               Ajouter
             </button>
           </div>
+        </div>
+      </article>
 
+      <article class="product">
+        <div class="product-visual">
+          <div class="badge">GRAND FORMAT</div>
+          <div class="vacre-symbol">100</div>
+        </div>
+
+        <div class="product-info">
+          <h3>100 Vacres</h3>
+          <div class="quantity">Lot de 100</div>
+
+          <div class="product-bottom">
+            <div class="price">99,99 €</div>
+            <button class="buy" onclick="addToCart('100 Vacres', 99.99)">
+              Ajouter
+            </button>
+          </div>
         </div>
       </article>
 
     </div>
   </main>
 
-  <section class="manifesto" id="manifeste">
+  <section class="info-strip">
+    <div class="info-box">
+      <strong>Paiement sécurisé</strong>
+      <span>Transactions protégées</span>
+    </div>
 
-    <h2>QU'EST-CE QUE VACRE ?</h2>
+    <div class="info-box">
+      <strong>Livraison</strong>
+      <span>Suivi de commande</span>
+    </div>
 
-    <p>
-      VACRE n'est pas un style, ni un type d'objet.
-      C'est un espace de création. Une idée peut devenir une affiche,
-      une sculpture, un objet, une image ou quelque chose qui
-      n'a encore aucun nom.
-    </p>
-
+    <div class="info-box">
+      <strong>VACRE</strong>
+      <span>Depuis 2026</span>
+    </div>
   </section>
 
-  <!-- PANIER -->
-
   <aside class="cart" id="cart">
-
-    <h2>Ton panier</h2>
+    <h2>Panier</h2>
 
     <div id="cart-items">
       Ton panier est vide.
@@ -671,25 +568,20 @@
     </div>
 
     <button class="checkout" onclick="checkout()">
-      Commander
+      Passer la commande
     </button>
-
   </aside>
 
   <footer>
-
-    <div class="footer-logo">
-      VACRE
+    <div>
+      <div class="footer-logo">VACRE</div>
+      <p>© 2026 VACRE</p>
     </div>
 
-    <p>
-      Galerie indépendante de créations — 2026
-    </p>
-
+    <p>vacre.fr</p>
   </footer>
 
   <script>
-
     let cart = [];
 
     function addToCart(name, price) {
@@ -707,7 +599,6 @@
     }
 
     function updateCart() {
-
       const items = document.getElementById("cart-items");
       const count = document.getElementById("cart-count");
       const totalElement = document.getElementById("total");
@@ -725,15 +616,13 @@
       let total = 0;
 
       cart.forEach(function(item, index) {
-
         total += item.price;
 
         items.innerHTML += `
           <div class="cart-item">
-
             <span>
               ${item.name}<br>
-              <strong>${item.price.toFixed(2)} €</strong>
+              <strong>${item.price.toFixed(2).replace(".", ",")} €</strong>
             </span>
 
             <button
@@ -741,7 +630,6 @@
               onclick="removeFromCart(${index})">
               Retirer
             </button>
-
           </div>
         `;
       });
@@ -758,17 +646,13 @@
     }
 
     function checkout() {
-
       if (cart.length === 0) {
-        alert("Ton panier est vide !");
+        alert("Ton panier est vide.");
         return;
       }
 
-      alert(
-        "Le paiement réel n'est pas encore activé sur VACRE."
-      );
+      alert("Le paiement n'est pas encore activé.");
     }
-
   </script>
 
 </body>
