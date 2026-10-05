@@ -15,3 +15,349 @@
   <p>c'est ici qu'on pourra acheter le vrai vacre.</p>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Vacre — Boutique officielle</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f8ff;
+      color: #111;
+    }
+
+    header {
+      background: #1473e6;
+      color: white;
+      border-bottom: 4px solid black;
+      padding: 22px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 32px;
+      font-weight: 900;
+      letter-spacing: 2px;
+    }
+
+    .cart-button {
+      background: white;
+      color: black;
+      border: 3px solid black;
+      border-radius: 12px;
+      padding: 12px 18px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 4px 4px 0 black;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 65px 20px 45px;
+    }
+
+    .hero h1 {
+      font-size: clamp(38px, 7vw, 70px);
+      margin-bottom: 12px;
+    }
+
+    .hero h1 span {
+      color: #1473e6;
+    }
+
+    .hero p {
+      font-size: 19px;
+      color: #444;
+    }
+
+    .products {
+      max-width: 1150px;
+      margin: auto;
+      padding: 20px 25px 70px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+    }
+
+    .product {
+      background: white;
+      border: 3px solid black;
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: 7px 7px 0 black;
+      transition: 0.2s;
+    }
+
+    .product:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 10px 10px 0 black;
+    }
+
+    .product-icon {
+      height: 100px;
+      background: #dcecff;
+      border: 3px solid black;
+      border-radius: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 45px;
+      margin-bottom: 22px;
+    }
+
+    .product h2 {
+      font-size: 23px;
+      margin-bottom: 8px;
+    }
+
+    .quantity {
+      color: #1473e6;
+      font-weight: bold;
+      margin-bottom: 18px;
+    }
+
+    .price {
+      font-size: 30px;
+      font-weight: 900;
+      margin-bottom: 20px;
+    }
+
+    .buy {
+      width: 100%;
+      background: #1473e6;
+      color: white;
+      border: 3px solid black;
+      border-radius: 10px;
+      padding: 13px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .buy:hover {
+      background: #0b5fc0;
+    }
+
+    .cart {
+      display: none;
+      position: fixed;
+      right: 20px;
+      top: 95px;
+      width: min(370px, calc(100% - 40px));
+      max-height: 70vh;
+      overflow-y: auto;
+      background: white;
+      border: 3px solid black;
+      border-radius: 18px;
+      padding: 22px;
+      box-shadow: 8px 8px 0 black;
+      z-index: 100;
+    }
+
+    .cart.open {
+      display: block;
+    }
+
+    .cart h2 {
+      margin-bottom: 18px;
+    }
+
+    .cart-item {
+      border-bottom: 2px solid #ddd;
+      padding: 12px 0;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .remove {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      color: #1473e6;
+    }
+
+    .total {
+      font-size: 22px;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
+    .checkout {
+      width: 100%;
+      margin-top: 15px;
+      padding: 13px;
+      border: 3px solid black;
+      border-radius: 10px;
+      background: #1473e6;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    footer {
+      background: white;
+      border-top: 3px solid black;
+      text-align: center;
+      padding: 30px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">VACRE</div>
+
+    <button class="cart-button" onclick="toggleCart()">
+      Panier (<span id="cart-count">0</span>)
+    </button>
+  </header>
+
+  <section class="hero">
+    <h1>Le <span>Vacre</span> est enfin là.</h1>
+    <p>Choisis ton lot et entre officiellement dans l'univers du Vacre.</p>
+  </section>
+
+  <main class="products">
+
+    <div class="product">
+      <div class="product-icon">V</div>
+      <h2>Petit Vacre</h2>
+      <div class="quantity">10 Vacres</div>
+      <div class="price">1,99 €</div>
+      <button class="buy" onclick="addToCart('Petit Vacre', 1.99)">
+        Ajouter au panier
+      </button>
+    </div>
+
+    <div class="product">
+      <div class="product-icon">V+</div>
+      <h2>Vacre Classique</h2>
+      <div class="quantity">50 Vacres</div>
+      <div class="price">6,99 €</div>
+      <button class="buy" onclick="addToCart('Vacre Classique', 6.99)">
+        Ajouter au panier
+      </button>
+    </div>
+
+    <div class="product">
+      <div class="product-icon">V++</div>
+      <h2>Gros Vacre</h2>
+      <div class="quantity">250 Vacres</div>
+      <div class="price">19,99 €</div>
+      <button class="buy" onclick="addToCart('Gros Vacre', 19.99)">
+        Ajouter au panier
+      </button>
+    </div>
+
+    <div class="product">
+      <div class="product-icon">MAX</div>
+      <h2>Méga Vacre</h2>
+      <div class="quantity">1 000 Vacres</div>
+      <div class="price">49,99 €</div>
+      <button class="buy" onclick="addToCart('Méga Vacre', 49.99)">
+        Ajouter au panier
+      </button>
+    </div>
+
+  </main>
+
+  <div class="cart" id="cart">
+    <h2>Ton panier</h2>
+
+    <div id="cart-items">
+      Ton panier est vide.
+    </div>
+
+    <div class="total">
+      Total : <span id="total">0,00</span> €
+    </div>
+
+    <button class="checkout" onclick="fakeCheckout()">
+      Commander
+    </button>
+  </div>
+
+  <footer>
+    VACRE © 2026 — Le Vacre n'a jamais été aussi réel.
+  </footer>
+
+  <script>
+    let cart = [];
+
+    function addToCart(name, price) {
+      cart.push({ name, price });
+      updateCart();
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCart();
+    }
+
+    function updateCart() {
+      const items = document.getElementById("cart-items");
+      const count = document.getElementById("cart-count");
+      const totalElement = document.getElementById("total");
+
+      count.textContent = cart.length;
+
+      if (cart.length === 0) {
+        items.innerHTML = "Ton panier est vide.";
+        totalElement.textContent = "0,00";
+        return;
+      }
+
+      items.innerHTML = "";
+
+      let total = 0;
+
+      cart.forEach((item, index) => {
+        total += item.price;
+
+        items.innerHTML += `
+          <div class="cart-item">
+            <span>${item.name} — ${item.price.toFixed(2)} €</span>
+            <button class="remove" onclick="removeFromCart(${index})">
+              Retirer
+            </button>
+          </div>
+        `;
+      });
+
+      totalElement.textContent =
+        total.toFixed(2).replace(".", ",");
+    }
+
+    function toggleCart() {
+      document.getElementById("cart").classList.toggle("open");
+    }
+
+    function fakeCheckout() {
+      if (cart.length === 0) {
+        alert("Ton panier est vide !");
+        return;
+      }
+
+      alert("Le Vacre n'est pas encore réellement commercialisé 😔");
+    }
+  </script>
+
+</body>
+</html>
