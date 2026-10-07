@@ -3,11 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>VACRE</title>
 
 <style>
-
 *{
     box-sizing:border-box;
     margin:0;
@@ -20,7 +18,12 @@
     --lightgreen:#e8f7f1;
     --black:#111;
     --white:#fff;
-    --grey:#f3f3f3;
+
+    --common:#9b9b9b;
+    --rare:#298cff;
+    --epic:#9b4dff;
+    --legendary:#ffc400;
+    --mythic:#e21b2d;
 }
 
 html{
@@ -30,21 +33,23 @@ html{
 body{
     font-family:Arial,Helvetica,sans-serif;
     background:white;
-    color:var(--black);
+    color:#111;
 }
 
-/* =========================
+/* ==============================
    HEADER
-========================= */
+============================== */
 
 header{
     min-height:80px;
     padding:15px 6%;
     background:white;
     border-bottom:3px solid black;
+
     display:flex;
     align-items:center;
     justify-content:space-between;
+
     position:sticky;
     top:0;
     z-index:100;
@@ -78,18 +83,20 @@ nav a{
     box-shadow:4px 4px black;
 }
 
-/* =========================
+/* ==============================
    HERO
-========================= */
+============================== */
 
 .hero{
     min-height:580px;
     background:var(--green);
     border-bottom:4px solid black;
+
     display:flex;
     justify-content:center;
     align-items:center;
     text-align:center;
+
     padding:60px 20px;
 }
 
@@ -116,12 +123,16 @@ nav a{
 .button{
     display:inline-block;
     padding:15px 24px;
+
     border:3px solid black;
     border-radius:10px;
+
     background:white;
     color:black;
+
     text-decoration:none;
     font-weight:900;
+
     box-shadow:5px 5px black;
 }
 
@@ -130,25 +141,28 @@ nav a{
     color:white;
 }
 
-/* =========================
+/* ==============================
    BANDEAU
-========================= */
+============================== */
 
 .marquee{
     padding:15px;
     background:black;
     color:white;
+
     overflow:hidden;
     white-space:nowrap;
+
     font-size:17px;
     font-weight:900;
     letter-spacing:3px;
+
     text-align:center;
 }
 
-/* =========================
-   BOUTIQUE VACRE
-========================= */
+/* ==============================
+   BOUTIQUE
+============================== */
 
 .shop{
     max-width:1250px;
@@ -184,6 +198,7 @@ nav a{
     border-radius:18px;
     overflow:hidden;
     background:white;
+
     box-shadow:7px 7px black;
     transition:.2s;
 }
@@ -197,6 +212,7 @@ nav a{
     height:220px;
     background:var(--lightgreen);
     border-bottom:3px solid black;
+
     display:flex;
     justify-content:center;
     align-items:center;
@@ -205,14 +221,18 @@ nav a{
 .circle{
     width:110px;
     height:110px;
+
     background:var(--green);
     border:4px solid black;
     border-radius:50%;
+
     display:flex;
     justify-content:center;
     align-items:center;
+
     font-size:45px;
     font-weight:900;
+
     box-shadow:7px 7px black;
 }
 
@@ -234,6 +254,7 @@ nav a{
     display:flex;
     justify-content:space-between;
     align-items:center;
+
     margin-top:25px;
     gap:10px;
 }
@@ -245,9 +266,12 @@ nav a{
 
 .buy{
     padding:11px 14px;
+
     background:var(--green);
+
     border:3px solid black;
     border-radius:9px;
+
     font-weight:900;
     cursor:pointer;
 }
@@ -257,15 +281,17 @@ nav a{
     color:white;
 }
 
-/* =========================
-   VACRE TCG
-========================= */
+/* ==============================
+   TCG
+============================== */
 
 .tcg-section{
     background:black;
     color:white;
+
     border-top:4px solid black;
     border-bottom:4px solid black;
+
     padding:90px 5%;
 }
 
@@ -296,32 +322,41 @@ nav a{
 .booster-product{
     background:white;
     color:black;
+
     border:3px solid white;
     border-radius:20px;
+
     overflow:hidden;
 }
 
 .booster-visual{
     height:320px;
     background:var(--green);
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     border-bottom:3px solid black;
 }
 
 .booster-pack{
     width:150px;
     height:230px;
+
     background:black;
     color:white;
+
     border:4px solid white;
     border-radius:12px;
+
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
+
     transform:rotate(4deg);
+
     box-shadow:12px 12px rgba(0,0,0,.3);
 }
 
@@ -354,17 +389,23 @@ nav a{
     justify-content:space-between;
     align-items:center;
     gap:10px;
+
     margin-top:25px;
 }
 
-/* =========================
-   OUVERTURE BOOSTERS
-========================= */
+/* ==============================
+   OUVERTURE
+============================== */
 
 .open-zone{
+    min-height:800px;
+
     padding:90px 5%;
+
     background:var(--green);
     border-bottom:4px solid black;
+
+    transition:background .5s;
 }
 
 .open-inner{
@@ -384,12 +425,17 @@ nav a{
 
 .booster-balance{
     margin:35px 0 25px;
+
     background:white;
     color:black;
+
     border:4px solid black;
     border-radius:18px;
+
     box-shadow:8px 8px black;
+
     padding:25px;
+
     display:flex;
     justify-content:space-between;
     align-items:center;
@@ -419,12 +465,16 @@ nav a{
 
 .daily-reward{
     display:inline-block;
+
     margin-bottom:25px;
     padding:12px 17px;
+
     background:black;
     color:white;
+
     border:3px solid black;
     border-radius:9px;
+
     font-weight:900;
 }
 
@@ -436,12 +486,17 @@ nav a{
 
 .open-booster{
     padding:16px 25px;
+
     border:3px solid black;
     border-radius:10px;
+
     background:white;
+
     font-size:17px;
     font-weight:900;
+
     cursor:pointer;
+
     box-shadow:5px 5px black;
 }
 
@@ -450,9 +505,9 @@ nav a{
     color:white;
 }
 
-.open-booster:active{
-    transform:translate(3px,3px);
-    box-shadow:2px 2px black;
+.open-booster:disabled{
+    opacity:.5;
+    cursor:not-allowed;
 }
 
 #opening-title{
@@ -461,99 +516,382 @@ nav a{
     margin-top:45px;
 }
 
-.cards-reveal{
+/* ==============================
+   REVEAL
+============================== */
+
+.reveal-stage{
+    min-height:450px;
+
     margin-top:30px;
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-    gap:22px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    position:relative;
+    overflow:hidden;
+
+    border-radius:25px;
 }
 
-/* =========================
-   CARTES
-========================= */
-
-.card{
-    min-height:280px;
-    background:white;
-    color:black;
-    border:4px solid black;
-    border-radius:16px;
-    padding:13px;
-    box-shadow:7px 7px black;
-    animation:cardAppear .45s ease both;
+.reveal-stage.legendary-stage{
+    animation:legendaryStage 1.8s infinite alternate;
 }
 
-@keyframes cardAppear{
+.reveal-stage.mythic-stage{
+    animation:mythicStage 1s infinite alternate;
+}
 
+@keyframes legendaryStage{
     from{
-        opacity:0;
-        transform:translateY(30px) scale(.8) rotate(5deg);
+        box-shadow:
+        inset 0 0 20px rgba(255,196,0,.2),
+        0 0 20px rgba(255,196,0,.3);
     }
 
     to{
-        opacity:1;
-        transform:none;
+        box-shadow:
+        inset 0 0 90px rgba(255,196,0,.7),
+        0 0 70px rgba(255,196,0,.9);
     }
 }
 
-.card-image{
-    height:150px;
-    border:3px solid black;
-    border-radius:10px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:50px;
-    font-weight:900;
-    margin-bottom:14px;
+@keyframes mythicStage{
+    from{
+        box-shadow:
+        inset 0 0 20px rgba(226,27,45,.3),
+        0 0 20px rgba(226,27,45,.4);
+    }
+
+    to{
+        box-shadow:
+        inset 0 0 110px rgba(226,27,45,.85),
+        0 0 100px rgba(226,27,45,1);
+    }
 }
 
-.card h3{
-    font-size:18px;
+/* ==============================
+   CARTE FLIP
+============================== */
+
+.card-wrapper{
+    width:260px;
+    height:380px;
+
+    perspective:1200px;
+}
+
+.card-flip{
+    width:100%;
+    height:100%;
+
+    position:relative;
+
+    transform-style:preserve-3d;
+
+    transition:transform .65s cubic-bezier(.2,.7,.2,1);
+}
+
+.card-wrapper.revealed .card-flip{
+    transform:rotateY(180deg);
+}
+
+/* vitesse légendaire */
+
+.card-wrapper.legendary .card-flip{
+    transition-duration:1.6s;
+}
+
+/* vitesse mythique */
+
+.card-wrapper.mythic .card-flip{
+    transition-duration:2.3s;
+}
+
+.card-face{
+    position:absolute;
+
+    width:100%;
+    height:100%;
+
+    backface-visibility:hidden;
+
+    border:5px solid black;
+    border-radius:20px;
+
+    box-shadow:10px 10px black;
+
+    overflow:hidden;
+}
+
+.card-back{
+    background:black;
+    color:white;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+.card-back strong{
+    font-size:38px;
+    letter-spacing:3px;
+}
+
+.card-back span{
     margin-top:10px;
+    color:var(--green);
+    font-weight:900;
+}
+
+.card-front{
+    transform:rotateY(180deg);
+
+    padding:14px;
+
+    background:white;
+
+    display:flex;
+    flex-direction:column;
+}
+
+.card-image{
+    flex:1;
+
+    border:4px solid black;
+    border-radius:12px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:70px;
+    font-weight:900;
+}
+
+.card-name{
+    margin-top:15px;
+    font-size:21px;
+    font-weight:900;
 }
 
 .rarity{
     display:inline-block;
+
+    margin-top:9px;
+
+    padding:6px 10px;
+
     border:2px solid black;
     border-radius:100px;
-    padding:4px 8px;
-    font-size:11px;
+
+    width:max-content;
+
+    font-size:12px;
     font-weight:900;
     text-transform:uppercase;
 }
 
-.common .card-image{
+/* ==============================
+   COULEURS
+============================== */
+
+.common .card-front{
     background:#e7e7e7;
 }
 
+.common .card-image{
+    background:var(--common);
+}
+
+.rare .card-front{
+    background:#d8ebff;
+}
+
 .rare .card-image{
-    background:#b9e1ff;
+    background:var(--rare);
+    color:white;
+}
+
+.epic .card-front{
+    background:#eadcff;
 }
 
 .epic .card-image{
-    background:#d7c0ff;
+    background:var(--epic);
+    color:white;
+}
+
+.legendary .card-front{
+    background:#fff2a6;
+    border-color:#7d5e00;
+
+    box-shadow:
+    0 0 30px #ffc400,
+    0 0 70px rgba(255,196,0,.9);
 }
 
 .legendary .card-image{
-    background:#ffe291;
+    background:linear-gradient(
+        135deg,
+        #8f6200,
+        #ffc400,
+        #fff2a6,
+        #ffc400,
+        #8f6200
+    );
+
+    color:black;
+}
+
+.mythic .card-front{
+    background:#ffd1d5;
+    border-color:#67000a;
+
+    box-shadow:
+    0 0 35px #ff0019,
+    0 0 90px rgba(255,0,25,.95);
 }
 
 .mythic .card-image{
-    background:var(--green);
+    background:linear-gradient(
+        135deg,
+        #620009,
+        #e21b2d,
+        #ff5361,
+        #e21b2d,
+        #620009
+    );
+
+    color:white;
 }
 
-.legendary{
-    box-shadow:8px 8px #dcae24;
+/* ==============================
+   ANIMATIONS RARETES
+============================== */
+
+.legendary.revealed{
+    animation:legendaryImpact .8s ease;
 }
 
-.mythic{
-    box-shadow:8px 8px var(--darkgreen);
+@keyframes legendaryImpact{
+    0%{
+        transform:scale(.85);
+    }
+
+    50%{
+        transform:scale(1.08);
+        filter:brightness(1.5);
+    }
+
+    100%{
+        transform:scale(1);
+    }
 }
 
-/* =========================
+.mythic.revealed{
+    animation:mythicImpact 1.4s ease;
+}
+
+@keyframes mythicImpact{
+    0%{
+        transform:scale(.7);
+        filter:brightness(3);
+    }
+
+    25%{
+        transform:scale(1.12) rotate(-2deg);
+    }
+
+    45%{
+        transform:scale(1.12) rotate(2deg);
+    }
+
+    65%{
+        transform:scale(1.12) rotate(-1deg);
+    }
+
+    100%{
+        transform:scale(1);
+    }
+}
+
+/* ==============================
+   COMPTEUR REVEAL
+============================== */
+
+.reveal-counter{
+    text-align:center;
+
+    font-size:18px;
+    font-weight:900;
+
+    margin-top:25px;
+}
+
+/* ==============================
+   RESULTAT BOOSTER
+============================== */
+
+.pack-results{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:15px;
+
+    margin-top:40px;
+}
+
+.result-card{
+    border:3px solid black;
+    border-radius:12px;
+
+    min-height:170px;
+
+    padding:12px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    background:white;
+}
+
+.result-card.common{
+    border-color:#666;
+}
+
+.result-card.rare{
+    border-color:var(--rare);
+}
+
+.result-card.epic{
+    border-color:var(--epic);
+}
+
+.result-card.legendary{
+    border-color:var(--legendary);
+    box-shadow:0 0 15px var(--legendary);
+}
+
+.result-card.mythic{
+    border-color:var(--mythic);
+    box-shadow:0 0 20px var(--mythic);
+}
+
+.result-symbol{
+    font-size:35px;
+    font-weight:900;
+    margin-bottom:10px;
+}
+
+/* ==============================
    COLLECTION
-========================= */
+============================== */
 
 .collection{
     max-width:1250px;
@@ -567,6 +905,7 @@ nav a{
 
 .collection-progress{
     margin:20px 0 40px;
+
     font-size:20px;
     font-weight:900;
 }
@@ -574,17 +913,23 @@ nav a{
 .progress-background{
     width:100%;
     max-width:600px;
+
     height:18px;
+
     border:3px solid black;
     border-radius:20px;
+
     overflow:hidden;
+
     margin-top:12px;
 }
 
 #progress-bar{
     height:100%;
     width:0;
+
     background:var(--green);
+
     transition:.4s;
 }
 
@@ -595,20 +940,46 @@ nav a{
 }
 
 .collection-card{
-    min-height:170px;
+    min-height:180px;
+
     border:3px solid black;
     border-radius:12px;
+
     padding:12px;
+
     background:white;
+
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
+
     text-align:center;
+}
+
+.collection-card.common{
+    border-color:#777;
+}
+
+.collection-card.rare{
+    border-color:var(--rare);
+}
+
+.collection-card.epic{
+    border-color:var(--epic);
+}
+
+.collection-card.legendary{
+    border-color:var(--legendary);
+}
+
+.collection-card.mythic{
+    border-color:var(--mythic);
 }
 
 .collection-card.locked{
     background:#ddd;
+    border-color:black;
     color:#999;
 }
 
@@ -623,23 +994,32 @@ nav a{
     font-weight:bold;
 }
 
-/* =========================
+/* ==============================
    PANIER
-========================= */
+============================== */
 
 .cart{
     display:none;
+
     position:fixed;
+
     right:25px;
     top:95px;
+
     width:min(410px,calc(100% - 50px));
     max-height:75vh;
+
     overflow-y:auto;
+
     background:white;
+
     border:3px solid black;
     border-radius:16px;
+
     padding:23px;
+
     box-shadow:9px 9px black;
+
     z-index:200;
 }
 
@@ -654,64 +1034,75 @@ nav a{
 
 .cart-item{
     padding:14px 0;
+
     border-bottom:2px solid #ddd;
+
     display:flex;
     justify-content:space-between;
+
     gap:10px;
 }
 
 .remove{
     border:0;
     background:transparent;
+
     color:var(--darkgreen);
+
     font-weight:900;
     cursor:pointer;
 }
 
 .total{
     margin-top:20px;
+
     font-size:23px;
     font-weight:900;
 }
 
 .checkout{
     width:100%;
+
     padding:14px;
     margin-top:15px;
+
     border:3px solid black;
     border-radius:9px;
+
     background:var(--green);
+
     font-weight:900;
     cursor:pointer;
 }
 
-/* =========================
-   MESSAGE
-========================= */
-
 .message{
     background:white;
     color:black;
+
     border:3px solid black;
-    padding:20px;
     border-radius:12px;
+
+    padding:20px;
+
     font-weight:900;
-    margin-top:25px;
 }
 
-/* =========================
+/* ==============================
    FOOTER
-========================= */
+============================== */
 
 footer{
     padding:60px 7%;
+
     background:black;
     color:white;
 }
 
 .footer-logo{
     font-size:55px;
+
     color:var(--green);
+
     font-weight:900;
     letter-spacing:5px;
 }
@@ -721,9 +1112,9 @@ footer p{
     margin-top:10px;
 }
 
-/* =========================
+/* ==============================
    MOBILE
-========================= */
+============================== */
 
 @media(max-width:700px){
 
@@ -769,8 +1160,9 @@ footer p{
         width:100%;
     }
 
-    .cards-reveal{
-        grid-template-columns:repeat(2,1fr);
+    .card-wrapper{
+        width:230px;
+        height:340px;
     }
 }
 
@@ -778,10 +1170,6 @@ footer p{
 </head>
 
 <body>
-
-<!-- =========================
-     HEADER
-========================= -->
 
 <header>
 
@@ -791,28 +1179,42 @@ VACRE
 
 <nav>
 
-<a href="#boutique">Vacre</a>
-<a href="#tcg">TCG</a>
-<a href="#ouvrir">Ouvrir</a>
-<a href="#collection">Collection</a>
+<a href="#boutique">
+Vacre
+</a>
 
-<button class="cart-button" onclick="toggleCart()">
+<a href="#tcg">
+TCG
+</a>
+
+<a href="#ouvrir">
+Ouvrir
+</a>
+
+<a href="#collection">
+Collection
+</a>
+
+<button
+class="cart-button"
+onclick="toggleCart()">
+
 Panier (<span id="cart-count">0</span>)
+
 </button>
 
 </nav>
 
 </header>
 
-<!-- =========================
-     HERO
-========================= -->
 
 <section class="hero">
 
 <div>
 
-<h1>VACRE.</h1>
+<h1>
+VACRE.
+</h1>
 
 <p>
 Disponible maintenant.
@@ -820,12 +1222,20 @@ Disponible maintenant.
 
 <div class="hero-buttons">
 
-<a href="#boutique" class="button">
+<a
+href="#boutique"
+class="button">
+
 Acheter du Vacre
+
 </a>
 
-<a href="#tcg" class="button black">
+<a
+href="#tcg"
+class="button black">
+
 VACRE TCG
+
 </a>
 
 </div>
@@ -834,19 +1244,23 @@ VACRE TCG
 
 </section>
 
+
 <div class="marquee">
+
 VACRE — VACRE — VACRE TCG — VACRE — VACRE — VACRE TCG — VACRE — VACRE
+
 </div>
 
-<!-- =========================
-     VACRE CLASSIQUE
-========================= -->
 
-<section class="shop" id="boutique">
+<section
+class="shop"
+id="boutique">
 
 <div class="section-head">
 
-<h2>VACRE</h2>
+<h2>
+VACRE
+</h2>
 
 <div class="section-number">
 6 lots disponibles
@@ -854,29 +1268,36 @@ VACRE — VACRE — VACRE TCG — VACRE — VACRE — VACRE TCG — VACRE — VA
 
 </div>
 
-<div class="products" id="normal-products"></div>
+<div
+class="products"
+id="normal-products">
+</div>
 
 </section>
 
-<!-- =========================
-     VACRE TCG
-========================= -->
 
-<section class="tcg-section" id="tcg">
+<section
+class="tcg-section"
+id="tcg">
 
 <div class="tcg-inner">
 
 <h2 class="tcg-title">
-VACRE<br>TCG
+
+VACRE<br>
+TCG
+
 </h2>
 
 <p class="tcg-subtitle">
+
+108 Vacres à collectionner.<br>
 10 cartes par booster.
+
 </p>
 
 <div class="booster-shop">
 
-<!-- 1 BOOSTER -->
 
 <article class="booster-product">
 
@@ -884,11 +1305,17 @@ VACRE<br>TCG
 
 <div class="booster-pack">
 
-<strong>VACRE</strong>
+<strong>
+VACRE
+</strong>
 
-<span>TCG</span>
+<span>
+TCG
+</span>
 
-<small>10 CARTES</small>
+<small>
+10 CARTES
+</small>
 
 </div>
 
@@ -913,7 +1340,9 @@ Booster VACRE TCG
 <button
 class="buy"
 onclick="addToCart('Booster VACRE TCG',4.99)">
+
 Ajouter
+
 </button>
 
 </div>
@@ -922,7 +1351,6 @@ Ajouter
 
 </article>
 
-<!-- 5 BOOSTERS -->
 
 <article class="booster-product">
 
@@ -930,13 +1358,19 @@ Ajouter
 
 <div
 class="booster-pack"
-style="transform:rotate(-4deg);">
+style="transform:rotate(-4deg)">
 
-<strong>VACRE</strong>
+<strong>
+VACRE
+</strong>
 
-<span>TCG ×5</span>
+<span>
+TCG ×5
+</span>
 
-<small>50 CARTES</small>
+<small>
+50 CARTES
+</small>
 
 </div>
 
@@ -961,7 +1395,9 @@ Lot de 5 boosters
 <button
 class="buy"
 onclick="addToCart('5 Boosters VACRE TCG',21.99)">
+
 Ajouter
+
 </button>
 
 </div>
@@ -970,7 +1406,6 @@ Ajouter
 
 </article>
 
-<!-- DISPLAY -->
 
 <article class="booster-product">
 
@@ -978,11 +1413,17 @@ Ajouter
 
 <div class="booster-pack">
 
-<strong>VACRE</strong>
+<strong>
+VACRE
+</strong>
 
-<span>DISPLAY</span>
+<span>
+DISPLAY
+</span>
 
-<small>10 BOOSTERS</small>
+<small>
+10 BOOSTERS
+</small>
 
 </div>
 
@@ -1007,7 +1448,9 @@ Display VACRE
 <button
 class="buy"
 onclick="addToCart('Display VACRE TCG',39.99)">
+
 Ajouter
+
 </button>
 
 </div>
@@ -1022,11 +1465,10 @@ Ajouter
 
 </section>
 
-<!-- =========================
-     OUVERTURE
-========================= -->
 
-<section class="open-zone" id="ouvrir">
+<section
+class="open-zone"
+id="ouvrir">
 
 <div class="open-inner">
 
@@ -1035,7 +1477,9 @@ OUVRIR DES BOOSTERS
 </h2>
 
 <p class="open-description">
+
 10 cartes par booster.
+
 </p>
 
 <div class="booster-balance">
@@ -1053,16 +1497,21 @@ BOOSTERS DISPONIBLES
 </div>
 
 <div class="daily-info">
+
 +10 BOOSTERS GRATUITS CHAQUE JOUR
+
 </div>
 
 </div>
+
 
 <div id="daily-message"></div>
+
 
 <div class="open-buttons">
 
 <button
+id="open-one"
 class="open-booster"
 onclick="openOneBooster()">
 
@@ -1071,6 +1520,7 @@ OUVRIR 1 BOOSTER
 </button>
 
 <button
+id="open-ten"
 class="open-booster black"
 onclick="openTenBoosters()">
 
@@ -1080,22 +1530,35 @@ OUVRIR 10 BOOSTERS
 
 </div>
 
+
 <div id="opening-title"></div>
 
+
 <div
-class="cards-reveal"
-id="cards-reveal">
+class="reveal-stage"
+id="reveal-stage">
+</div>
+
+
+<div
+class="reveal-counter"
+id="reveal-counter">
+</div>
+
+
+<div
+class="pack-results"
+id="pack-results">
 </div>
 
 </div>
 
 </section>
 
-<!-- =========================
-     COLLECTION
-========================= -->
 
-<section class="collection" id="collection">
+<section
+class="collection"
+id="collection">
 
 <h2>
 COLLECTION
@@ -1107,7 +1570,7 @@ COLLECTION
 0
 </span>
 
-/ 40 VACRES
+/ 108 VACRES
 
 <div class="progress-background">
 
@@ -1124,18 +1587,19 @@ id="collection-grid">
 
 </section>
 
-<!-- =========================
-     PANIER
-========================= -->
 
-<aside class="cart" id="cart">
+<aside
+class="cart"
+id="cart">
 
 <h2>
 Panier
 </h2>
 
 <div id="cart-items">
+
 Ton panier est vide.
+
 </div>
 
 <div class="total">
@@ -1160,9 +1624,6 @@ Passer la commande
 
 </aside>
 
-<!-- =========================
-     FOOTER
-========================= -->
 
 <footer>
 
@@ -1176,11 +1637,12 @@ VACRE
 
 </footer>
 
+
 <script>
 
-/* =========================
-   PRODUITS
-========================= */
+/* ==================================================
+   PRODUITS VACRE
+================================================== */
 
 const products = [
 
@@ -1193,8 +1655,10 @@ const products = [
 
 ];
 
+
 const productContainer =
 document.getElementById("normal-products");
+
 
 products.forEach(product=>{
 
@@ -1249,93 +1713,196 @@ Ajouter
 });
 
 
-/* =========================
-   40 CARTES VACRE
-========================= */
+/* ==================================================
+   108 VACRES
+================================================== */
 
 const cards = [
 
-/* COMMUN */
+/* ======================
+   COMMUNS 1-32
+====================== */
 
-{name:"Vacre Normal",rarity:"common",symbol:"V",weight:20},
-{name:"Petit Vacre",rarity:"common",symbol:"v",weight:20},
-{name:"Vacre Carré",rarity:"common",symbol:"□",weight:20},
-{name:"Vacre Rond",rarity:"common",symbol:"○",weight:20},
-{name:"Vacre Mouillé",rarity:"common",symbol:"≈",weight:20},
-{name:"Vacre Sec",rarity:"common",symbol:"☀",weight:20},
-{name:"Vacre Fiscal",rarity:"common",symbol:"€",weight:20},
-{name:"Vacre Municipal",rarity:"common",symbol:"M",weight:20},
-{name:"Vacre de Chantier",rarity:"common",symbol:"▲",weight:20},
-{name:"Vacre Portable",rarity:"common",symbol:"↗",weight:20},
-{name:"Vacre Tiède",rarity:"common",symbol:"~",weight:20},
-{name:"Vacre Domestique",rarity:"common",symbol:"⌂",weight:20},
-{name:"Vacre Latéral",rarity:"common",symbol:"→",weight:20},
-{name:"Vacre Compact",rarity:"common",symbol:"▪",weight:20},
-{name:"Vacre Public",rarity:"common",symbol:"P",weight:20},
+{name:"Vacre Normal",rarity:"common",symbol:"V"},
+{name:"Petit Vacre",rarity:"common",symbol:"v"},
+{name:"Vacre Carré",rarity:"common",symbol:"□"},
+{name:"Vacre Rond",rarity:"common",symbol:"○"},
+{name:"Vacre Mouillé",rarity:"common",symbol:"≈"},
+{name:"Vacre Sec",rarity:"common",symbol:"☀"},
+{name:"Vacre Fiscal",rarity:"common",symbol:"€"},
+{name:"Vacre Municipal",rarity:"common",symbol:"M"},
+{name:"Vacre de Chantier",rarity:"common",symbol:"▲"},
+{name:"Vacre Portable",rarity:"common",symbol:"↗"},
+{name:"Vacre Tiède",rarity:"common",symbol:"~"},
+{name:"Vacre Domestique",rarity:"common",symbol:"⌂"},
+{name:"Vacre Latéral",rarity:"common",symbol:"→"},
+{name:"Vacre Compact",rarity:"common",symbol:"▪"},
+{name:"Vacre Public",rarity:"common",symbol:"P"},
+{name:"Vacre Gonflable",rarity:"common",symbol:"◯"},
+{name:"Vacre Transparent",rarity:"common",symbol:"◇"},
+{name:"Vacre en Plastique",rarity:"common",symbol:"P"},
+{name:"Vacre à Roulettes",rarity:"common",symbol:"●"},
+{name:"Vacre Périmé",rarity:"common",symbol:"⌛"},
+{name:"Vacre Sans Sucre",rarity:"common",symbol:"0"},
+{name:"Vacre de Poche",rarity:"common",symbol:"▣"},
+{name:"Vacre Régional",rarity:"common",symbol:"R"},
+{name:"Vacre Flottant",rarity:"common",symbol:"≈"},
+{name:"Vacre d’Occasion",rarity:"common",symbol:"2"},
+{name:"Vacre à Piles",rarity:"common",symbol:"+"},
+{name:"Vacre Manuel",rarity:"common",symbol:"✋"},
+{name:"Vacre Thermique",rarity:"common",symbol:"°"},
+{name:"Vacre Lavable",rarity:"common",symbol:"≈"},
+{name:"Vacre Standard",rarity:"common",symbol:"S"},
+{name:"Vacre Miniature",rarity:"common",symbol:"·"},
+{name:"Vacre Recyclable",rarity:"common",symbol:"↻"},
 
-/* RARE */
 
-{name:"Vacre Royal",rarity:"rare",symbol:"♛",weight:8},
-{name:"Vacre Chromé",rarity:"rare",symbol:"◇",weight:8},
-{name:"Vacre Souterrain",rarity:"rare",symbol:"↓",weight:8},
-{name:"Vacre Magnétique",rarity:"rare",symbol:"N",weight:8},
-{name:"Vacre Astral",rarity:"rare",symbol:"✦",weight:8},
-{name:"Vacre Inversé",rarity:"rare",symbol:"Я",weight:8},
-{name:"Vacre Industriel",rarity:"rare",symbol:"⚙",weight:8},
-{name:"Vacre Nocturne",rarity:"rare",symbol:"☾",weight:8},
-{name:"Vacre Double",rarity:"rare",symbol:"VV",weight:8},
-{name:"Vacre Ancien",rarity:"rare",symbol:"I",weight:8},
+/* ======================
+   RARES 33-60
+====================== */
 
-/* EPIQUE */
+{name:"Vacre Royal",rarity:"rare",symbol:"♛"},
+{name:"Vacre Chromé",rarity:"rare",symbol:"◇"},
+{name:"Vacre Souterrain",rarity:"rare",symbol:"↓"},
+{name:"Vacre Magnétique",rarity:"rare",symbol:"N"},
+{name:"Vacre Astral",rarity:"rare",symbol:"✦"},
+{name:"Vacre Inversé",rarity:"rare",symbol:"Я"},
+{name:"Vacre Industriel",rarity:"rare",symbol:"⚙"},
+{name:"Vacre Nocturne",rarity:"rare",symbol:"☾"},
+{name:"Vacre Ancien",rarity:"rare",symbol:"I"},
 
-{name:"Vacre Quantique",rarity:"epic",symbol:"Ψ",weight:3},
-{name:"Vacre Interdit",rarity:"epic",symbol:"×",weight:3},
-{name:"Vacre Paradoxal",rarity:"epic",symbol:"∞",weight:3},
-{name:"Vacre Fantôme",rarity:"epic",symbol:"Ø",weight:3},
-{name:"Vacre Souverain",rarity:"epic",symbol:"♜",weight:3},
-{name:"Vacre Zéro",rarity:"epic",symbol:"0",weight:3},
-{name:"Vacre 404",rarity:"epic",symbol:"404",weight:3},
+{name:"Vacre Positif",rarity:"rare",symbol:"+"},
+{name:"Vacre Bouilli",rarity:"rare",symbol:"♨"},
+{name:"Vacre Tournesol",rarity:"rare",symbol:"☀"},
+{name:"Double Vacre",rarity:"rare",symbol:"VV"},
+{name:"Vacre Ralenti",rarity:"rare",symbol:"◀"},
 
-/* LEGENDAIRE */
+{name:"Vacre Nucléaire",rarity:"rare",symbol:"☢"},
+{name:"Vacre Béton",rarity:"rare",symbol:"■"},
+{name:"Vacre Blindé",rarity:"rare",symbol:"▰"},
+{name:"Vacre Solaire",rarity:"rare",symbol:"☀"},
+{name:"Vacre Lunaire",rarity:"rare",symbol:"☾"},
+{name:"Vacre Vertical",rarity:"rare",symbol:"↑"},
+{name:"Vacre Turbo",rarity:"rare",symbol:"»"},
+{name:"Vacre Cosmique",rarity:"rare",symbol:"✧"},
+{name:"Vacre Inoxydable",rarity:"rare",symbol:"I"},
+{name:"Vacre Sous Vide",rarity:"rare",symbol:"○"},
+{name:"Vacre 2000",rarity:"rare",symbol:"2K"},
+{name:"Vacre Pressurisé",rarity:"rare",symbol:"P"},
+{name:"Vacre Électrique",rarity:"rare",symbol:"⚡"},
+{name:"Vacre Mécanique",rarity:"rare",symbol:"⚙"},
 
-{name:"Vacre Primordial",rarity:"legendary",symbol:"Ⅰ",weight:1},
-{name:"Grand Vacre",rarity:"legendary",symbol:"V+",weight:1},
-{name:"Vacre Originel",rarity:"legendary",symbol:"α",weight:1},
-{name:"Vacre Infini",rarity:"legendary",symbol:"∞",weight:1},
-{name:"Vacre Suprême",rarity:"legendary",symbol:"♚",weight:1},
 
-/* MYTHIQUE */
+/* ======================
+   EPIQUES 61-84
+====================== */
 
-{name:"VACRE ABSOLU",rarity:"mythic",symbol:"V",weight:.25},
-{name:"VACRE Nº001",rarity:"mythic",symbol:"001",weight:.25},
-{name:"LE VACRE",rarity:"mythic",symbol:"?",weight:.15}
+{name:"Vacre Quantique",rarity:"epic",symbol:"Ψ"},
+{name:"Vacre Interdit",rarity:"epic",symbol:"×"},
+{name:"Vacre Paradoxal",rarity:"epic",symbol:"∞"},
+{name:"Vacre Fantôme",rarity:"epic",symbol:"Ø"},
+{name:"Vacre Souverain",rarity:"epic",symbol:"♜"},
+{name:"Vacre Zéro",rarity:"epic",symbol:"0"},
+{name:"Vacre 404",rarity:"epic",symbol:"404"},
+
+{name:"Vacre Accéléré",rarity:"epic",symbol:"»"},
+{name:"Vacre Négatif",rarity:"epic",symbol:"−"},
+{name:"Vacre Flocko",rarity:"epic",symbol:"F"},
+{name:"Antivacre",rarity:"epic",symbol:"¬V"},
+{name:"Triple Vacre",rarity:"epic",symbol:"VVV"},
+{name:"Vacre Love",rarity:"epic",symbol:"♥"},
+{name:"Vacre Cuck",rarity:"epic",symbol:"C"},
+
+{name:"Vacre Imaginaire",rarity:"epic",symbol:"i"},
+{name:"Vacre Irrationnel",rarity:"epic",symbol:"π"},
+{name:"Vacre Instable",rarity:"epic",symbol:"!"},
+{name:"Vacre du Vide",rarity:"epic",symbol:"∅"},
+{name:"Vacre Dimensionnel",rarity:"epic",symbol:"4D"},
+{name:"Vacre Illégal",rarity:"epic",symbol:"!"},
+{name:"Vacre.exe",rarity:"epic",symbol:".exe"},
+{name:"Vacre²",rarity:"epic",symbol:"V²"},
+{name:"Vacre Parallèle",rarity:"epic",symbol:"∥"},
+{name:"Vacre Corrompu",rarity:"epic",symbol:"▓"},
+
+
+/* ======================
+   LEGENDAIRES 85-100
+====================== */
+
+{name:"Vacre Primordial",rarity:"legendary",symbol:"Ⅰ"},
+{name:"Grand Vacre",rarity:"legendary",symbol:"V+"},
+{name:"Vacre Originel",rarity:"legendary",symbol:"α"},
+{name:"Vacre Infini",rarity:"legendary",symbol:"∞"},
+{name:"Vacre Suprême",rarity:"legendary",symbol:"♚"},
+
+{name:"Vacre Caca",rarity:"legendary",symbol:"♨"},
+{name:"Vacre Tung Sahur",rarity:"legendary",symbol:"T"},
+{name:"Vacre Goy",rarity:"legendary",symbol:"G"},
+{name:"Quadruple Vacre",rarity:"legendary",symbol:"V⁴"},
+{name:"Vacre Jfhzbeushejfuqhavrjdhz",rarity:"legendary",symbol:"?"},
+
+{name:"Vacre Omniprésent",rarity:"legendary",symbol:"◎"},
+{name:"Vacre Transcendant",rarity:"legendary",symbol:"△"},
+{name:"Vacre Éternel",rarity:"legendary",symbol:"∞"},
+{name:"Vacre de Schrödinger",rarity:"legendary",symbol:"?"},
+{name:"Vacre Singulier",rarity:"legendary",symbol:"1"},
+{name:"Vacre Omniscient",rarity:"legendary",symbol:"◉"},
+
+
+/* ======================
+   MYTHIQUES 101-108
+====================== */
+
+{name:"VACRE ABSOLU",rarity:"mythic",symbol:"V"},
+{name:"VACRE Nº001",rarity:"mythic",symbol:"001"},
+{name:"LE VACRE",rarity:"mythic",symbol:"?"},
+
+{name:"Vacre 67",rarity:"mythic",symbol:"67"},
+{name:"Vacre Ura",rarity:"mythic",symbol:"URA"},
+{name:"Vacre Ancestral",rarity:"mythic",symbol:"A"},
+{name:"Vacre Présidentiel",rarity:"mythic",symbol:"★"},
+{name:"Vacre Ultime",rarity:"mythic",symbol:"Ω"}
 
 ];
 
 
-/* =========================
-   COLLECTION
-========================= */
+/* ==================================================
+   PROBABILITES
+================================================== */
 
-let collection =
-JSON.parse(
-localStorage.getItem("vacreCollection")
-) || [];
+/*
+
+Probabilité POUR CHAQUE CARTE :
+
+Commun      69 %
+Rare        22 %
+Épique       7 %
+Légendaire   1,7 %
+Mythique     0,3 %
+
+Une fois la rareté déterminée,
+une carte aléatoire de cette rareté est choisie.
+
+*/
+
+const rarityChances = {
+
+common:69,
+rare:22,
+epic:7,
+legendary:1.7,
+mythic:.3
+
+};
 
 
-function saveCollection(){
-
-localStorage.setItem(
-"vacreCollection",
-JSON.stringify(collection)
-);
-
-}
-
+/* ==================================================
+   TEXTES RARETES
+================================================== */
 
 function rarityText(rarity){
 
-const names={
+const names = {
 
 common:"Commun",
 rare:"Rare",
@@ -1346,6 +1913,25 @@ mythic:"Mythique"
 };
 
 return names[rarity];
+
+}
+
+
+/* ==================================================
+   COLLECTION
+================================================== */
+
+let collection = JSON.parse(
+localStorage.getItem("vacreCollection108")
+) || [];
+
+
+function saveCollection(){
+
+localStorage.setItem(
+"vacreCollection108",
+JSON.stringify(collection)
+);
 
 }
 
@@ -1363,9 +1949,13 @@ cards.forEach(card=>{
 const unlocked =
 collection.includes(card.name);
 
+
 grid.innerHTML += `
 
-<div class="collection-card ${unlocked ? "" : "locked"}">
+<div class="
+collection-card
+${unlocked ? card.rarity : "locked"}
+">
 
 <div class="symbol">
 
@@ -1380,19 +1970,15 @@ ${unlocked ? card.name : "???"}
 </strong>
 
 ${
-
 unlocked
-
 ?
-
-`<small>
+`
+<small>
 ${rarityText(card.rarity)}
-</small>`
-
+</small>
+`
 :
-
 ""
-
 }
 
 </div>
@@ -1420,49 +2006,102 @@ percentage + "%";
 }
 
 
-/* =========================
-   TIRAGE
-========================= */
+/* ==================================================
+   TIRAGE RARETE
+================================================== */
+
+function randomRarity(){
+
+const roll =
+Math.random() * 100;
+
+
+if(roll < rarityChances.mythic){
+
+return "mythic";
+
+}
+
+
+if(
+roll <
+rarityChances.mythic +
+rarityChances.legendary
+){
+
+return "legendary";
+
+}
+
+
+if(
+roll <
+rarityChances.mythic +
+rarityChances.legendary +
+rarityChances.epic
+){
+
+return "epic";
+
+}
+
+
+if(
+roll <
+rarityChances.mythic +
+rarityChances.legendary +
+rarityChances.epic +
+rarityChances.rare
+){
+
+return "rare";
+
+}
+
+
+return "common";
+
+}
+
+
+/* ==================================================
+   TIRAGE CARTE
+================================================== */
 
 function randomCard(){
 
-const total =
-cards.reduce(
-(sum,card)=>sum+card.weight,
-0
+const rarity =
+randomRarity();
+
+
+const pool =
+cards.filter(
+card =>
+card.rarity === rarity
 );
 
-let random =
-Math.random()*total;
 
-
-for(const card of cards){
-
-random -= card.weight;
-
-if(random <= 0){
-
-return card;
-
-}
-
-}
-
-return cards[0];
+return pool[
+Math.floor(
+Math.random() * pool.length
+)
+];
 
 }
 
 
-/* =========================
-   GENERATION BOOSTER
-========================= */
+/* ==================================================
+   BOOSTER
+================================================== */
 
 function generateBooster(){
 
 let booster=[];
 
 
-/* 9 cartes normales */
+/*
+9 cartes totalement aléatoires
+*/
 
 for(let i=0;i<9;i++){
 
@@ -1473,26 +2112,79 @@ randomCard()
 }
 
 
-/* dernière carte rare ou mieux */
+/*
+La dernière garantit au minimum une rare.
+*/
 
-const guaranteedPool =
+const guaranteedRoll =
+Math.random()*100;
+
+let guaranteedRarity;
+
+
+if(guaranteedRoll < 1){
+
+guaranteedRarity="mythic";
+
+}
+
+else if(guaranteedRoll < 6){
+
+guaranteedRarity="legendary";
+
+}
+
+else if(guaranteedRoll < 26){
+
+guaranteedRarity="epic";
+
+}
+
+else{
+
+guaranteedRarity="rare";
+
+}
+
+
+const pool =
 cards.filter(
 card =>
-card.rarity !== "common"
+card.rarity === guaranteedRarity
 );
 
 
 booster.push(
 
-guaranteedPool[
-
+pool[
 Math.floor(
-Math.random() *
-guaranteedPool.length
+Math.random()*pool.length
 )
-
 ]
 
+);
+
+
+/*
+On trie les cartes pour révéler
+les meilleures à la fin.
+*/
+
+const order = {
+
+common:1,
+rare:2,
+epic:3,
+legendary:4,
+mythic:5
+
+};
+
+
+booster.sort(
+(a,b)=>
+order[a.rarity] -
+order[b.rarity]
 );
 
 
@@ -1501,9 +2193,9 @@ return booster;
 }
 
 
-/* =========================
-   STOCK BOOSTERS
-========================= */
+/* ==================================================
+   BOOSTERS GRATUITS
+================================================== */
 
 let boosterStock =
 parseInt(
@@ -1511,14 +2203,11 @@ localStorage.getItem("vacreBoosters")
 ) || 0;
 
 
-/* =========================
-   DATE DU JOUR
-========================= */
-
 function getToday(){
 
 const now =
 new Date();
+
 
 return (
 
@@ -1540,10 +2229,6 @@ now.getDate()
 
 }
 
-
-/* =========================
-   CADEAU QUOTIDIEN
-========================= */
 
 function giveDailyBoosters(){
 
@@ -1589,14 +2274,11 @@ CADEAU DU JOUR :
 
 }
 
+
 updateBoosterStock();
 
 }
 
-
-/* =========================
-   AFFICHAGE STOCK
-========================= */
 
 function updateBoosterStock(){
 
@@ -1614,49 +2296,101 @@ boosterStock
 }
 
 
-/* =========================
-   AFFICHAGE CARTES
-========================= */
+/* ==================================================
+   ANIMATION OUVERTURE
+================================================== */
 
-function displayCards(cardsToShow){
-
-const reveal =
-document.getElementById("cards-reveal");
+let opening = false;
 
 
-reveal.innerHTML="";
+function sleep(ms){
 
-
-cardsToShow.forEach(
-(card,index)=>{
-
-
-if(
-!collection.includes(card.name)
-){
-
-collection.push(
-card.name
+return new Promise(
+resolve =>
+setTimeout(resolve,ms)
 );
 
 }
 
 
-setTimeout(()=>{
+function disableOpenButtons(state){
 
-const element =
-document.createElement("div");
-
-
-element.className =
-`card ${card.rarity}`;
+document
+.getElementById("open-one")
+.disabled =
+state;
 
 
-element.innerHTML = `
+document
+.getElementById("open-ten")
+.disabled =
+state;
+
+}
+
+
+/* ==================================================
+   REVELATION D'UNE CARTE
+================================================== */
+
+async function revealCard(
+card,
+number,
+total
+){
+
+const stage =
+document.getElementById(
+"reveal-stage"
+);
+
+
+const counter =
+document.getElementById(
+"reveal-counter"
+);
+
+
+stage.className =
+"reveal-stage";
+
+
+stage.innerHTML = `
+
+<div
+class="
+card-wrapper
+${card.rarity}
+"
+id="current-card"
+>
+
+<div class="card-flip">
+
+<div class="card-face card-back">
+
+<strong>
+VACRE
+</strong>
+
+<span>
+TCG
+</span>
+
+</div>
+
+
+<div class="card-face card-front">
 
 <div class="card-image">
 
 ${card.symbol}
+
+</div>
+
+<div class="card-name">
+
+${card.name}
 
 </div>
 
@@ -1666,52 +2400,279 @@ ${rarityText(card.rarity)}
 
 </span>
 
-<h3>
+</div>
 
-${card.name}
+</div>
 
-</h3>
+</div>
 
 `;
 
 
-reveal.appendChild(
-element
+counter.textContent =
+`CARTE ${number} / ${total}`;
+
+
+const wrapper =
+document.getElementById(
+"current-card"
 );
 
 
-},
-index*100
-);
+/*
+Temps avant retournement
+selon la rareté.
+*/
+
+let suspense = 350;
 
 
-});
+if(card.rarity === "epic"){
+
+suspense = 550;
+
+}
 
 
-saveCollection();
+if(card.rarity === "legendary"){
 
+suspense = 1100;
 
-setTimeout(
-
-renderCollection,
-
-cardsToShow.length*100
-
+stage.classList.add(
+"legendary-stage"
 );
 
 }
 
 
-/* =========================
-   OUVRIR 1
-========================= */
+if(card.rarity === "mythic"){
 
-function openOneBooster(){
+suspense = 1800;
+
+stage.classList.add(
+"mythic-stage"
+);
+
+}
+
+
+await sleep(suspense);
+
+
+/*
+Retournement
+*/
+
+wrapper.classList.add(
+"revealed"
+);
+
+
+/*
+Temps d'affichage
+*/
+
+let revealTime = 700;
+
+
+if(card.rarity === "rare"){
+
+revealTime = 850;
+
+}
+
+
+if(card.rarity === "epic"){
+
+revealTime = 1050;
+
+}
+
+
+if(card.rarity === "legendary"){
+
+revealTime = 2000;
+
+}
+
+
+if(card.rarity === "mythic"){
+
+revealTime = 3000;
+
+}
+
+
+await sleep(revealTime);
+
+
+/*
+Ajout collection
+*/
+
+if(
+!collection.includes(
+card.name
+)
+){
+
+collection.push(
+card.name
+);
+
+saveCollection();
+
+renderCollection();
+
+}
+
+}
+
+
+/* ==================================================
+   RESULTATS
+================================================== */
+
+function showResults(
+cardsOpened
+){
+
+const results =
+document.getElementById(
+"pack-results"
+);
+
+
+results.innerHTML="";
+
+
+cardsOpened.forEach(card=>{
+
+results.innerHTML += `
+
+<div class="
+result-card
+${card.rarity}
+">
+
+<div class="result-symbol">
+
+${card.symbol}
+
+</div>
+
+<strong>
+
+${card.name}
+
+</strong>
+
+<small>
+
+${rarityText(card.rarity)}
+
+</small>
+
+</div>
+
+`;
+
+});
+
+}
+
+
+/* ==================================================
+   SEQUENCE COMPLETE
+================================================== */
+
+async function revealSequence(
+cardsOpened
+){
+
+opening=true;
+
+disableOpenButtons(true);
+
+
+document
+.getElementById(
+"pack-results"
+)
+.innerHTML="";
+
+
+for(
+let i=0;
+i<cardsOpened.length;
+i++
+){
+
+await revealCard(
+cardsOpened[i],
+i+1,
+cardsOpened.length
+);
+
+
+/*
+Petite pause entre les cartes
+*/
+
+await sleep(350);
+
+}
+
+
+document
+.getElementById(
+"reveal-stage"
+)
+className =
+"reveal-stage";
+
+
+document
+.getElementById(
+"reveal-stage"
+)
+.innerHTML="";
+
+
+document
+.getElementById(
+"reveal-counter"
+)
+textContent =
+"OUVERTURE TERMINÉE";
+
+
+showResults(
+cardsOpened
+);
+
+
+opening=false;
+
+disableOpenButtons(false);
+
+}
+
+
+/* ==================================================
+   OUVRIR 1 BOOSTER
+================================================== */
+
+async function openOneBooster(){
+
+if(opening){
+return;
+}
+
 
 if(boosterStock < 1){
 
 showNoBoosters();
-
 return;
 
 }
@@ -1719,37 +2680,53 @@ return;
 
 boosterStock--;
 
-
 updateBoosterStock();
-
-
-document
-.getElementById("opening-title")
-.textContent =
-"BOOSTER OUVERT — 10 CARTES";
 
 
 const booster =
 generateBooster();
 
 
-displayCards(
+document
+.getElementById(
+"opening-title"
+)
+.textContent =
+"BOOSTER EN COURS D'OUVERTURE";
+
+
+await revealSequence(
 booster
 );
+
+
+document
+.getElementById(
+"opening-title"
+)
+.textContent =
+"BOOSTER OUVERT — 10 CARTES";
 
 }
 
 
-/* =========================
-   OUVRIR 10
-========================= */
+/* ==================================================
+   OUVRIR 10 BOOSTERS
+================================================== */
 
-function openTenBoosters(){
+async function openTenBoosters(){
+
+if(opening){
+return;
+}
+
 
 if(boosterStock < 10){
 
 document
-.getElementById("cards-reveal")
+.getElementById(
+"reveal-stage"
+)
 .innerHTML = `
 
 <div class="message">
@@ -1772,7 +2749,6 @@ return;
 
 boosterStock -= 10;
 
-
 updateBoosterStock();
 
 
@@ -1788,27 +2764,63 @@ allCards.push(
 }
 
 
+/*
+Tri global par rareté.
+Les plus grosses cartes
+arrivent à la fin.
+*/
+
+const order = {
+
+common:1,
+rare:2,
+epic:3,
+legendary:4,
+mythic:5
+
+};
+
+
+allCards.sort(
+(a,b)=>
+order[a.rarity] -
+order[b.rarity]
+);
+
+
 document
-.getElementById("opening-title")
+.getElementById(
+"opening-title"
+)
 .textContent =
-"10 BOOSTERS OUVERTS — 100 CARTES";
+"OUVERTURE DE 10 BOOSTERS";
 
 
-displayCards(
+await revealSequence(
 allCards
 );
+
+
+document
+.getElementById(
+"opening-title"
+)
+.textContent =
+"10 BOOSTERS OUVERTS — 100 CARTES";
 
 }
 
 
-/* =========================
-   PLUS DE BOOSTER
-========================= */
+/* ==================================================
+   PLUS DE BOOSTERS
+================================================== */
 
 function showNoBoosters(){
 
 document
-.getElementById("cards-reveal")
+.getElementById(
+"reveal-stage"
+)
 .innerHTML = `
 
 <div class="message">
@@ -1826,19 +2838,25 @@ PLUS DE BOOSTERS.
 }
 
 
-/* =========================
+/* ==================================================
    PANIER
-========================= */
+================================================== */
 
 let cart=[];
 
 
-function addToCart(name,price){
-
-cart.push({
+function addToCart(
 name,
 price
+){
+
+cart.push({
+
+name:name,
+price:price
+
 });
+
 
 updateCart();
 
@@ -1851,6 +2869,7 @@ cart.splice(
 index,
 1
 );
+
 
 updateCart();
 
@@ -1881,7 +2900,7 @@ count.textContent =
 cart.length;
 
 
-if(cart.length===0){
+if(cart.length === 0){
 
 items.innerHTML =
 "Ton panier est vide.";
@@ -1905,9 +2924,7 @@ let total=0;
 cart.forEach(
 (item,index)=>{
 
-
-total +=
-item.price;
+total += item.price;
 
 
 items.innerHTML += `
@@ -1947,7 +2964,6 @@ Retirer
 
 
 totalElement.textContent =
-
 total
 .toFixed(2)
 .replace(".",",");
@@ -1958,7 +2974,9 @@ total
 function toggleCart(){
 
 document
-.getElementById("cart")
+.getElementById(
+"cart"
+)
 .classList
 .toggle("open");
 
@@ -1967,7 +2985,7 @@ document
 
 function checkout(){
 
-if(cart.length===0){
+if(cart.length === 0){
 
 alert(
 "Ton panier est vide."
@@ -1985,15 +3003,17 @@ alert(
 }
 
 
-/* =========================
+/* ==================================================
    DEMARRAGE
-========================= */
+================================================== */
 
 renderCollection();
 
 giveDailyBoosters();
 
 updateBoosterStock();
+
+updateCart();
 
 </script>
 
