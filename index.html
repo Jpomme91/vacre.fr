@@ -1166,6 +1166,10 @@ footer p{
     }
 }
 
+
+/* ============================== VACRE MARKET + ROUE ============================== */
+.market-section{background:#f4f4f4;border-bottom:4px solid black;padding:90px 5%}.market-inner{max-width:1250px;margin:auto}.market-title,.wheel-title{font-size:clamp(55px,10vw,120px);line-height:.85}.market-subtitle,.wheel-description{margin-top:20px;font-size:20px;font-weight:900}.market-warning{display:inline-block;margin-top:15px;padding:8px 12px;background:black;color:white;font-size:12px;font-weight:900;border-radius:6px}.market-dashboard{display:grid;grid-template-columns:2fr 1fr;gap:25px;margin-top:45px}.market-panel{background:white;border:4px solid black;border-radius:18px;box-shadow:8px 8px black;padding:25px}.market-price{font-size:clamp(42px,7vw,78px);font-weight:900;line-height:1;margin-top:10px}.market-change{display:inline-block;margin-top:12px;padding:8px 12px;border:3px solid black;border-radius:8px;font-weight:900}.market-change.up{background:#a8f0c8}.market-change.down{background:#ffb5bb}.market-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:25px}.market-stat{padding:12px;border:2px solid black;border-radius:9px}.market-stat small{display:block;font-weight:900;color:#777}.chart-container{height:310px;margin-top:30px;border:3px solid black;border-radius:12px;overflow:hidden;background:#fafafa}#market-chart{width:100%;height:100%}.wallet-balance{font-size:40px;font-weight:900;margin:12px 0 25px}.portfolio-line{padding:12px 0;border-bottom:2px solid #ddd;font-weight:900}.trade-box{margin-top:25px}.trade-box input{width:100%;padding:14px;border:3px solid black;border-radius:8px;font-size:17px;font-weight:900}.trade-buttons{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}.trade-button{padding:13px;border:3px solid black;border-radius:8px;font-weight:900;cursor:pointer}.buy-market{background:var(--green)}.sell-market{background:white}.trade-message{min-height:24px;margin-top:15px;font-weight:900}.news-board{margin-top:35px;background:black;color:white;border-radius:18px;border:4px solid black;overflow:hidden}.news-header{padding:17px 22px;background:var(--green);color:black;font-size:22px;font-weight:900;display:flex;justify-content:space-between;gap:20px}.news-content{padding:25px}.news-main{font-size:clamp(24px,4vw,40px);font-weight:900}.news-description{margin-top:15px;color:#ccc;font-size:17px;line-height:1.5}.news-impact{display:inline-block;margin-top:20px;padding:8px 12px;background:white;color:black;border-radius:7px;font-weight:900}.wheel-section{padding:90px 5%;background:var(--green);border-bottom:4px solid black}.wheel-inner{max-width:1100px;margin:auto;text-align:center}.wheel-area{margin:50px auto 30px;position:relative;width:min(430px,90vw)}.wheel-pointer{position:absolute;z-index:5;left:50%;top:-20px;transform:translateX(-50%);width:0;height:0;border-left:20px solid transparent;border-right:20px solid transparent;border-top:45px solid black}#wheel{width:100%;aspect-ratio:1;border:7px solid black;border-radius:50%;position:relative;overflow:hidden;background:conic-gradient(#fff 0 45deg,#111 45deg 90deg,#fff 90deg 135deg,#111 135deg 180deg,#fff 180deg 225deg,#111 225deg 270deg,#fff 270deg 315deg,#111 315deg 360deg);transition:transform 5s cubic-bezier(.12,.65,.08,1);box-shadow:10px 10px black}.wheel-label{position:absolute;left:50%;top:50%;width:42%;transform-origin:0 0;font-size:12px;font-weight:900}.wheel-label span{display:block;width:100px;text-align:center}.wheel-label.dark{color:white}.wheel-center{position:absolute;z-index:4;left:50%;top:50%;transform:translate(-50%,-50%);width:85px;height:85px;border-radius:50%;background:var(--green);border:5px solid black;display:flex;align-items:center;justify-content:center;font-weight:900}.spin-button{margin-top:25px;padding:17px 30px;border:4px solid black;border-radius:10px;background:white;font-size:18px;font-weight:900;box-shadow:6px 6px black;cursor:pointer}.spin-button:disabled{opacity:.5;cursor:not-allowed}#wheel-result{min-height:70px;margin:30px auto 0;max-width:600px;font-size:24px;font-weight:900}@media(max-width:800px){.market-dashboard{grid-template-columns:1fr}.market-stats{grid-template-columns:1fr}}
+
 </style>
 </head>
 
@@ -1193,6 +1197,14 @@ Ouvrir
 
 <a href="#collection">
 Collection
+</a>
+
+<a href="#market">
+Market
+</a>
+
+<a href="#roue">
+Roue
 </a>
 
 <button
@@ -1555,6 +1567,18 @@ id="pack-results">
 
 </section>
 
+
+
+
+<!-- VACRE MARKET -->
+<section class="market-section" id="market"><div class="market-inner">
+<h2 class="market-title">VACRE<br>MARKET</h2><p class="market-subtitle">Le cours fictif du Vacre, coté en URACOIN.</p><span class="market-warning">SIMULATION — AUCUN ARGENT RÉEL</span>
+<div class="market-dashboard"><div class="market-panel"><strong>COURS DU VACRE</strong><div class="market-price"><span id="market-price">0,00</span> U</div><div id="market-change" class="market-change">0,00 %</div><div class="market-stats"><div class="market-stat"><small>OUVERTURE</small><strong id="market-open">—</strong></div><div class="market-stat"><small>PLUS HAUT</small><strong id="market-high">—</strong></div><div class="market-stat"><small>PLUS BAS</small><strong id="market-low">—</strong></div></div><div class="chart-container"><svg id="market-chart" viewBox="0 0 800 300" preserveAspectRatio="none"></svg></div></div>
+<div class="market-panel"><strong>PORTEFEUILLE</strong><div class="wallet-balance"><span id="uracoin-balance">0</span> <small>URACOIN</small></div><div class="portfolio-line">Vacres possédés : <span id="owned-vacre">0</span></div><div class="portfolio-line">Valeur : <span id="portfolio-value">0</span> U</div><div class="portfolio-line">Patrimoine total : <span id="total-wealth">0</span> U</div><div class="trade-box"><input id="trade-amount" type="number" min="1" value="1" placeholder="Nombre de Vacres"><div class="trade-buttons"><button class="trade-button buy-market" onclick="buyVacre()">ACHETER</button><button class="trade-button sell-market" onclick="sellVacre()">VENDRE</button></div><div class="trade-message" id="trade-message"></div></div></div></div>
+<div class="news-board"><div class="news-header"><span>VACRE NEWS NETWORK</span><span id="news-date"></span></div><div class="news-content"><div class="news-main" id="news-title"></div><div class="news-description" id="news-description"></div><div class="news-impact" id="news-impact"></div></div></div>
+</div></section>
+<!-- ROUE DU VACRE -->
+<section class="wheel-section" id="roue"><div class="wheel-inner"><h2 class="wheel-title">ROUE DU VACRE</h2><p class="wheel-description">1 tour gratuit par jour.</p><div class="wheel-area"><div class="wheel-pointer"></div><div id="wheel"><div class="wheel-label" style="transform:rotate(22.5deg)"><span>100<br>U</span></div><div class="wheel-label dark" style="transform:rotate(67.5deg)"><span>1<br>BOOSTER</span></div><div class="wheel-label" style="transform:rotate(112.5deg)"><span>500<br>U</span></div><div class="wheel-label dark" style="transform:rotate(157.5deg)"><span>3<br>BOOSTERS</span></div><div class="wheel-label" style="transform:rotate(202.5deg)"><span>1000<br>U</span></div><div class="wheel-label dark" style="transform:rotate(247.5deg)"><span>5<br>BOOSTERS</span></div><div class="wheel-label" style="transform:rotate(292.5deg)"><span>2500<br>U</span></div><div class="wheel-label dark" style="transform:rotate(337.5deg)"><span>JACKPOT</span></div></div><div class="wheel-center">VACRE</div></div><button id="spin-button" class="spin-button" onclick="spinWheel()">TOURNER LA ROUE</button><div id="wheel-result"></div></div></section>
 
 <section
 class="collection"
@@ -3003,6 +3027,50 @@ alert(
 }
 
 
+
+
+/* ============================== VACRE MARKET ============================== */
+let uracoin=parseFloat(localStorage.getItem("uracoinBalance"));if(isNaN(uracoin))uracoin=10000;
+let ownedVacre=parseFloat(localStorage.getItem("marketOwnedVacre"));if(isNaN(ownedVacre))ownedVacre=0;
+function marketDayKey(){const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
+function hashString(str){let h=2166136261;for(let i=0;i<str.length;i++){h^=str.charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0}
+function seededRandom(seed){let v=seed>>>0;return()=>{v+=0x6D2B79F5;let t=v;t=Math.imul(t^t>>>15,t|1);t^=t+Math.imul(t^t>>>7,t|61);return((t^t>>>14)>>>0)/4294967296}}
+const normalNews=[
+["Le Vacre gagne du terrain après une journée étonnamment normale.","Plusieurs analystes affirment avoir aperçu un Vacre en bon état derrière une mairie.",2],
+["La demande mondiale de Vacre augmente légèrement.","Un rapport de 843 pages ne donne absolument aucune explication, mais les investisseurs semblent satisfaits.",3],
+["Le Conseil du Vacre publie un communiqué incompréhensible.","Le document contient uniquement « situation sous contrôle » répété onze fois.",-2],
+["Une livraison de Vacres arrive avec trois heures de retard.","Les marchés réagissent beaucoup trop fortement à cette information pourtant sans intérêt.",-3],
+["Le Vacre devient tendance pendant environ 17 minutes.","Personne ne sait pourquoi, mais cela suffit à faire progresser le cours.",4],
+["Un Vacre retrouvé dans un rond-point provoque l'enthousiasme.","Des experts se sont déplacés sur place. Ils n'ont rien appris.",3],
+["Le ministère refuse de commenter la situation du Vacre.","Le refus de commenter est immédiatement interprété comme une information majeure.",-2],
+["Les investisseurs rachètent du Vacre après le déjeuner.","Le mouvement serait dû à un investisseur qui s'est trompé de bouton.",2]
+];
+const crisisNews=[
+["CRISE DU VACRE : une pénurie mondiale est déclarée.","Les réserves auraient mystérieusement disparu pendant la nuit. La demande explose.",28],
+["14 milliards de Vacres découverts derrière un supermarché.","La découverte augmente brutalement l'offre mondiale. Le marché panique.",-26],
+["Le plus grand entrepôt de Vacre au monde ferme sans explication.","Personne ne sait où il se trouvait, mais le prix s'envole.",24],
+["KRACH : une rumeur annonce l'arrivée du Bacre.","Aucun Bacre n'a jamais été observé. Cela n'empêche absolument pas la panique.",-31],
+["Le Vacre déclaré ressource stratégique mondiale.","La nouvelle provoque une ruée spectaculaire sur le marché.",35],
+["Un rapport affirme que le Vacre ne sert peut-être à rien.","Tout le monde le savait déjà, mais les marchés semblent le découvrir aujourd'hui.",-22],
+["URGENT : disparition inexpliquée de 63 % des stocks de Vacre.","Les autorités demandent de ne pas paniquer. Tout le monde panique immédiatement.",38],
+["Une usine affirme pouvoir produire du Vacre presque gratuitement.","Les détenteurs découvrent avec horreur le concept d'offre et de demande.",-37]
+];
+function createMarketDay(){const today=marketDayKey(),saved=JSON.parse(localStorage.getItem("vacreMarketDay")||"null");if(saved&&saved.date===today)return saved;let open=parseFloat(localStorage.getItem("vacreLastClose"));if(isNaN(open))open=42.67;const rnd=seededRandom(hashString(today)),crisis=rnd()<.08,list=crisis?crisisNews:normalNews,n=list[Math.floor(rnd()*list.length)],pct=n[2]+(rnd()-.5)*5,close=Math.max(2,open*(1+pct/100)),history=[];for(let i=0;i<30;i++){const p=i/29,target=open+(close-open)*p,vol=open*(crisis?.05:.015);let val=target+(rnd()-.5)*vol;if(i===0)val=open;if(i===29)val=close;history.push(Math.max(1,val))}const day={date:today,open,close,high:Math.max(...history),low:Math.min(...history),percentChange:(close-open)/open*100,crisis,news:{title:n[0],description:n[1]},history};localStorage.setItem("vacreMarketDay",JSON.stringify(day));localStorage.setItem("vacreLastClose",close);return day}
+let market=createMarketDay(),liveMarketPrice=market.close;
+function drawMarketChart(){const svg=document.getElementById("market-chart");if(!svg)return;const values=[...market.history];values[values.length-1]=liveMarketPrice;const min=Math.min(...values),max=Math.max(...values),range=Math.max(.01,max-min);let pts="";values.forEach((v,i)=>{const x=25+i/(values.length-1)*750,y=275-(v-min)/range*250;pts+=`${x},${y} `});const stroke=liveMarketPrice>=market.open?"#15966a":"#e21b2d";svg.innerHTML=`<line x1="25" y1="275" x2="775" y2="275" stroke="#ccc" stroke-width="2"/><line x1="25" y1="150" x2="775" y2="150" stroke="#e5e5e5" stroke-width="2"/><polyline points="${pts}" fill="none" stroke="${stroke}" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>`}
+function renderMarket(){if(!document.getElementById("market-price"))return;const change=(liveMarketPrice-market.open)/market.open*100;document.getElementById("market-price").textContent=liveMarketPrice.toFixed(2).replace(".",",");const ce=document.getElementById("market-change");ce.textContent=(change>=0?"+":"")+change.toFixed(2).replace(".",",")+" %";ce.className="market-change "+(change>=0?"up":"down");document.getElementById("market-open").textContent=market.open.toFixed(2).replace(".",",")+" U";document.getElementById("market-high").textContent=Math.max(market.high,liveMarketPrice).toFixed(2).replace(".",",")+" U";document.getElementById("market-low").textContent=Math.min(market.low,liveMarketPrice).toFixed(2).replace(".",",")+" U";document.getElementById("uracoin-balance").textContent=Math.floor(uracoin).toLocaleString("fr-FR");document.getElementById("owned-vacre").textContent=ownedVacre.toFixed(2).replace(".",",");const pv=ownedVacre*liveMarketPrice;document.getElementById("portfolio-value").textContent=Math.floor(pv).toLocaleString("fr-FR");document.getElementById("total-wealth").textContent=Math.floor(uracoin+pv).toLocaleString("fr-FR");document.getElementById("news-date").textContent=new Date().toLocaleDateString("fr-FR");document.getElementById("news-title").textContent=market.news.title;document.getElementById("news-description").textContent=market.news.description;document.getElementById("news-impact").textContent=market.crisis?"ALERTE MARCHÉ — CRISE MAJEURE":(change>=0?"MARCHÉ HAUSSIER ▲":"MARCHÉ BAISSIER ▼");drawMarketChart()}
+function saveMarketWallet(){localStorage.setItem("uracoinBalance",uracoin);localStorage.setItem("marketOwnedVacre",ownedVacre)}
+function showTradeMessage(t){document.getElementById("trade-message").textContent=t}
+function buyVacre(){const a=parseFloat(document.getElementById("trade-amount").value);if(isNaN(a)||a<=0)return showTradeMessage("Montant invalide.");const cost=a*liveMarketPrice;if(cost>uracoin)return showTradeMessage("Pas assez d'URACOIN.");uracoin-=cost;ownedVacre+=a;saveMarketWallet();renderMarket();showTradeMessage(`Achat effectué : ${a} Vacre(s).`)}
+function sellVacre(){const a=parseFloat(document.getElementById("trade-amount").value);if(isNaN(a)||a<=0)return showTradeMessage("Montant invalide.");if(a>ownedVacre)return showTradeMessage("Tu ne possèdes pas assez de Vacres.");ownedVacre-=a;uracoin+=a*liveMarketPrice;saveMarketWallet();renderMarket();showTradeMessage(`Vente effectuée : ${a} Vacre(s).`)}
+function fluctuateMarket(){liveMarketPrice+=(Math.random()-.5)*liveMarketPrice*.0025;liveMarketPrice=Math.min(market.close*1.025,Math.max(market.close*.975,liveMarketPrice));renderMarket()}
+const wheelRewards=[{label:"100 URACOIN",type:"uracoin",amount:100},{label:"1 BOOSTER",type:"booster",amount:1},{label:"500 URACOIN",type:"uracoin",amount:500},{label:"3 BOOSTERS",type:"booster",amount:3},{label:"1000 URACOIN",type:"uracoin",amount:1000},{label:"5 BOOSTERS",type:"booster",amount:5},{label:"2500 URACOIN",type:"uracoin",amount:2500},{label:"JACKPOT : 10 BOOSTERS + 10 000 URACOIN",type:"jackpot",amount:1}];let wheelRotation=0,wheelSpinning=false;
+function wheelAvailable(){return localStorage.getItem("vacreWheelDate")!==marketDayKey()}
+function updateWheelButton(){const b=document.getElementById("spin-button");if(!b)return;b.disabled=!wheelAvailable();b.textContent=wheelAvailable()?"TOURNER LA ROUE":"REVIENS DEMAIN"}
+function spinWheel(){if(wheelSpinning||!wheelAvailable())return;wheelSpinning=true;document.getElementById("spin-button").disabled=true;document.getElementById("wheel-result").textContent="La roue tourne...";const r=Math.random();let i=r<.01?7:r<.09?6:r<.19?5:r<.34?4:r<.49?3:r<.68?2:r<.84?1:0,target=360-(i*45+22.5);wheelRotation+=2520+target-(wheelRotation%360);document.getElementById("wheel").style.transform=`rotate(${wheelRotation}deg)`;setTimeout(()=>{giveWheelReward(wheelRewards[i]);localStorage.setItem("vacreWheelDate",marketDayKey());wheelSpinning=false;updateWheelButton()},5200)}
+function giveWheelReward(r){if(r.type==="uracoin")uracoin+=r.amount;if(r.type==="booster")boosterStock+=r.amount;if(r.type==="jackpot"){uracoin+=10000;boosterStock+=10}saveMarketWallet();updateBoosterStock();document.getElementById("wheel-result").innerHTML=`TU GAGNES :<br><strong>${r.label}</strong>`;renderMarket()}
+
+
 /* ==================================================
    DEMARRAGE
 ================================================== */
@@ -3014,6 +3082,9 @@ giveDailyBoosters();
 updateBoosterStock();
 
 updateCart();
+renderMarket();
+updateWheelButton();
+setInterval(fluctuateMarket,12000);
 
 </script>
 
