@@ -657,3 +657,1313 @@
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>VACRE</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+:root{
+  --green:#15966a;
+  --darkgreen:#0b6849;
+  --lightgreen:#e8f7f1;
+  --black:#111;
+  --white:#fff;
+  --grey:#f4f4f4;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:var(--white);
+  color:var(--black);
+}
+
+/* HEADER */
+
+header{
+  min-height:80px;
+  padding:15px 6%;
+  background:white;
+  border-bottom:3px solid black;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+
+.logo{
+  font-size:32px;
+  font-weight:900;
+  letter-spacing:4px;
+}
+
+nav{
+  display:flex;
+  gap:22px;
+  align-items:center;
+}
+
+nav a{
+  color:black;
+  text-decoration:none;
+  font-weight:800;
+}
+
+.cart-button{
+  padding:11px 17px;
+  background:var(--green);
+  border:3px solid black;
+  border-radius:10px;
+  font-weight:900;
+  cursor:pointer;
+  box-shadow:4px 4px black;
+}
+
+/* HERO */
+
+.hero{
+  min-height:580px;
+  background:var(--green);
+  border-bottom:4px solid black;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:60px 20px;
+}
+
+.hero h1{
+  font-size:clamp(80px,18vw,210px);
+  line-height:.75;
+  letter-spacing:-8px;
+}
+
+.hero p{
+  font-size:22px;
+  font-weight:900;
+  margin-top:45px;
+}
+
+.hero-buttons{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:15px;
+  margin-top:30px;
+}
+
+.button{
+  display:inline-block;
+  padding:15px 24px;
+  border:3px solid black;
+  border-radius:10px;
+  background:white;
+  color:black;
+  text-decoration:none;
+  font-weight:900;
+  box-shadow:5px 5px black;
+  cursor:pointer;
+}
+
+.button.black{
+  background:black;
+  color:white;
+}
+
+/* BANDEAU */
+
+.marquee{
+  padding:15px;
+  background:black;
+  color:white;
+  overflow:hidden;
+  white-space:nowrap;
+  font-size:17px;
+  font-weight:900;
+  letter-spacing:3px;
+  text-align:center;
+}
+
+/* SECTIONS */
+
+section.shop{
+  max-width:1250px;
+  margin:auto;
+  padding:90px 25px;
+}
+
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  margin-bottom:45px;
+}
+
+.section-head h2{
+  font-size:clamp(45px,8vw,85px);
+  line-height:.9;
+}
+
+.section-number{
+  font-weight:900;
+  color:#777;
+}
+
+/* VACRE NORMAL */
+
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:28px;
+}
+
+.product{
+  border:3px solid black;
+  border-radius:18px;
+  overflow:hidden;
+  background:white;
+  box-shadow:7px 7px black;
+  transition:.2s;
+}
+
+.product:hover{
+  transform:translate(-4px,-4px);
+  box-shadow:11px 11px black;
+}
+
+.visual{
+  height:220px;
+  background:var(--lightgreen);
+  border-bottom:3px solid black;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.circle{
+  width:110px;
+  height:110px;
+  background:var(--green);
+  border:4px solid black;
+  border-radius:50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:45px;
+  font-weight:900;
+  box-shadow:7px 7px black;
+}
+
+.product-info{
+  padding:22px;
+}
+
+.product-info h3{
+  font-size:25px;
+  margin-bottom:8px;
+}
+
+.product-info .quantity{
+  color:var(--darkgreen);
+  font-weight:900;
+}
+
+.product-bottom{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:25px;
+  gap:10px;
+}
+
+.price{
+  font-size:26px;
+  font-weight:900;
+}
+
+.buy{
+  padding:11px 14px;
+  background:var(--green);
+  border:3px solid black;
+  border-radius:9px;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.buy:hover{
+  background:black;
+  color:white;
+}
+
+/* TCG */
+
+.tcg-section{
+  background:black;
+  color:white;
+  border-top:4px solid black;
+  border-bottom:4px solid black;
+  padding:90px 5%;
+}
+
+.tcg-inner{
+  max-width:1250px;
+  margin:auto;
+}
+
+.tcg-title{
+  font-size:clamp(60px,11vw,130px);
+  color:var(--green);
+  line-height:.8;
+}
+
+.tcg-subtitle{
+  font-size:22px;
+  margin-top:30px;
+  margin-bottom:55px;
+  font-weight:800;
+}
+
+.booster-shop{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:30px;
+}
+
+.booster-product{
+  background:white;
+  color:black;
+  border:3px solid white;
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.booster-visual{
+  height:320px;
+  background:var(--green);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-bottom:3px solid black;
+}
+
+.booster-pack{
+  width:150px;
+  height:230px;
+  background:black;
+  color:white;
+  border:4px solid white;
+  border-radius:12px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  transform:rotate(4deg);
+  box-shadow:12px 12px 0 rgba(0,0,0,.3);
+}
+
+.booster-pack strong{
+  font-size:30px;
+}
+
+.booster-pack span{
+  margin-top:10px;
+  color:var(--green);
+  font-weight:900;
+}
+
+.booster-info{
+  padding:24px;
+}
+
+.booster-info h3{
+  font-size:27px;
+}
+
+.booster-info p{
+  margin-top:7px;
+  font-weight:700;
+  color:#555;
+}
+
+.booster-actions{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-top:25px;
+}
+
+/* OUVERTURE BOOSTER */
+
+.open-zone{
+  padding:90px 5%;
+  background:var(--green);
+  border-bottom:4px solid black;
+}
+
+.open-inner{
+  max-width:1250px;
+  margin:auto;
+}
+
+.open-zone h2{
+  font-size:clamp(45px,8vw,90px);
+  margin-bottom:15px;
+}
+
+.open-zone > .open-inner > p{
+  font-size:19px;
+  font-weight:800;
+  margin-bottom:35px;
+}
+
+.open-booster{
+  padding:16px 25px;
+  border:3px solid black;
+  border-radius:10px;
+  background:white;
+  font-size:17px;
+  font-weight:900;
+  cursor:pointer;
+  box-shadow:5px 5px black;
+}
+
+.open-booster:active{
+  transform:translate(3px,3px);
+  box-shadow:2px 2px black;
+}
+
+.cards-reveal{
+  margin-top:50px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:22px;
+}
+
+/* CARTES */
+
+.card{
+  min-height:280px;
+  background:white;
+  color:black;
+  border:4px solid black;
+  border-radius:16px;
+  padding:13px;
+  box-shadow:7px 7px black;
+  animation:cardAppear .45s ease both;
+}
+
+@keyframes cardAppear{
+  from{
+    opacity:0;
+    transform:translateY(30px) scale(.8) rotate(5deg);
+  }
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
+
+.card-image{
+  height:150px;
+  border:3px solid black;
+  border-radius:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:55px;
+  font-weight:900;
+  margin-bottom:14px;
+}
+
+.card h3{
+  font-size:18px;
+  margin-bottom:7px;
+}
+
+.rarity{
+  display:inline-block;
+  border:2px solid black;
+  border-radius:100px;
+  padding:4px 8px;
+  font-size:11px;
+  font-weight:900;
+  text-transform:uppercase;
+}
+
+.common .card-image{
+  background:#e7e7e7;
+}
+
+.rare .card-image{
+  background:#b9e1ff;
+}
+
+.epic .card-image{
+  background:#d7c0ff;
+}
+
+.legendary .card-image{
+  background:#ffe291;
+}
+
+.mythic .card-image{
+  background:var(--green);
+}
+
+.card.legendary{
+  box-shadow:8px 8px #dcae24;
+}
+
+.card.mythic{
+  box-shadow:8px 8px var(--darkgreen);
+}
+
+/* COLLECTION */
+
+.collection{
+  max-width:1250px;
+  margin:auto;
+  padding:90px 25px;
+}
+
+.collection h2{
+  font-size:clamp(45px,8vw,90px);
+}
+
+.collection-progress{
+  margin:20px 0 40px;
+  font-size:20px;
+  font-weight:900;
+}
+
+.collection-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:15px;
+}
+
+.collection-card{
+  min-height:170px;
+  border:3px solid black;
+  border-radius:12px;
+  padding:12px;
+  background:white;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
+
+.collection-card.locked{
+  background:#ddd;
+  color:#999;
+}
+
+.collection-card .symbol{
+  font-size:35px;
+  font-weight:900;
+  margin-bottom:10px;
+}
+
+.collection-card strong{
+  font-size:14px;
+}
+
+/* PANIER */
+
+.cart{
+  display:none;
+  position:fixed;
+  right:25px;
+  top:95px;
+  width:min(410px,calc(100% - 50px));
+  max-height:75vh;
+  overflow-y:auto;
+  background:white;
+  border:3px solid black;
+  border-radius:16px;
+  padding:23px;
+  box-shadow:9px 9px black;
+  z-index:200;
+}
+
+.cart.open{
+  display:block;
+}
+
+.cart h2{
+  font-size:30px;
+  margin-bottom:20px;
+}
+
+.cart-item{
+  padding:14px 0;
+  border-bottom:2px solid #ddd;
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.remove{
+  border:0;
+  background:transparent;
+  color:var(--darkgreen);
+  font-weight:900;
+  cursor:pointer;
+}
+
+.total{
+  margin-top:20px;
+  font-size:23px;
+  font-weight:900;
+}
+
+.checkout{
+  width:100%;
+  padding:14px;
+  margin-top:15px;
+  border:3px solid black;
+  border-radius:9px;
+  background:var(--green);
+  font-weight:900;
+  cursor:pointer;
+}
+
+/* FOOTER */
+
+footer{
+  padding:60px 7%;
+  background:black;
+  color:white;
+}
+
+.footer-logo{
+  font-size:55px;
+  color:var(--green);
+  font-weight:900;
+  letter-spacing:5px;
+}
+
+footer p{
+  color:#aaa;
+  margin-top:10px;
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+  nav a{
+    display:none;
+  }
+
+  .hero{
+    min-height:450px;
+  }
+
+  .hero h1{
+    font-size:85px;
+    letter-spacing:-4px;
+  }
+
+  .section-head{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:10px;
+  }
+
+  .booster-actions,
+  .product-bottom{
+    flex-direction:column;
+    align-items:stretch;
+  }
+
+  .buy{
+    width:100%;
+  }
+
+  .cards-reveal{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+  <div class="logo">VACRE</div>
+
+  <nav>
+    <a href="#boutique">Vacre</a>
+    <a href="#tcg">TCG</a>
+    <a href="#collection">Collection</a>
+
+    <button class="cart-button" onclick="toggleCart()">
+      Panier (<span id="cart-count">0</span>)
+    </button>
+  </nav>
+
+</header>
+
+<!-- ACCUEIL -->
+
+<section class="hero">
+
+  <div>
+
+    <h1>VACRE.</h1>
+
+    <p>Disponible maintenant.</p>
+
+    <div class="hero-buttons">
+
+      <a class="button" href="#boutique">
+        Acheter du Vacre
+      </a>
+
+      <a class="button black" href="#tcg">
+        VACRE TCG
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+<div class="marquee">
+  VACRE — VACRE — VACRE TCG — VACRE — VACRE — VACRE TCG — VACRE
+</div>
+
+<!-- VACRE CLASSIQUE -->
+
+<section class="shop" id="boutique">
+
+  <div class="section-head">
+
+    <h2>VACRE</h2>
+
+    <div class="section-number">
+      6 lots disponibles
+    </div>
+
+  </div>
+
+  <div class="products" id="normal-products"></div>
+
+</section>
+
+<!-- VACRE TCG -->
+
+<section class="tcg-section" id="tcg">
+
+  <div class="tcg-inner">
+
+    <h2 class="tcg-title">
+      VACRE<br>TCG
+    </h2>
+
+    <p class="tcg-subtitle">
+      10 cartes par booster.
+    </p>
+
+    <div class="booster-shop">
+
+      <article class="booster-product">
+
+        <div class="booster-visual">
+
+          <div class="booster-pack">
+            <strong>VACRE</strong>
+            <span>TCG</span>
+            <small>10 CARTES</small>
+          </div>
+
+        </div>
+
+        <div class="booster-info">
+
+          <h3>Booster VACRE TCG</h3>
+
+          <p>10 cartes</p>
+
+          <div class="booster-actions">
+
+            <div class="price">4,99 €</div>
+
+            <button
+              class="buy"
+              onclick="addToCart('Booster VACRE TCG',4.99)">
+              Ajouter
+            </button>
+
+          </div>
+
+        </div>
+
+      </article>
+
+      <article class="booster-product">
+
+        <div class="booster-visual">
+
+          <div class="booster-pack" style="transform:rotate(-4deg);">
+            <strong>VACRE</strong>
+            <span>TCG × 5</span>
+            <small>50 CARTES</small>
+          </div>
+
+        </div>
+
+        <div class="booster-info">
+
+          <h3>Lot de 5 boosters</h3>
+
+          <p>50 cartes</p>
+
+          <div class="booster-actions">
+
+            <div class="price">21,99 €</div>
+
+            <button
+              class="buy"
+              onclick="addToCart('5 Boosters VACRE TCG',21.99)">
+              Ajouter
+            </button>
+
+          </div>
+
+        </div>
+
+      </article>
+
+      <article class="booster-product">
+
+        <div class="booster-visual">
+
+          <div class="booster-pack">
+            <strong>VACRE</strong>
+            <span>DISPLAY</span>
+            <small>10 BOOSTERS</small>
+          </div>
+
+        </div>
+
+        <div class="booster-info">
+
+          <h3>Display VACRE</h3>
+
+          <p>10 boosters — 100 cartes</p>
+
+          <div class="booster-actions">
+
+            <div class="price">39,99 €</div>
+
+            <button
+              class="buy"
+              onclick="addToCart('Display VACRE TCG',39.99)">
+              Ajouter
+            </button>
+
+          </div>
+
+        </div>
+
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- OUVERTURE -->
+
+<section class="open-zone">
+
+  <div class="open-inner">
+
+    <h2>OUVRIR UN BOOSTER</h2>
+
+    <p>
+      10 cartes VACRE.
+    </p>
+
+    <button class="open-booster" onclick="openBooster()">
+      OUVRIR ×10
+    </button>
+
+    <div class="cards-reveal" id="cards-reveal"></div>
+
+  </div>
+
+</section>
+
+<!-- COLLECTION -->
+
+<section class="collection" id="collection">
+
+  <h2>COLLECTION</h2>
+
+  <div class="collection-progress">
+    <span id="collection-count">0</span> / 40 VACRES
+  </div>
+
+  <div class="collection-grid" id="collection-grid"></div>
+
+</section>
+
+<!-- PANIER -->
+
+<aside class="cart" id="cart">
+
+  <h2>Panier</h2>
+
+  <div id="cart-items">
+    Ton panier est vide.
+  </div>
+
+  <div class="total">
+    Total :
+    <span id="total">0,00</span> €
+  </div>
+
+  <button class="checkout" onclick="checkout()">
+    Passer la commande
+  </button>
+
+</aside>
+
+<footer>
+
+  <div class="footer-logo">
+    VACRE
+  </div>
+
+  <p>
+    © 2026 VACRE — vacre.fr
+  </p>
+
+</footer>
+
+<script>
+
+/* =========================
+   PRODUITS VACRE
+========================= */
+
+const products = [
+  ["1 Vacre",2.99,1],
+  ["5 Vacres",9.99,5],
+  ["10 Vacres",16.99,10],
+  ["25 Vacres",34.99,25],
+  ["50 Vacres",59.99,50],
+  ["100 Vacres",99.99,100]
+];
+
+const productContainer =
+  document.getElementById("normal-products");
+
+products.forEach(product => {
+
+  productContainer.innerHTML += `
+    <article class="product">
+
+      <div class="visual">
+        <div class="circle">
+          ${product[2]}
+        </div>
+      </div>
+
+      <div class="product-info">
+
+        <h3>${product[0]}</h3>
+
+        <div class="quantity">
+          Lot de ${product[2]}
+        </div>
+
+        <div class="product-bottom">
+
+          <div class="price">
+            ${product[1].toFixed(2).replace(".",",")} €
+          </div>
+
+          <button
+            class="buy"
+            onclick="addToCart('${product[0]}',${product[1]})">
+            Ajouter
+          </button>
+
+        </div>
+
+      </div>
+
+    </article>
+  `;
+});
+
+
+/* =========================
+   CARTES VACRE TCG
+========================= */
+
+const cards = [
+
+/* COMMUNES */
+
+{name:"Vacre Normal",rarity:"common",symbol:"V",weight:20},
+{name:"Petit Vacre",rarity:"common",symbol:"v",weight:20},
+{name:"Vacre Carré",rarity:"common",symbol:"□",weight:20},
+{name:"Vacre Rond",rarity:"common",symbol:"○",weight:20},
+{name:"Vacre Mouillé",rarity:"common",symbol:"≈",weight:20},
+{name:"Vacre Sec",rarity:"common",symbol:"☀",weight:20},
+{name:"Vacre Fiscal",rarity:"common",symbol:"€",weight:20},
+{name:"Vacre Municipal",rarity:"common",symbol:"M",weight:20},
+{name:"Vacre de Chantier",rarity:"common",symbol:"▲",weight:20},
+{name:"Vacre Portable",rarity:"common",symbol:"↗",weight:20},
+{name:"Vacre Tiède",rarity:"common",symbol:"~",weight:20},
+{name:"Vacre Domestique",rarity:"common",symbol:"⌂",weight:20},
+{name:"Vacre Latéral",rarity:"common",symbol:"→",weight:20},
+{name:"Vacre Compact",rarity:"common",symbol:"▪",weight:20},
+{name:"Vacre Public",rarity:"common",symbol:"P",weight:20},
+
+/* RARES */
+
+{name:"Vacre Royal",rarity:"rare",symbol:"♛",weight:8},
+{name:"Vacre Chromé",rarity:"rare",symbol:"◇",weight:8},
+{name:"Vacre Souterrain",rarity:"rare",symbol:"↓",weight:8},
+{name:"Vacre Magnétique",rarity:"rare",symbol:"N",weight:8},
+{name:"Vacre Astral",rarity:"rare",symbol:"✦",weight:8},
+{name:"Vacre Inversé",rarity:"rare",symbol:"Я",weight:8},
+{name:"Vacre Industriel",rarity:"rare",symbol:"⚙",weight:8},
+{name:"Vacre Nocturne",rarity:"rare",symbol:"☾",weight:8},
+{name:"Vacre Double",rarity:"rare",symbol:"VV",weight:8},
+{name:"Vacre Ancien",rarity:"rare",symbol:"I",weight:8},
+
+/* EPIQUES */
+
+{name:"Vacre Quantique",rarity:"epic",symbol:"Ψ",weight:3},
+{name:"Vacre Interdit",rarity:"epic",symbol:"×",weight:3},
+{name:"Vacre Paradoxal",rarity:"epic",symbol:"∞",weight:3},
+{name:"Vacre Fantôme",rarity:"epic",symbol:"Ø",weight:3},
+{name:"Vacre Souverain",rarity:"epic",symbol:"♜",weight:3},
+{name:"Vacre Zéro",rarity:"epic",symbol:"0",weight:3},
+{name:"Vacre 404",rarity:"epic",symbol:"404",weight:3},
+
+/* LEGENDAIRES */
+
+{name:"Vacre Primordial",rarity:"legendary",symbol:"Ⅰ",weight:1},
+{name:"Grand Vacre",rarity:"legendary",symbol:"V+",weight:1},
+{name:"Vacre Originel",rarity:"legendary",symbol:"α",weight:1},
+{name:"Vacre Infini",rarity:"legendary",symbol:"∞",weight:1},
+{name:"Vacre Suprême",rarity:"legendary",symbol:"♚",weight:1},
+
+/* MYTHIQUES */
+
+{name:"VACRE ABSOLU",rarity:"mythic",symbol:"V",weight:.25},
+{name:"VACRE Nº001",rarity:"mythic",symbol:"001",weight:.25},
+{name:"LE VACRE",rarity:"mythic",symbol:"?",weight:.15}
+
+];
+
+
+/* =========================
+   COLLECTION
+========================= */
+
+let collection =
+  JSON.parse(localStorage.getItem("vacreCollection")) || [];
+
+function saveCollection(){
+  localStorage.setItem(
+    "vacreCollection",
+    JSON.stringify(collection)
+  );
+}
+
+function rarityText(rarity){
+
+  const names = {
+    common:"Commun",
+    rare:"Rare",
+    epic:"Épique",
+    legendary:"Légendaire",
+    mythic:"Mythique"
+  };
+
+  return names[rarity];
+}
+
+function renderCollection(){
+
+  const grid =
+    document.getElementById("collection-grid");
+
+  grid.innerHTML="";
+
+  cards.forEach(card=>{
+
+    const unlocked =
+      collection.includes(card.name);
+
+    grid.innerHTML += `
+      <div class="collection-card ${unlocked ? "" : "locked"}">
+
+        <div class="symbol">
+          ${unlocked ? card.symbol : "?"}
+        </div>
+
+        <strong>
+          ${unlocked ? card.name : "???"}
+        </strong>
+
+        ${
+          unlocked
+          ? `<small>${rarityText(card.rarity)}</small>`
+          : ""
+        }
+
+      </div>
+    `;
+
+  });
+
+  document.getElementById("collection-count")
+    .textContent = collection.length;
+}
+
+
+/* =========================
+   TIRAGE ALEATOIRE
+========================= */
+
+function randomCard(){
+
+  const total =
+    cards.reduce((sum,card)=>sum+card.weight,0);
+
+  let random =
+    Math.random()*total;
+
+  for(const card of cards){
+
+    random -= card.weight;
+
+    if(random <= 0){
+      return card;
+    }
+  }
+
+  return cards[0];
+}
+
+
+/* =========================
+   OUVRIR BOOSTER
+========================= */
+
+function openBooster(){
+
+  const reveal =
+    document.getElementById("cards-reveal");
+
+  reveal.innerHTML="";
+
+  let booster=[];
+
+  /* 9 cartes normales */
+
+  for(let i=0;i<9;i++){
+    booster.push(randomCard());
+  }
+
+  /* dernière carte :
+     meilleure chance de rareté */
+
+  const finalPool =
+    cards.filter(card =>
+      card.rarity !== "common"
+    );
+
+  const finalCard =
+    finalPool[
+      Math.floor(Math.random()*finalPool.length)
+    ];
+
+  booster.push(finalCard);
+
+  booster.forEach((card,index)=>{
+
+    if(!collection.includes(card.name)){
+      collection.push(card.name);
+    }
+
+    setTimeout(()=>{
+
+      const element =
+        document.createElement("div");
+
+      element.className =
+        `card ${card.rarity}`;
+
+      element.innerHTML = `
+
+        <div class="card-image">
+          ${card.symbol}
+        </div>
+
+        <span class="rarity">
+          ${rarityText(card.rarity)}
+        </span>
+
+        <h3>
+          ${card.name}
+        </h3>
+
+      `;
+
+      reveal.appendChild(element);
+
+    },index*160);
+
+  });
+
+  saveCollection();
+
+  setTimeout(
+    renderCollection,
+    booster.length*160
+  );
+}
+
+
+/* =========================
+   PANIER
+========================= */
+
+let cart=[];
+
+function addToCart(name,price){
+
+  cart.push({name,price});
+
+  updateCart();
+}
+
+function removeFromCart(index){
+
+  cart.splice(index,1);
+
+  updateCart();
+}
+
+function updateCart(){
+
+  const items =
+    document.getElementById("cart-items");
+
+  const count =
+    document.getElementById("cart-count");
+
+  const totalElement =
+    document.getElementById("total");
+
+  count.textContent=cart.length;
+
+  if(cart.length===0){
+
+    items.innerHTML=
+      "Ton panier est vide.";
+
+    totalElement.textContent=
+      "0,00";
+
+    return;
+  }
+
+  items.innerHTML="";
+
+  let total=0;
+
+  cart.forEach((item,index)=>{
+
+    total+=item.price;
+
+    items.innerHTML+=`
+
+      <div class="cart-item">
+
+        <span>
+          ${item.name}<br>
+          <strong>
+            ${item.price.toFixed(2).replace(".",",")} €
+          </strong>
+        </span>
+
+        <button
+          class="remove"
+          onclick="removeFromCart(${index})">
+          Retirer
+        </button>
+
+      </div>
+
+    `;
+
+  });
+
+  totalElement.textContent=
+    total.toFixed(2).replace(".",",");
+}
+
+function toggleCart(){
+
+  document
+    .getElementById("cart")
+    .classList
+    .toggle("open");
+}
+
+function checkout(){
+
+  if(cart.length===0){
+
+    alert("Ton panier est vide.");
+
+    return;
+  }
+
+  alert(
+    "Le paiement n'est pas encore activé."
+  );
+}
+
+
+/* PREMIER AFFICHAGE */
+
+renderCollection();
+
+</script>
+
+</body>
+</html>
