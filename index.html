@@ -666,970 +666,1255 @@
 <title>VACRE</title>
 
 <style>
+
 *{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
 :root{
-  --green:#15966a;
-  --darkgreen:#0b6849;
-  --lightgreen:#e8f7f1;
-  --black:#111;
-  --white:#fff;
-  --grey:#f4f4f4;
+    --green:#15966a;
+    --darkgreen:#0b6849;
+    --lightgreen:#e8f7f1;
+    --black:#111;
+    --white:#fff;
+    --grey:#f3f3f3;
 }
 
 html{
-  scroll-behavior:smooth;
+    scroll-behavior:smooth;
 }
 
 body{
-  font-family:Arial,Helvetica,sans-serif;
-  background:var(--white);
-  color:var(--black);
+    font-family:Arial,Helvetica,sans-serif;
+    background:white;
+    color:var(--black);
 }
 
-/* HEADER */
+/* =========================
+   HEADER
+========================= */
 
 header{
-  min-height:80px;
-  padding:15px 6%;
-  background:white;
-  border-bottom:3px solid black;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  position:sticky;
-  top:0;
-  z-index:100;
+    min-height:80px;
+    padding:15px 6%;
+    background:white;
+    border-bottom:3px solid black;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    position:sticky;
+    top:0;
+    z-index:100;
 }
 
 .logo{
-  font-size:32px;
-  font-weight:900;
-  letter-spacing:4px;
+    font-size:32px;
+    font-weight:900;
+    letter-spacing:4px;
 }
 
 nav{
-  display:flex;
-  gap:22px;
-  align-items:center;
+    display:flex;
+    gap:22px;
+    align-items:center;
 }
 
 nav a{
-  color:black;
-  text-decoration:none;
-  font-weight:800;
+    color:black;
+    text-decoration:none;
+    font-weight:900;
 }
 
 .cart-button{
-  padding:11px 17px;
-  background:var(--green);
-  border:3px solid black;
-  border-radius:10px;
-  font-weight:900;
-  cursor:pointer;
-  box-shadow:4px 4px black;
+    padding:11px 17px;
+    background:var(--green);
+    border:3px solid black;
+    border-radius:10px;
+    font-weight:900;
+    cursor:pointer;
+    box-shadow:4px 4px black;
 }
 
-/* HERO */
+/* =========================
+   HERO
+========================= */
 
 .hero{
-  min-height:580px;
-  background:var(--green);
-  border-bottom:4px solid black;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  padding:60px 20px;
+    min-height:580px;
+    background:var(--green);
+    border-bottom:4px solid black;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:60px 20px;
 }
 
 .hero h1{
-  font-size:clamp(80px,18vw,210px);
-  line-height:.75;
-  letter-spacing:-8px;
+    font-size:clamp(80px,18vw,210px);
+    line-height:.75;
+    letter-spacing:-8px;
 }
 
 .hero p{
-  font-size:22px;
-  font-weight:900;
-  margin-top:45px;
+    font-size:22px;
+    font-weight:900;
+    margin-top:45px;
 }
 
 .hero-buttons{
-  display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:15px;
-  margin-top:30px;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:15px;
+    margin-top:30px;
 }
 
 .button{
-  display:inline-block;
-  padding:15px 24px;
-  border:3px solid black;
-  border-radius:10px;
-  background:white;
-  color:black;
-  text-decoration:none;
-  font-weight:900;
-  box-shadow:5px 5px black;
-  cursor:pointer;
+    display:inline-block;
+    padding:15px 24px;
+    border:3px solid black;
+    border-radius:10px;
+    background:white;
+    color:black;
+    text-decoration:none;
+    font-weight:900;
+    box-shadow:5px 5px black;
 }
 
 .button.black{
-  background:black;
-  color:white;
+    background:black;
+    color:white;
 }
 
-/* BANDEAU */
+/* =========================
+   BANDEAU
+========================= */
 
 .marquee{
-  padding:15px;
-  background:black;
-  color:white;
-  overflow:hidden;
-  white-space:nowrap;
-  font-size:17px;
-  font-weight:900;
-  letter-spacing:3px;
-  text-align:center;
+    padding:15px;
+    background:black;
+    color:white;
+    overflow:hidden;
+    white-space:nowrap;
+    font-size:17px;
+    font-weight:900;
+    letter-spacing:3px;
+    text-align:center;
 }
 
-/* SECTIONS */
+/* =========================
+   BOUTIQUE VACRE
+========================= */
 
-section.shop{
-  max-width:1250px;
-  margin:auto;
-  padding:90px 25px;
+.shop{
+    max-width:1250px;
+    margin:auto;
+    padding:90px 25px;
 }
 
 .section-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:end;
-  margin-bottom:45px;
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+    margin-bottom:45px;
 }
 
 .section-head h2{
-  font-size:clamp(45px,8vw,85px);
-  line-height:.9;
+    font-size:clamp(45px,8vw,85px);
+    line-height:.9;
 }
 
 .section-number{
-  font-weight:900;
-  color:#777;
+    font-weight:900;
+    color:#777;
 }
 
-/* VACRE NORMAL */
-
 .products{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-  gap:28px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:28px;
 }
 
 .product{
-  border:3px solid black;
-  border-radius:18px;
-  overflow:hidden;
-  background:white;
-  box-shadow:7px 7px black;
-  transition:.2s;
+    border:3px solid black;
+    border-radius:18px;
+    overflow:hidden;
+    background:white;
+    box-shadow:7px 7px black;
+    transition:.2s;
 }
 
 .product:hover{
-  transform:translate(-4px,-4px);
-  box-shadow:11px 11px black;
+    transform:translate(-4px,-4px);
+    box-shadow:11px 11px black;
 }
 
 .visual{
-  height:220px;
-  background:var(--lightgreen);
-  border-bottom:3px solid black;
-  display:flex;
-  justify-content:center;
-  align-items:center;
+    height:220px;
+    background:var(--lightgreen);
+    border-bottom:3px solid black;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 
 .circle{
-  width:110px;
-  height:110px;
-  background:var(--green);
-  border:4px solid black;
-  border-radius:50%;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-size:45px;
-  font-weight:900;
-  box-shadow:7px 7px black;
+    width:110px;
+    height:110px;
+    background:var(--green);
+    border:4px solid black;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:45px;
+    font-weight:900;
+    box-shadow:7px 7px black;
 }
 
 .product-info{
-  padding:22px;
+    padding:22px;
 }
 
 .product-info h3{
-  font-size:25px;
-  margin-bottom:8px;
+    font-size:25px;
 }
 
-.product-info .quantity{
-  color:var(--darkgreen);
-  font-weight:900;
+.quantity{
+    color:var(--darkgreen);
+    font-weight:900;
+    margin-top:8px;
 }
 
 .product-bottom{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-top:25px;
-  gap:10px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:25px;
+    gap:10px;
 }
 
 .price{
-  font-size:26px;
-  font-weight:900;
+    font-size:26px;
+    font-weight:900;
 }
 
 .buy{
-  padding:11px 14px;
-  background:var(--green);
-  border:3px solid black;
-  border-radius:9px;
-  font-weight:900;
-  cursor:pointer;
+    padding:11px 14px;
+    background:var(--green);
+    border:3px solid black;
+    border-radius:9px;
+    font-weight:900;
+    cursor:pointer;
 }
 
 .buy:hover{
-  background:black;
-  color:white;
+    background:black;
+    color:white;
 }
 
-/* TCG */
+/* =========================
+   VACRE TCG
+========================= */
 
 .tcg-section{
-  background:black;
-  color:white;
-  border-top:4px solid black;
-  border-bottom:4px solid black;
-  padding:90px 5%;
+    background:black;
+    color:white;
+    border-top:4px solid black;
+    border-bottom:4px solid black;
+    padding:90px 5%;
 }
 
 .tcg-inner{
-  max-width:1250px;
-  margin:auto;
+    max-width:1250px;
+    margin:auto;
 }
 
 .tcg-title{
-  font-size:clamp(60px,11vw,130px);
-  color:var(--green);
-  line-height:.8;
+    font-size:clamp(60px,11vw,130px);
+    color:var(--green);
+    line-height:.8;
 }
 
 .tcg-subtitle{
-  font-size:22px;
-  margin-top:30px;
-  margin-bottom:55px;
-  font-weight:800;
+    font-size:22px;
+    margin-top:30px;
+    margin-bottom:55px;
+    font-weight:800;
 }
 
 .booster-shop{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:30px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:30px;
 }
 
 .booster-product{
-  background:white;
-  color:black;
-  border:3px solid white;
-  border-radius:20px;
-  overflow:hidden;
+    background:white;
+    color:black;
+    border:3px solid white;
+    border-radius:20px;
+    overflow:hidden;
 }
 
 .booster-visual{
-  height:320px;
-  background:var(--green);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border-bottom:3px solid black;
+    height:320px;
+    background:var(--green);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-bottom:3px solid black;
 }
 
 .booster-pack{
-  width:150px;
-  height:230px;
-  background:black;
-  color:white;
-  border:4px solid white;
-  border-radius:12px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  transform:rotate(4deg);
-  box-shadow:12px 12px 0 rgba(0,0,0,.3);
+    width:150px;
+    height:230px;
+    background:black;
+    color:white;
+    border:4px solid white;
+    border-radius:12px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    transform:rotate(4deg);
+    box-shadow:12px 12px rgba(0,0,0,.3);
 }
 
 .booster-pack strong{
-  font-size:30px;
+    font-size:30px;
 }
 
 .booster-pack span{
-  margin-top:10px;
-  color:var(--green);
-  font-weight:900;
+    margin-top:10px;
+    color:var(--green);
+    font-weight:900;
 }
 
 .booster-info{
-  padding:24px;
+    padding:24px;
 }
 
 .booster-info h3{
-  font-size:27px;
+    font-size:27px;
 }
 
 .booster-info p{
-  margin-top:7px;
-  font-weight:700;
-  color:#555;
+    margin-top:7px;
+    font-weight:700;
+    color:#555;
 }
 
 .booster-actions{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-  margin-top:25px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    margin-top:25px;
 }
 
-/* OUVERTURE BOOSTER */
+/* =========================
+   OUVERTURE BOOSTERS
+========================= */
 
 .open-zone{
-  padding:90px 5%;
-  background:var(--green);
-  border-bottom:4px solid black;
+    padding:90px 5%;
+    background:var(--green);
+    border-bottom:4px solid black;
 }
 
 .open-inner{
-  max-width:1250px;
-  margin:auto;
+    max-width:1250px;
+    margin:auto;
 }
 
 .open-zone h2{
-  font-size:clamp(45px,8vw,90px);
-  margin-bottom:15px;
+    font-size:clamp(45px,8vw,90px);
 }
 
-.open-zone > .open-inner > p{
-  font-size:19px;
-  font-weight:800;
-  margin-bottom:35px;
+.open-description{
+    font-size:19px;
+    font-weight:900;
+    margin-top:15px;
+}
+
+.booster-balance{
+    margin:35px 0 25px;
+    background:white;
+    color:black;
+    border:4px solid black;
+    border-radius:18px;
+    box-shadow:8px 8px black;
+    padding:25px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:25px;
+}
+
+.stock-left{
+    display:flex;
+    flex-direction:column;
+}
+
+#booster-count{
+    font-size:60px;
+    font-weight:900;
+    line-height:1;
+}
+
+.stock-left small{
+    font-weight:900;
+    margin-top:8px;
+}
+
+.daily-info{
+    font-size:18px;
+    font-weight:900;
+}
+
+.daily-reward{
+    display:inline-block;
+    margin-bottom:25px;
+    padding:12px 17px;
+    background:black;
+    color:white;
+    border:3px solid black;
+    border-radius:9px;
+    font-weight:900;
+}
+
+.open-buttons{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
 }
 
 .open-booster{
-  padding:16px 25px;
-  border:3px solid black;
-  border-radius:10px;
-  background:white;
-  font-size:17px;
-  font-weight:900;
-  cursor:pointer;
-  box-shadow:5px 5px black;
+    padding:16px 25px;
+    border:3px solid black;
+    border-radius:10px;
+    background:white;
+    font-size:17px;
+    font-weight:900;
+    cursor:pointer;
+    box-shadow:5px 5px black;
+}
+
+.open-booster.black{
+    background:black;
+    color:white;
 }
 
 .open-booster:active{
-  transform:translate(3px,3px);
-  box-shadow:2px 2px black;
+    transform:translate(3px,3px);
+    box-shadow:2px 2px black;
+}
+
+#opening-title{
+    font-size:30px;
+    font-weight:900;
+    margin-top:45px;
 }
 
 .cards-reveal{
-  margin-top:50px;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-  gap:22px;
+    margin-top:30px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:22px;
 }
 
-/* CARTES */
+/* =========================
+   CARTES
+========================= */
 
 .card{
-  min-height:280px;
-  background:white;
-  color:black;
-  border:4px solid black;
-  border-radius:16px;
-  padding:13px;
-  box-shadow:7px 7px black;
-  animation:cardAppear .45s ease both;
+    min-height:280px;
+    background:white;
+    color:black;
+    border:4px solid black;
+    border-radius:16px;
+    padding:13px;
+    box-shadow:7px 7px black;
+    animation:cardAppear .45s ease both;
 }
 
 @keyframes cardAppear{
-  from{
-    opacity:0;
-    transform:translateY(30px) scale(.8) rotate(5deg);
-  }
-  to{
-    opacity:1;
-    transform:none;
-  }
+
+    from{
+        opacity:0;
+        transform:translateY(30px) scale(.8) rotate(5deg);
+    }
+
+    to{
+        opacity:1;
+        transform:none;
+    }
 }
 
 .card-image{
-  height:150px;
-  border:3px solid black;
-  border-radius:10px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:55px;
-  font-weight:900;
-  margin-bottom:14px;
+    height:150px;
+    border:3px solid black;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:50px;
+    font-weight:900;
+    margin-bottom:14px;
 }
 
 .card h3{
-  font-size:18px;
-  margin-bottom:7px;
+    font-size:18px;
+    margin-top:10px;
 }
 
 .rarity{
-  display:inline-block;
-  border:2px solid black;
-  border-radius:100px;
-  padding:4px 8px;
-  font-size:11px;
-  font-weight:900;
-  text-transform:uppercase;
+    display:inline-block;
+    border:2px solid black;
+    border-radius:100px;
+    padding:4px 8px;
+    font-size:11px;
+    font-weight:900;
+    text-transform:uppercase;
 }
 
 .common .card-image{
-  background:#e7e7e7;
+    background:#e7e7e7;
 }
 
 .rare .card-image{
-  background:#b9e1ff;
+    background:#b9e1ff;
 }
 
 .epic .card-image{
-  background:#d7c0ff;
+    background:#d7c0ff;
 }
 
 .legendary .card-image{
-  background:#ffe291;
+    background:#ffe291;
 }
 
 .mythic .card-image{
-  background:var(--green);
+    background:var(--green);
 }
 
-.card.legendary{
-  box-shadow:8px 8px #dcae24;
+.legendary{
+    box-shadow:8px 8px #dcae24;
 }
 
-.card.mythic{
-  box-shadow:8px 8px var(--darkgreen);
+.mythic{
+    box-shadow:8px 8px var(--darkgreen);
 }
 
-/* COLLECTION */
+/* =========================
+   COLLECTION
+========================= */
 
 .collection{
-  max-width:1250px;
-  margin:auto;
-  padding:90px 25px;
+    max-width:1250px;
+    margin:auto;
+    padding:90px 25px;
 }
 
 .collection h2{
-  font-size:clamp(45px,8vw,90px);
+    font-size:clamp(45px,8vw,90px);
 }
 
 .collection-progress{
-  margin:20px 0 40px;
-  font-size:20px;
-  font-weight:900;
+    margin:20px 0 40px;
+    font-size:20px;
+    font-weight:900;
+}
+
+.progress-background{
+    width:100%;
+    max-width:600px;
+    height:18px;
+    border:3px solid black;
+    border-radius:20px;
+    overflow:hidden;
+    margin-top:12px;
+}
+
+#progress-bar{
+    height:100%;
+    width:0;
+    background:var(--green);
+    transition:.4s;
 }
 
 .collection-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
-  gap:15px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+    gap:15px;
 }
 
 .collection-card{
-  min-height:170px;
-  border:3px solid black;
-  border-radius:12px;
-  padding:12px;
-  background:white;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
+    min-height:170px;
+    border:3px solid black;
+    border-radius:12px;
+    padding:12px;
+    background:white;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
 }
 
 .collection-card.locked{
-  background:#ddd;
-  color:#999;
+    background:#ddd;
+    color:#999;
 }
 
 .collection-card .symbol{
-  font-size:35px;
-  font-weight:900;
-  margin-bottom:10px;
+    font-size:35px;
+    font-weight:900;
+    margin-bottom:10px;
 }
 
-.collection-card strong{
-  font-size:14px;
+.collection-card small{
+    margin-top:6px;
+    font-weight:bold;
 }
 
-/* PANIER */
+/* =========================
+   PANIER
+========================= */
 
 .cart{
-  display:none;
-  position:fixed;
-  right:25px;
-  top:95px;
-  width:min(410px,calc(100% - 50px));
-  max-height:75vh;
-  overflow-y:auto;
-  background:white;
-  border:3px solid black;
-  border-radius:16px;
-  padding:23px;
-  box-shadow:9px 9px black;
-  z-index:200;
+    display:none;
+    position:fixed;
+    right:25px;
+    top:95px;
+    width:min(410px,calc(100% - 50px));
+    max-height:75vh;
+    overflow-y:auto;
+    background:white;
+    border:3px solid black;
+    border-radius:16px;
+    padding:23px;
+    box-shadow:9px 9px black;
+    z-index:200;
 }
 
 .cart.open{
-  display:block;
+    display:block;
 }
 
 .cart h2{
-  font-size:30px;
-  margin-bottom:20px;
+    font-size:30px;
+    margin-bottom:20px;
 }
 
 .cart-item{
-  padding:14px 0;
-  border-bottom:2px solid #ddd;
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
+    padding:14px 0;
+    border-bottom:2px solid #ddd;
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
 }
 
 .remove{
-  border:0;
-  background:transparent;
-  color:var(--darkgreen);
-  font-weight:900;
-  cursor:pointer;
+    border:0;
+    background:transparent;
+    color:var(--darkgreen);
+    font-weight:900;
+    cursor:pointer;
 }
 
 .total{
-  margin-top:20px;
-  font-size:23px;
-  font-weight:900;
+    margin-top:20px;
+    font-size:23px;
+    font-weight:900;
 }
 
 .checkout{
-  width:100%;
-  padding:14px;
-  margin-top:15px;
-  border:3px solid black;
-  border-radius:9px;
-  background:var(--green);
-  font-weight:900;
-  cursor:pointer;
+    width:100%;
+    padding:14px;
+    margin-top:15px;
+    border:3px solid black;
+    border-radius:9px;
+    background:var(--green);
+    font-weight:900;
+    cursor:pointer;
 }
 
-/* FOOTER */
+/* =========================
+   MESSAGE
+========================= */
+
+.message{
+    background:white;
+    color:black;
+    border:3px solid black;
+    padding:20px;
+    border-radius:12px;
+    font-weight:900;
+    margin-top:25px;
+}
+
+/* =========================
+   FOOTER
+========================= */
 
 footer{
-  padding:60px 7%;
-  background:black;
-  color:white;
+    padding:60px 7%;
+    background:black;
+    color:white;
 }
 
 .footer-logo{
-  font-size:55px;
-  color:var(--green);
-  font-weight:900;
-  letter-spacing:5px;
+    font-size:55px;
+    color:var(--green);
+    font-weight:900;
+    letter-spacing:5px;
 }
 
 footer p{
-  color:#aaa;
-  margin-top:10px;
+    color:#aaa;
+    margin-top:10px;
 }
 
-/* MOBILE */
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:700px){
 
-  nav a{
-    display:none;
-  }
+    nav a{
+        display:none;
+    }
 
-  .hero{
-    min-height:450px;
-  }
+    .hero{
+        min-height:450px;
+    }
 
-  .hero h1{
-    font-size:85px;
-    letter-spacing:-4px;
-  }
+    .hero h1{
+        font-size:85px;
+        letter-spacing:-4px;
+    }
 
-  .section-head{
-    flex-direction:column;
-    align-items:flex-start;
-    gap:10px;
-  }
+    .section-head{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:10px;
+    }
 
-  .booster-actions,
-  .product-bottom{
-    flex-direction:column;
-    align-items:stretch;
-  }
+    .booster-balance{
+        flex-direction:column;
+        align-items:flex-start;
+    }
 
-  .buy{
-    width:100%;
-  }
+    .open-buttons{
+        flex-direction:column;
+    }
 
-  .cards-reveal{
-    grid-template-columns:repeat(2,1fr);
-  }
+    .open-booster{
+        width:100%;
+    }
+
+    .booster-actions,
+    .product-bottom{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .buy{
+        width:100%;
+    }
+
+    .cards-reveal{
+        grid-template-columns:repeat(2,1fr);
+    }
 }
+
 </style>
 </head>
 
 <body>
 
+<!-- =========================
+     HEADER
+========================= -->
+
 <header>
 
-  <div class="logo">VACRE</div>
+<div class="logo">
+VACRE
+</div>
 
-  <nav>
-    <a href="#boutique">Vacre</a>
-    <a href="#tcg">TCG</a>
-    <a href="#collection">Collection</a>
+<nav>
 
-    <button class="cart-button" onclick="toggleCart()">
-      Panier (<span id="cart-count">0</span>)
-    </button>
-  </nav>
+<a href="#boutique">Vacre</a>
+<a href="#tcg">TCG</a>
+<a href="#ouvrir">Ouvrir</a>
+<a href="#collection">Collection</a>
+
+<button class="cart-button" onclick="toggleCart()">
+Panier (<span id="cart-count">0</span>)
+</button>
+
+</nav>
 
 </header>
 
-<!-- ACCUEIL -->
+<!-- =========================
+     HERO
+========================= -->
 
 <section class="hero">
 
-  <div>
+<div>
 
-    <h1>VACRE.</h1>
+<h1>VACRE.</h1>
 
-    <p>Disponible maintenant.</p>
+<p>
+Disponible maintenant.
+</p>
 
-    <div class="hero-buttons">
+<div class="hero-buttons">
 
-      <a class="button" href="#boutique">
-        Acheter du Vacre
-      </a>
+<a href="#boutique" class="button">
+Acheter du Vacre
+</a>
 
-      <a class="button black" href="#tcg">
-        VACRE TCG
-      </a>
+<a href="#tcg" class="button black">
+VACRE TCG
+</a>
 
-    </div>
+</div>
 
-  </div>
+</div>
 
 </section>
 
 <div class="marquee">
-  VACRE — VACRE — VACRE TCG — VACRE — VACRE — VACRE TCG — VACRE
+VACRE — VACRE — VACRE TCG — VACRE — VACRE — VACRE TCG — VACRE — VACRE
 </div>
 
-<!-- VACRE CLASSIQUE -->
+<!-- =========================
+     VACRE CLASSIQUE
+========================= -->
 
 <section class="shop" id="boutique">
 
-  <div class="section-head">
+<div class="section-head">
 
-    <h2>VACRE</h2>
+<h2>VACRE</h2>
 
-    <div class="section-number">
-      6 lots disponibles
-    </div>
+<div class="section-number">
+6 lots disponibles
+</div>
 
-  </div>
+</div>
 
-  <div class="products" id="normal-products"></div>
+<div class="products" id="normal-products"></div>
 
 </section>
 
-<!-- VACRE TCG -->
+<!-- =========================
+     VACRE TCG
+========================= -->
 
 <section class="tcg-section" id="tcg">
 
-  <div class="tcg-inner">
+<div class="tcg-inner">
 
-    <h2 class="tcg-title">
-      VACRE<br>TCG
-    </h2>
+<h2 class="tcg-title">
+VACRE<br>TCG
+</h2>
 
-    <p class="tcg-subtitle">
-      10 cartes par booster.
-    </p>
+<p class="tcg-subtitle">
+10 cartes par booster.
+</p>
 
-    <div class="booster-shop">
+<div class="booster-shop">
 
-      <article class="booster-product">
+<!-- 1 BOOSTER -->
 
-        <div class="booster-visual">
+<article class="booster-product">
 
-          <div class="booster-pack">
-            <strong>VACRE</strong>
-            <span>TCG</span>
-            <small>10 CARTES</small>
-          </div>
+<div class="booster-visual">
 
-        </div>
+<div class="booster-pack">
 
-        <div class="booster-info">
+<strong>VACRE</strong>
 
-          <h3>Booster VACRE TCG</h3>
+<span>TCG</span>
 
-          <p>10 cartes</p>
+<small>10 CARTES</small>
 
-          <div class="booster-actions">
+</div>
 
-            <div class="price">4,99 €</div>
+</div>
 
-            <button
-              class="buy"
-              onclick="addToCart('Booster VACRE TCG',4.99)">
-              Ajouter
-            </button>
+<div class="booster-info">
 
-          </div>
+<h3>
+Booster VACRE TCG
+</h3>
 
-        </div>
+<p>
+10 cartes
+</p>
 
-      </article>
+<div class="booster-actions">
 
-      <article class="booster-product">
+<div class="price">
+4,99 €
+</div>
 
-        <div class="booster-visual">
+<button
+class="buy"
+onclick="addToCart('Booster VACRE TCG',4.99)">
+Ajouter
+</button>
 
-          <div class="booster-pack" style="transform:rotate(-4deg);">
-            <strong>VACRE</strong>
-            <span>TCG × 5</span>
-            <small>50 CARTES</small>
-          </div>
+</div>
 
-        </div>
+</div>
 
-        <div class="booster-info">
+</article>
 
-          <h3>Lot de 5 boosters</h3>
+<!-- 5 BOOSTERS -->
 
-          <p>50 cartes</p>
+<article class="booster-product">
 
-          <div class="booster-actions">
+<div class="booster-visual">
 
-            <div class="price">21,99 €</div>
+<div
+class="booster-pack"
+style="transform:rotate(-4deg);">
 
-            <button
-              class="buy"
-              onclick="addToCart('5 Boosters VACRE TCG',21.99)">
-              Ajouter
-            </button>
+<strong>VACRE</strong>
 
-          </div>
+<span>TCG ×5</span>
 
-        </div>
+<small>50 CARTES</small>
 
-      </article>
+</div>
 
-      <article class="booster-product">
+</div>
 
-        <div class="booster-visual">
+<div class="booster-info">
 
-          <div class="booster-pack">
-            <strong>VACRE</strong>
-            <span>DISPLAY</span>
-            <small>10 BOOSTERS</small>
-          </div>
+<h3>
+Lot de 5 boosters
+</h3>
 
-        </div>
+<p>
+50 cartes
+</p>
 
-        <div class="booster-info">
+<div class="booster-actions">
 
-          <h3>Display VACRE</h3>
+<div class="price">
+21,99 €
+</div>
 
-          <p>10 boosters — 100 cartes</p>
+<button
+class="buy"
+onclick="addToCart('5 Boosters VACRE TCG',21.99)">
+Ajouter
+</button>
 
-          <div class="booster-actions">
+</div>
 
-            <div class="price">39,99 €</div>
+</div>
 
-            <button
-              class="buy"
-              onclick="addToCart('Display VACRE TCG',39.99)">
-              Ajouter
-            </button>
+</article>
 
-          </div>
+<!-- DISPLAY -->
 
-        </div>
+<article class="booster-product">
 
-      </article>
+<div class="booster-visual">
 
-    </div>
+<div class="booster-pack">
 
-  </div>
+<strong>VACRE</strong>
+
+<span>DISPLAY</span>
+
+<small>10 BOOSTERS</small>
+
+</div>
+
+</div>
+
+<div class="booster-info">
+
+<h3>
+Display VACRE
+</h3>
+
+<p>
+10 boosters — 100 cartes
+</p>
+
+<div class="booster-actions">
+
+<div class="price">
+39,99 €
+</div>
+
+<button
+class="buy"
+onclick="addToCart('Display VACRE TCG',39.99)">
+Ajouter
+</button>
+
+</div>
+
+</div>
+
+</article>
+
+</div>
+
+</div>
 
 </section>
 
-<!-- OUVERTURE -->
+<!-- =========================
+     OUVERTURE
+========================= -->
 
-<section class="open-zone">
+<section class="open-zone" id="ouvrir">
 
-  <div class="open-inner">
+<div class="open-inner">
 
-    <h2>OUVRIR UN BOOSTER</h2>
+<h2>
+OUVRIR DES BOOSTERS
+</h2>
 
-    <p>
-      10 cartes VACRE.
-    </p>
+<p class="open-description">
+10 cartes par booster.
+</p>
 
-    <button class="open-booster" onclick="openBooster()">
-      OUVRIR ×10
-    </button>
+<div class="booster-balance">
 
-    <div class="cards-reveal" id="cards-reveal"></div>
+<div class="stock-left">
 
-  </div>
+<span id="booster-count">
+0
+</span>
+
+<small>
+BOOSTERS DISPONIBLES
+</small>
+
+</div>
+
+<div class="daily-info">
++10 BOOSTERS GRATUITS CHAQUE JOUR
+</div>
+
+</div>
+
+<div id="daily-message"></div>
+
+<div class="open-buttons">
+
+<button
+class="open-booster"
+onclick="openOneBooster()">
+
+OUVRIR 1 BOOSTER
+
+</button>
+
+<button
+class="open-booster black"
+onclick="openTenBoosters()">
+
+OUVRIR 10 BOOSTERS
+
+</button>
+
+</div>
+
+<div id="opening-title"></div>
+
+<div
+class="cards-reveal"
+id="cards-reveal">
+</div>
+
+</div>
 
 </section>
 
-<!-- COLLECTION -->
+<!-- =========================
+     COLLECTION
+========================= -->
 
 <section class="collection" id="collection">
 
-  <h2>COLLECTION</h2>
+<h2>
+COLLECTION
+</h2>
 
-  <div class="collection-progress">
-    <span id="collection-count">0</span> / 40 VACRES
-  </div>
+<div class="collection-progress">
 
-  <div class="collection-grid" id="collection-grid"></div>
+<span id="collection-count">
+0
+</span>
+
+/ 40 VACRES
+
+<div class="progress-background">
+
+<div id="progress-bar"></div>
+
+</div>
+
+</div>
+
+<div
+class="collection-grid"
+id="collection-grid">
+</div>
 
 </section>
 
-<!-- PANIER -->
+<!-- =========================
+     PANIER
+========================= -->
 
 <aside class="cart" id="cart">
 
-  <h2>Panier</h2>
+<h2>
+Panier
+</h2>
 
-  <div id="cart-items">
-    Ton panier est vide.
-  </div>
+<div id="cart-items">
+Ton panier est vide.
+</div>
 
-  <div class="total">
-    Total :
-    <span id="total">0,00</span> €
-  </div>
+<div class="total">
 
-  <button class="checkout" onclick="checkout()">
-    Passer la commande
-  </button>
+Total :
+
+<span id="total">
+0,00
+</span>
+
+€
+
+</div>
+
+<button
+class="checkout"
+onclick="checkout()">
+
+Passer la commande
+
+</button>
 
 </aside>
 
+<!-- =========================
+     FOOTER
+========================= -->
+
 <footer>
 
-  <div class="footer-logo">
-    VACRE
-  </div>
+<div class="footer-logo">
+VACRE
+</div>
 
-  <p>
-    © 2026 VACRE — vacre.fr
-  </p>
+<p>
+© 2026 VACRE — vacre.fr
+</p>
 
 </footer>
 
 <script>
 
 /* =========================
-   PRODUITS VACRE
+   PRODUITS
 ========================= */
 
 const products = [
-  ["1 Vacre",2.99,1],
-  ["5 Vacres",9.99,5],
-  ["10 Vacres",16.99,10],
-  ["25 Vacres",34.99,25],
-  ["50 Vacres",59.99,50],
-  ["100 Vacres",99.99,100]
+
+["1 Vacre",2.99,1],
+["5 Vacres",9.99,5],
+["10 Vacres",16.99,10],
+["25 Vacres",34.99,25],
+["50 Vacres",59.99,50],
+["100 Vacres",99.99,100]
+
 ];
 
 const productContainer =
-  document.getElementById("normal-products");
+document.getElementById("normal-products");
 
-products.forEach(product => {
+products.forEach(product=>{
 
-  productContainer.innerHTML += `
-    <article class="product">
+productContainer.innerHTML += `
 
-      <div class="visual">
-        <div class="circle">
-          ${product[2]}
-        </div>
-      </div>
+<article class="product">
 
-      <div class="product-info">
+<div class="visual">
 
-        <h3>${product[0]}</h3>
+<div class="circle">
+${product[2]}
+</div>
 
-        <div class="quantity">
-          Lot de ${product[2]}
-        </div>
+</div>
 
-        <div class="product-bottom">
+<div class="product-info">
 
-          <div class="price">
-            ${product[1].toFixed(2).replace(".",",")} €
-          </div>
+<h3>
+${product[0]}
+</h3>
 
-          <button
-            class="buy"
-            onclick="addToCart('${product[0]}',${product[1]})">
-            Ajouter
-          </button>
+<div class="quantity">
+Lot de ${product[2]}
+</div>
 
-        </div>
+<div class="product-bottom">
 
-      </div>
+<div class="price">
 
-    </article>
-  `;
+${product[1]
+.toFixed(2)
+.replace(".",",")} €
+
+</div>
+
+<button
+class="buy"
+onclick="addToCart('${product[0]}',${product[1]})">
+
+Ajouter
+
+</button>
+
+</div>
+
+</div>
+
+</article>
+
+`;
+
 });
 
 
 /* =========================
-   CARTES VACRE TCG
+   40 CARTES VACRE
 ========================= */
 
 const cards = [
 
-/* COMMUNES */
+/* COMMUN */
 
 {name:"Vacre Normal",rarity:"common",symbol:"V",weight:20},
 {name:"Petit Vacre",rarity:"common",symbol:"v",weight:20},
@@ -1647,7 +1932,7 @@ const cards = [
 {name:"Vacre Compact",rarity:"common",symbol:"▪",weight:20},
 {name:"Vacre Public",rarity:"common",symbol:"P",weight:20},
 
-/* RARES */
+/* RARE */
 
 {name:"Vacre Royal",rarity:"rare",symbol:"♛",weight:8},
 {name:"Vacre Chromé",rarity:"rare",symbol:"◇",weight:8},
@@ -1660,7 +1945,7 @@ const cards = [
 {name:"Vacre Double",rarity:"rare",symbol:"VV",weight:8},
 {name:"Vacre Ancien",rarity:"rare",symbol:"I",weight:8},
 
-/* EPIQUES */
+/* EPIQUE */
 
 {name:"Vacre Quantique",rarity:"epic",symbol:"Ψ",weight:3},
 {name:"Vacre Interdit",rarity:"epic",symbol:"×",weight:3},
@@ -1670,7 +1955,7 @@ const cards = [
 {name:"Vacre Zéro",rarity:"epic",symbol:"0",weight:3},
 {name:"Vacre 404",rarity:"epic",symbol:"404",weight:3},
 
-/* LEGENDAIRES */
+/* LEGENDAIRE */
 
 {name:"Vacre Primordial",rarity:"legendary",symbol:"Ⅰ",weight:1},
 {name:"Grand Vacre",rarity:"legendary",symbol:"V+",weight:1},
@@ -1678,7 +1963,7 @@ const cards = [
 {name:"Vacre Infini",rarity:"legendary",symbol:"∞",weight:1},
 {name:"Vacre Suprême",rarity:"legendary",symbol:"♚",weight:1},
 
-/* MYTHIQUES */
+/* MYTHIQUE */
 
 {name:"VACRE ABSOLU",rarity:"mythic",symbol:"V",weight:.25},
 {name:"VACRE Nº001",rarity:"mythic",symbol:"001",weight:.25},
@@ -1692,168 +1977,511 @@ const cards = [
 ========================= */
 
 let collection =
-  JSON.parse(localStorage.getItem("vacreCollection")) || [];
+JSON.parse(
+localStorage.getItem("vacreCollection")
+) || [];
+
 
 function saveCollection(){
-  localStorage.setItem(
-    "vacreCollection",
-    JSON.stringify(collection)
-  );
+
+localStorage.setItem(
+"vacreCollection",
+JSON.stringify(collection)
+);
+
 }
+
 
 function rarityText(rarity){
 
-  const names = {
-    common:"Commun",
-    rare:"Rare",
-    epic:"Épique",
-    legendary:"Légendaire",
-    mythic:"Mythique"
-  };
+const names={
 
-  return names[rarity];
+common:"Commun",
+rare:"Rare",
+epic:"Épique",
+legendary:"Légendaire",
+mythic:"Mythique"
+
+};
+
+return names[rarity];
+
 }
+
 
 function renderCollection(){
 
-  const grid =
-    document.getElementById("collection-grid");
+const grid =
+document.getElementById("collection-grid");
 
-  grid.innerHTML="";
+grid.innerHTML="";
 
-  cards.forEach(card=>{
 
-    const unlocked =
-      collection.includes(card.name);
+cards.forEach(card=>{
 
-    grid.innerHTML += `
-      <div class="collection-card ${unlocked ? "" : "locked"}">
+const unlocked =
+collection.includes(card.name);
 
-        <div class="symbol">
-          ${unlocked ? card.symbol : "?"}
-        </div>
+grid.innerHTML += `
 
-        <strong>
-          ${unlocked ? card.name : "???"}
-        </strong>
+<div class="collection-card ${unlocked ? "" : "locked"}">
 
-        ${
-          unlocked
-          ? `<small>${rarityText(card.rarity)}</small>`
-          : ""
-        }
+<div class="symbol">
 
-      </div>
-    `;
+${unlocked ? card.symbol : "?"}
 
-  });
+</div>
 
-  document.getElementById("collection-count")
-    .textContent = collection.length;
+<strong>
+
+${unlocked ? card.name : "???"}
+
+</strong>
+
+${
+
+unlocked
+
+?
+
+`<small>
+${rarityText(card.rarity)}
+</small>`
+
+:
+
+""
+
+}
+
+</div>
+
+`;
+
+});
+
+
+document
+.getElementById("collection-count")
+.textContent =
+collection.length;
+
+
+const percentage =
+(collection.length / cards.length) * 100;
+
+
+document
+.getElementById("progress-bar")
+.style.width =
+percentage + "%";
+
 }
 
 
 /* =========================
-   TIRAGE ALEATOIRE
+   TIRAGE
 ========================= */
 
 function randomCard(){
 
-  const total =
-    cards.reduce((sum,card)=>sum+card.weight,0);
+const total =
+cards.reduce(
+(sum,card)=>sum+card.weight,
+0
+);
 
-  let random =
-    Math.random()*total;
+let random =
+Math.random()*total;
 
-  for(const card of cards){
 
-    random -= card.weight;
+for(const card of cards){
 
-    if(random <= 0){
-      return card;
-    }
-  }
+random -= card.weight;
 
-  return cards[0];
+if(random <= 0){
+
+return card;
+
+}
+
+}
+
+return cards[0];
+
 }
 
 
 /* =========================
-   OUVRIR BOOSTER
+   GENERATION BOOSTER
 ========================= */
 
-function openBooster(){
+function generateBooster(){
 
-  const reveal =
-    document.getElementById("cards-reveal");
+let booster=[];
 
-  reveal.innerHTML="";
 
-  let booster=[];
+/* 9 cartes normales */
 
-  /* 9 cartes normales */
+for(let i=0;i<9;i++){
 
-  for(let i=0;i<9;i++){
-    booster.push(randomCard());
-  }
+booster.push(
+randomCard()
+);
 
-  /* dernière carte :
-     meilleure chance de rareté */
+}
 
-  const finalPool =
-    cards.filter(card =>
-      card.rarity !== "common"
-    );
 
-  const finalCard =
-    finalPool[
-      Math.floor(Math.random()*finalPool.length)
-    ];
+/* dernière carte rare ou mieux */
 
-  booster.push(finalCard);
+const guaranteedPool =
+cards.filter(
+card =>
+card.rarity !== "common"
+);
 
-  booster.forEach((card,index)=>{
 
-    if(!collection.includes(card.name)){
-      collection.push(card.name);
-    }
+booster.push(
 
-    setTimeout(()=>{
+guaranteedPool[
 
-      const element =
-        document.createElement("div");
+Math.floor(
+Math.random() *
+guaranteedPool.length
+)
 
-      element.className =
-        `card ${card.rarity}`;
+]
 
-      element.innerHTML = `
+);
 
-        <div class="card-image">
-          ${card.symbol}
-        </div>
 
-        <span class="rarity">
-          ${rarityText(card.rarity)}
-        </span>
+return booster;
 
-        <h3>
-          ${card.name}
-        </h3>
+}
 
-      `;
 
-      reveal.appendChild(element);
+/* =========================
+   STOCK BOOSTERS
+========================= */
 
-    },index*160);
+let boosterStock =
+parseInt(
+localStorage.getItem("vacreBoosters")
+) || 0;
 
-  });
 
-  saveCollection();
+/* =========================
+   DATE DU JOUR
+========================= */
 
-  setTimeout(
-    renderCollection,
-    booster.length*160
-  );
+function getToday(){
+
+const now =
+new Date();
+
+return (
+
+now.getFullYear()
+
++ "-"
+
++ String(
+now.getMonth()+1
+).padStart(2,"0")
+
++ "-"
+
++ String(
+now.getDate()
+).padStart(2,"0")
+
+);
+
+}
+
+
+/* =========================
+   CADEAU QUOTIDIEN
+========================= */
+
+function giveDailyBoosters(){
+
+const today =
+getToday();
+
+
+const lastReward =
+localStorage.getItem(
+"vacreDailyReward"
+);
+
+
+if(lastReward !== today){
+
+boosterStock += 10;
+
+
+localStorage.setItem(
+"vacreDailyReward",
+today
+);
+
+
+localStorage.setItem(
+"vacreBoosters",
+boosterStock
+);
+
+
+document
+.getElementById("daily-message")
+.innerHTML = `
+
+<span class="daily-reward">
+
+CADEAU DU JOUR :
++10 BOOSTERS
+
+</span>
+
+`;
+
+}
+
+updateBoosterStock();
+
+}
+
+
+/* =========================
+   AFFICHAGE STOCK
+========================= */
+
+function updateBoosterStock(){
+
+document
+.getElementById("booster-count")
+.textContent =
+boosterStock;
+
+
+localStorage.setItem(
+"vacreBoosters",
+boosterStock
+);
+
+}
+
+
+/* =========================
+   AFFICHAGE CARTES
+========================= */
+
+function displayCards(cardsToShow){
+
+const reveal =
+document.getElementById("cards-reveal");
+
+
+reveal.innerHTML="";
+
+
+cardsToShow.forEach(
+(card,index)=>{
+
+
+if(
+!collection.includes(card.name)
+){
+
+collection.push(
+card.name
+);
+
+}
+
+
+setTimeout(()=>{
+
+const element =
+document.createElement("div");
+
+
+element.className =
+`card ${card.rarity}`;
+
+
+element.innerHTML = `
+
+<div class="card-image">
+
+${card.symbol}
+
+</div>
+
+<span class="rarity">
+
+${rarityText(card.rarity)}
+
+</span>
+
+<h3>
+
+${card.name}
+
+</h3>
+
+`;
+
+
+reveal.appendChild(
+element
+);
+
+
+},
+index*100
+);
+
+
+});
+
+
+saveCollection();
+
+
+setTimeout(
+
+renderCollection,
+
+cardsToShow.length*100
+
+);
+
+}
+
+
+/* =========================
+   OUVRIR 1
+========================= */
+
+function openOneBooster(){
+
+if(boosterStock < 1){
+
+showNoBoosters();
+
+return;
+
+}
+
+
+boosterStock--;
+
+
+updateBoosterStock();
+
+
+document
+.getElementById("opening-title")
+.textContent =
+"BOOSTER OUVERT — 10 CARTES";
+
+
+const booster =
+generateBooster();
+
+
+displayCards(
+booster
+);
+
+}
+
+
+/* =========================
+   OUVRIR 10
+========================= */
+
+function openTenBoosters(){
+
+if(boosterStock < 10){
+
+document
+.getElementById("cards-reveal")
+.innerHTML = `
+
+<div class="message">
+
+Il te faut 10 boosters.
+
+<br><br>
+
+Tu en possèdes actuellement
+${boosterStock}.
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+boosterStock -= 10;
+
+
+updateBoosterStock();
+
+
+let allCards=[];
+
+
+for(let i=0;i<10;i++){
+
+allCards.push(
+...generateBooster()
+);
+
+}
+
+
+document
+.getElementById("opening-title")
+.textContent =
+"10 BOOSTERS OUVERTS — 100 CARTES";
+
+
+displayCards(
+allCards
+);
+
+}
+
+
+/* =========================
+   PLUS DE BOOSTER
+========================= */
+
+function showNoBoosters(){
+
+document
+.getElementById("cards-reveal")
+.innerHTML = `
+
+<div class="message">
+
+PLUS DE BOOSTERS.
+
+<br><br>
+
++10 gratuits demain.
+
+</div>
+
+`;
+
 }
 
 
@@ -1863,105 +2491,168 @@ function openBooster(){
 
 let cart=[];
 
+
 function addToCart(name,price){
 
-  cart.push({name,price});
+cart.push({
+name,
+price
+});
 
-  updateCart();
+updateCart();
+
 }
+
 
 function removeFromCart(index){
 
-  cart.splice(index,1);
+cart.splice(
+index,
+1
+);
 
-  updateCart();
+updateCart();
+
 }
+
 
 function updateCart(){
 
-  const items =
-    document.getElementById("cart-items");
+const items =
+document.getElementById(
+"cart-items"
+);
 
-  const count =
-    document.getElementById("cart-count");
 
-  const totalElement =
-    document.getElementById("total");
+const count =
+document.getElementById(
+"cart-count"
+);
 
-  count.textContent=cart.length;
 
-  if(cart.length===0){
+const totalElement =
+document.getElementById(
+"total"
+);
 
-    items.innerHTML=
-      "Ton panier est vide.";
 
-    totalElement.textContent=
-      "0,00";
+count.textContent =
+cart.length;
 
-    return;
-  }
 
-  items.innerHTML="";
+if(cart.length===0){
 
-  let total=0;
+items.innerHTML =
+"Ton panier est vide.";
 
-  cart.forEach((item,index)=>{
 
-    total+=item.price;
+totalElement.textContent =
+"0,00";
 
-    items.innerHTML+=`
 
-      <div class="cart-item">
+return;
 
-        <span>
-          ${item.name}<br>
-          <strong>
-            ${item.price.toFixed(2).replace(".",",")} €
-          </strong>
-        </span>
-
-        <button
-          class="remove"
-          onclick="removeFromCart(${index})">
-          Retirer
-        </button>
-
-      </div>
-
-    `;
-
-  });
-
-  totalElement.textContent=
-    total.toFixed(2).replace(".",",");
 }
+
+
+items.innerHTML="";
+
+
+let total=0;
+
+
+cart.forEach(
+(item,index)=>{
+
+
+total +=
+item.price;
+
+
+items.innerHTML += `
+
+<div class="cart-item">
+
+<span>
+
+${item.name}
+
+<br>
+
+<strong>
+
+${item.price
+.toFixed(2)
+.replace(".",",")} €
+
+</strong>
+
+</span>
+
+
+<button
+class="remove"
+onclick="removeFromCart(${index})">
+
+Retirer
+
+</button>
+
+</div>
+
+`;
+
+});
+
+
+totalElement.textContent =
+
+total
+.toFixed(2)
+.replace(".",",");
+
+}
+
 
 function toggleCart(){
 
-  document
-    .getElementById("cart")
-    .classList
-    .toggle("open");
+document
+.getElementById("cart")
+.classList
+.toggle("open");
+
 }
+
 
 function checkout(){
 
-  if(cart.length===0){
+if(cart.length===0){
 
-    alert("Ton panier est vide.");
+alert(
+"Ton panier est vide."
+);
 
-    return;
-  }
+return;
 
-  alert(
-    "Le paiement n'est pas encore activé."
-  );
 }
 
 
-/* PREMIER AFFICHAGE */
+alert(
+"Le paiement n'est pas encore activé."
+);
+
+}
+
+
+/* =========================
+   DEMARRAGE
+========================= */
 
 renderCollection();
+
+giveDailyBoosters();
+
+updateBoosterStock();
 
 </script>
 
