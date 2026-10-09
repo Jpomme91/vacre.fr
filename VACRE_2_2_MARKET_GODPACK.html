@@ -1,0 +1,3484 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VACRE</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+:root{
+    --green:#15966a;
+    --darkgreen:#0b6849;
+    --lightgreen:#e8f7f1;
+    --black:#111;
+    --white:#fff;
+
+    --common:#9b9b9b;
+    --rare:#298cff;
+    --epic:#9b4dff;
+    --legendary:#ffc400;
+    --mythic:#e21b2d;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:white;
+    color:#111;
+}
+
+/* ==============================
+   HEADER
+============================== */
+
+header{
+    min-height:80px;
+    padding:15px 6%;
+    background:white;
+    border-bottom:3px solid black;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.logo{
+    font-size:32px;
+    font-weight:900;
+    letter-spacing:4px;
+}
+
+nav{
+    display:flex;
+    gap:22px;
+    align-items:center;
+}
+
+nav a{
+    color:black;
+    text-decoration:none;
+    font-weight:900;
+}
+
+.cart-button{
+    padding:11px 17px;
+    background:var(--green);
+    border:3px solid black;
+    border-radius:10px;
+    font-weight:900;
+    cursor:pointer;
+    box-shadow:4px 4px black;
+}
+
+/* ==============================
+   HERO
+============================== */
+
+.hero{
+    min-height:580px;
+    background:var(--green);
+    border-bottom:4px solid black;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+
+    padding:60px 20px;
+}
+
+.hero h1{
+    font-size:clamp(80px,18vw,210px);
+    line-height:.75;
+    letter-spacing:-8px;
+}
+
+.hero p{
+    font-size:22px;
+    font-weight:900;
+    margin-top:45px;
+}
+
+.hero-buttons{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:15px;
+    margin-top:30px;
+}
+
+.button{
+    display:inline-block;
+    padding:15px 24px;
+
+    border:3px solid black;
+    border-radius:10px;
+
+    background:white;
+    color:black;
+
+    text-decoration:none;
+    font-weight:900;
+
+    box-shadow:5px 5px black;
+}
+
+.button.black{
+    background:black;
+    color:white;
+}
+
+/* ==============================
+   BANDEAU
+============================== */
+
+.marquee{
+    padding:15px;
+    background:black;
+    color:white;
+
+    overflow:hidden;
+    white-space:nowrap;
+
+    font-size:17px;
+    font-weight:900;
+    letter-spacing:3px;
+
+    text-align:center;
+}
+
+/* ==============================
+   BOUTIQUE
+============================== */
+
+.shop{
+    max-width:1250px;
+    margin:auto;
+    padding:90px 25px;
+}
+
+.section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+    margin-bottom:45px;
+}
+
+.section-head h2{
+    font-size:clamp(45px,8vw,85px);
+    line-height:.9;
+}
+
+.section-number{
+    font-weight:900;
+    color:#777;
+}
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:28px;
+}
+
+.product{
+    border:3px solid black;
+    border-radius:18px;
+    overflow:hidden;
+    background:white;
+
+    box-shadow:7px 7px black;
+    transition:.2s;
+}
+
+.product:hover{
+    transform:translate(-4px,-4px);
+    box-shadow:11px 11px black;
+}
+
+.visual{
+    height:220px;
+    background:var(--lightgreen);
+    border-bottom:3px solid black;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.circle{
+    width:110px;
+    height:110px;
+
+    background:var(--green);
+    border:4px solid black;
+    border-radius:50%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:45px;
+    font-weight:900;
+
+    box-shadow:7px 7px black;
+}
+
+.product-info{
+    padding:22px;
+}
+
+.product-info h3{
+    font-size:25px;
+}
+
+.quantity{
+    color:var(--darkgreen);
+    font-weight:900;
+    margin-top:8px;
+}
+
+.product-bottom{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-top:25px;
+    gap:10px;
+}
+
+.price{
+    font-size:26px;
+    font-weight:900;
+}
+
+.buy{
+    padding:11px 14px;
+
+    background:var(--green);
+
+    border:3px solid black;
+    border-radius:9px;
+
+    font-weight:900;
+    cursor:pointer;
+}
+
+.buy:hover{
+    background:black;
+    color:white;
+}
+
+/* ==============================
+   TCG
+============================== */
+
+.tcg-section{
+    background:black;
+    color:white;
+
+    border-top:4px solid black;
+    border-bottom:4px solid black;
+
+    padding:90px 5%;
+}
+
+.tcg-inner{
+    max-width:1250px;
+    margin:auto;
+}
+
+.tcg-title{
+    font-size:clamp(60px,11vw,130px);
+    color:var(--green);
+    line-height:.8;
+}
+
+.tcg-subtitle{
+    font-size:22px;
+    margin-top:30px;
+    margin-bottom:55px;
+    font-weight:800;
+}
+
+.booster-shop{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:30px;
+}
+
+.booster-product{
+    background:white;
+    color:black;
+
+    border:3px solid white;
+    border-radius:20px;
+
+    overflow:hidden;
+}
+
+.booster-visual{
+    height:320px;
+    background:var(--green);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-bottom:3px solid black;
+}
+
+.booster-pack{
+    width:150px;
+    height:230px;
+
+    background:black;
+    color:white;
+
+    border:4px solid white;
+    border-radius:12px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    transform:rotate(4deg);
+
+    box-shadow:12px 12px rgba(0,0,0,.3);
+}
+
+.booster-pack strong{
+    font-size:30px;
+}
+
+.booster-pack span{
+    margin-top:10px;
+    color:var(--green);
+    font-weight:900;
+}
+
+.booster-info{
+    padding:24px;
+}
+
+.booster-info h3{
+    font-size:27px;
+}
+
+.booster-info p{
+    margin-top:7px;
+    font-weight:700;
+    color:#555;
+}
+
+.booster-actions{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+
+    margin-top:25px;
+}
+
+/* ==============================
+   OUVERTURE
+============================== */
+
+.open-zone{
+    min-height:800px;
+
+    padding:90px 5%;
+
+    background:var(--green);
+    border-bottom:4px solid black;
+
+    transition:background .5s;
+}
+
+.open-inner{
+    max-width:1250px;
+    margin:auto;
+}
+
+.open-zone h2{
+    font-size:clamp(45px,8vw,90px);
+}
+
+.open-description{
+    font-size:19px;
+    font-weight:900;
+    margin-top:15px;
+}
+
+.booster-balance{
+    margin:35px 0 25px;
+
+    background:white;
+    color:black;
+
+    border:4px solid black;
+    border-radius:18px;
+
+    box-shadow:8px 8px black;
+
+    padding:25px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:25px;
+}
+
+.stock-left{
+    display:flex;
+    flex-direction:column;
+}
+
+#booster-count{
+    font-size:60px;
+    font-weight:900;
+    line-height:1;
+}
+
+.stock-left small{
+    font-weight:900;
+    margin-top:8px;
+}
+
+.daily-info{
+    font-size:18px;
+    font-weight:900;
+}
+
+.daily-reward{
+    display:inline-block;
+
+    margin-bottom:25px;
+    padding:12px 17px;
+
+    background:black;
+    color:white;
+
+    border:3px solid black;
+    border-radius:9px;
+
+    font-weight:900;
+}
+
+.open-buttons{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.open-booster{
+    padding:16px 25px;
+
+    border:3px solid black;
+    border-radius:10px;
+
+    background:white;
+
+    font-size:17px;
+    font-weight:900;
+
+    cursor:pointer;
+
+    box-shadow:5px 5px black;
+}
+
+.open-booster.black{
+    background:black;
+    color:white;
+}
+
+.open-booster:disabled{
+    opacity:.5;
+    cursor:not-allowed;
+}
+
+#opening-title{
+    font-size:30px;
+    font-weight:900;
+    margin-top:45px;
+}
+
+/* ==============================
+   REVEAL
+============================== */
+
+.reveal-stage{
+    min-height:450px;
+
+    margin-top:30px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    position:relative;
+    overflow:hidden;
+
+    border-radius:25px;
+}
+
+.reveal-stage.legendary-stage{
+    animation:legendaryStage 1.8s infinite alternate;
+}
+
+.reveal-stage.mythic-stage{
+    animation:mythicStage 1s infinite alternate;
+}
+
+@keyframes legendaryStage{
+    from{
+        box-shadow:
+        inset 0 0 20px rgba(255,196,0,.2),
+        0 0 20px rgba(255,196,0,.3);
+    }
+
+    to{
+        box-shadow:
+        inset 0 0 90px rgba(255,196,0,.7),
+        0 0 70px rgba(255,196,0,.9);
+    }
+}
+
+@keyframes mythicStage{
+    from{
+        box-shadow:
+        inset 0 0 20px rgba(226,27,45,.3),
+        0 0 20px rgba(226,27,45,.4);
+    }
+
+    to{
+        box-shadow:
+        inset 0 0 110px rgba(226,27,45,.85),
+        0 0 100px rgba(226,27,45,1);
+    }
+}
+
+/* ==============================
+   CARTE FLIP
+============================== */
+
+.card-wrapper{
+    width:260px;
+    height:380px;
+
+    perspective:1200px;
+}
+
+.card-flip{
+    width:100%;
+    height:100%;
+
+    position:relative;
+
+    transform-style:preserve-3d;
+
+    transition:transform .65s cubic-bezier(.2,.7,.2,1);
+}
+
+.card-wrapper.revealed .card-flip{
+    transform:rotateY(180deg);
+}
+
+/* vitesse légendaire */
+
+.card-wrapper.legendary .card-flip{
+    transition-duration:1.6s;
+}
+
+/* vitesse mythique */
+
+.card-wrapper.mythic .card-flip{
+    transition-duration:2.3s;
+}
+
+.card-face{
+    position:absolute;
+
+    width:100%;
+    height:100%;
+
+    backface-visibility:hidden;
+
+    border:5px solid black;
+    border-radius:20px;
+
+    box-shadow:10px 10px black;
+
+    overflow:hidden;
+}
+
+.card-back{
+    background:black;
+    color:white;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+.card-back strong{
+    font-size:38px;
+    letter-spacing:3px;
+}
+
+.card-back span{
+    margin-top:10px;
+    color:var(--green);
+    font-weight:900;
+}
+
+.card-front{
+    transform:rotateY(180deg);
+
+    padding:14px;
+
+    background:white;
+
+    display:flex;
+    flex-direction:column;
+}
+
+.card-image{
+    flex:1;
+
+    border:4px solid black;
+    border-radius:12px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:70px;
+    font-weight:900;
+}
+
+.card-name{
+    margin-top:15px;
+    font-size:21px;
+    font-weight:900;
+}
+
+.rarity{
+    display:inline-block;
+
+    margin-top:9px;
+
+    padding:6px 10px;
+
+    border:2px solid black;
+    border-radius:100px;
+
+    width:max-content;
+
+    font-size:12px;
+    font-weight:900;
+    text-transform:uppercase;
+}
+
+/* ==============================
+   COULEURS
+============================== */
+
+.common .card-front{
+    background:#e7e7e7;
+}
+
+.common .card-image{
+    background:var(--common);
+}
+
+.rare .card-front{
+    background:#d8ebff;
+}
+
+.rare .card-image{
+    background:var(--rare);
+    color:white;
+}
+
+.epic .card-front{
+    background:#eadcff;
+}
+
+.epic .card-image{
+    background:var(--epic);
+    color:white;
+}
+
+.legendary .card-front{
+    background:#fff2a6;
+    border-color:#7d5e00;
+
+    box-shadow:
+    0 0 30px #ffc400,
+    0 0 70px rgba(255,196,0,.9);
+}
+
+.legendary .card-image{
+    background:linear-gradient(
+        135deg,
+        #8f6200,
+        #ffc400,
+        #fff2a6,
+        #ffc400,
+        #8f6200
+    );
+
+    color:black;
+}
+
+.mythic .card-front{
+    background:#ffd1d5;
+    border-color:#67000a;
+
+    box-shadow:
+    0 0 35px #ff0019,
+    0 0 90px rgba(255,0,25,.95);
+}
+
+.mythic .card-image{
+    background:linear-gradient(
+        135deg,
+        #620009,
+        #e21b2d,
+        #ff5361,
+        #e21b2d,
+        #620009
+    );
+
+    color:white;
+}
+
+/* ==============================
+   ANIMATIONS RARETES
+============================== */
+
+.legendary.revealed{
+    animation:legendaryImpact .8s ease;
+}
+
+@keyframes legendaryImpact{
+    0%{
+        transform:scale(.85);
+    }
+
+    50%{
+        transform:scale(1.08);
+        filter:brightness(1.5);
+    }
+
+    100%{
+        transform:scale(1);
+    }
+}
+
+.mythic.revealed{
+    animation:mythicImpact 1.4s ease;
+}
+
+@keyframes mythicImpact{
+    0%{
+        transform:scale(.7);
+        filter:brightness(3);
+    }
+
+    25%{
+        transform:scale(1.12) rotate(-2deg);
+    }
+
+    45%{
+        transform:scale(1.12) rotate(2deg);
+    }
+
+    65%{
+        transform:scale(1.12) rotate(-1deg);
+    }
+
+    100%{
+        transform:scale(1);
+    }
+}
+
+/* ==============================
+   COMPTEUR REVEAL
+============================== */
+
+.reveal-counter{
+    text-align:center;
+
+    font-size:18px;
+    font-weight:900;
+
+    margin-top:25px;
+}
+
+/* ==============================
+   RESULTAT BOOSTER
+============================== */
+
+.pack-results{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:15px;
+
+    margin-top:40px;
+}
+
+.result-card{
+    border:3px solid black;
+    border-radius:12px;
+
+    min-height:170px;
+
+    padding:12px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    background:white;
+}
+
+.result-card.common{
+    border-color:#666;
+}
+
+.result-card.rare{
+    border-color:var(--rare);
+}
+
+.result-card.epic{
+    border-color:var(--epic);
+}
+
+.result-card.legendary{
+    border-color:var(--legendary);
+    box-shadow:0 0 15px var(--legendary);
+}
+
+.result-card.mythic{
+    border-color:var(--mythic);
+    box-shadow:0 0 20px var(--mythic);
+}
+
+.result-symbol{
+    font-size:35px;
+    font-weight:900;
+    margin-bottom:10px;
+}
+
+/* ==============================
+   COLLECTION
+============================== */
+
+.collection{
+    max-width:1250px;
+    margin:auto;
+    padding:90px 25px;
+}
+
+.collection h2{
+    font-size:clamp(45px,8vw,90px);
+}
+
+.collection-progress{
+    margin:20px 0 40px;
+
+    font-size:20px;
+    font-weight:900;
+}
+
+.progress-background{
+    width:100%;
+    max-width:600px;
+
+    height:18px;
+
+    border:3px solid black;
+    border-radius:20px;
+
+    overflow:hidden;
+
+    margin-top:12px;
+}
+
+#progress-bar{
+    height:100%;
+    width:0;
+
+    background:var(--green);
+
+    transition:.4s;
+}
+
+.collection-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+    gap:15px;
+}
+
+.collection-card{
+    min-height:180px;
+
+    border:3px solid black;
+    border-radius:12px;
+
+    padding:12px;
+
+    background:white;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+}
+
+.collection-card.common{
+    border-color:#777;
+}
+
+.collection-card.rare{
+    border-color:var(--rare);
+}
+
+.collection-card.epic{
+    border-color:var(--epic);
+}
+
+.collection-card.legendary{
+    border-color:var(--legendary);
+}
+
+.collection-card.mythic{
+    border-color:var(--mythic);
+}
+
+.collection-card.locked{
+    background:#ddd;
+    border-color:black;
+    color:#999;
+}
+
+.collection-card .symbol{
+    font-size:35px;
+    font-weight:900;
+    margin-bottom:10px;
+}
+
+.collection-card small{
+    margin-top:6px;
+    font-weight:bold;
+}
+
+/* ==============================
+   PANIER
+============================== */
+
+.cart{
+    display:none;
+
+    position:fixed;
+
+    right:25px;
+    top:95px;
+
+    width:min(410px,calc(100% - 50px));
+    max-height:75vh;
+
+    overflow-y:auto;
+
+    background:white;
+
+    border:3px solid black;
+    border-radius:16px;
+
+    padding:23px;
+
+    box-shadow:9px 9px black;
+
+    z-index:200;
+}
+
+.cart.open{
+    display:block;
+}
+
+.cart h2{
+    font-size:30px;
+    margin-bottom:20px;
+}
+
+.cart-item{
+    padding:14px 0;
+
+    border-bottom:2px solid #ddd;
+
+    display:flex;
+    justify-content:space-between;
+
+    gap:10px;
+}
+
+.remove{
+    border:0;
+    background:transparent;
+
+    color:var(--darkgreen);
+
+    font-weight:900;
+    cursor:pointer;
+}
+
+.total{
+    margin-top:20px;
+
+    font-size:23px;
+    font-weight:900;
+}
+
+.checkout{
+    width:100%;
+
+    padding:14px;
+    margin-top:15px;
+
+    border:3px solid black;
+    border-radius:9px;
+
+    background:var(--green);
+
+    font-weight:900;
+    cursor:pointer;
+}
+
+.message{
+    background:white;
+    color:black;
+
+    border:3px solid black;
+    border-radius:12px;
+
+    padding:20px;
+
+    font-weight:900;
+}
+
+/* ==============================
+   FOOTER
+============================== */
+
+footer{
+    padding:60px 7%;
+
+    background:black;
+    color:white;
+}
+
+.footer-logo{
+    font-size:55px;
+
+    color:var(--green);
+
+    font-weight:900;
+    letter-spacing:5px;
+}
+
+footer p{
+    color:#aaa;
+    margin-top:10px;
+}
+
+
+/* ==============================
+   COMPTE VACRE
+============================== */
+.account-button{padding:11px 17px;background:white;border:3px solid black;border-radius:10px;font-weight:900;cursor:pointer;box-shadow:4px 4px black}
+.account-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:500;align-items:center;justify-content:center;padding:20px}
+.account-modal.open{display:flex}
+.account-panel{width:min(520px,100%);max-height:90vh;overflow:auto;background:white;border:4px solid black;border-radius:20px;box-shadow:10px 10px var(--green);padding:28px}
+.account-panel-head{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:22px}
+.account-panel h2{font-size:38px}.account-close{border:3px solid black;background:white;border-radius:9px;font-weight:900;font-size:20px;padding:6px 11px;cursor:pointer}
+.account-tabs{display:flex;gap:10px;margin-bottom:20px}.account-tab{flex:1;padding:11px;border:3px solid black;border-radius:9px;background:white;font-weight:900;cursor:pointer}.account-tab.active{background:var(--green)}
+.account-form{display:none}.account-form.active{display:block}.account-form label{display:block;font-weight:900;margin:13px 0 6px}.account-form input{width:100%;padding:13px;border:3px solid black;border-radius:9px;font:inherit}.account-submit{width:100%;margin-top:20px;padding:14px;border:3px solid black;border-radius:9px;background:var(--green);font-weight:900;cursor:pointer;box-shadow:4px 4px black}
+.account-status{margin-top:18px;padding:12px;border:3px solid black;border-radius:9px;font-weight:800;display:none}.account-status.show{display:block}.account-user{display:none}.account-user.active{display:block}.account-user strong{font-size:25px}.account-user p{margin-top:8px}.account-note{margin-top:15px;font-size:14px;font-weight:700;color:#555}.logout-button{width:100%;margin-top:20px;padding:13px;border:3px solid black;border-radius:9px;background:black;color:white;font-weight:900;cursor:pointer}
+
+/* ==============================
+   MOBILE
+============================== */
+
+@media(max-width:700px){
+
+    nav a{
+        display:none;
+    }
+
+    .hero{
+        min-height:450px;
+    }
+
+    .hero h1{
+        font-size:85px;
+        letter-spacing:-4px;
+    }
+
+    .section-head{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:10px;
+    }
+
+    .booster-balance{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .open-buttons{
+        flex-direction:column;
+    }
+
+    .open-booster{
+        width:100%;
+    }
+
+    .booster-actions,
+    .product-bottom{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .buy{
+        width:100%;
+    }
+
+    .card-wrapper{
+        width:230px;
+        height:340px;
+    }
+}
+
+/* ============================== VACRE MARKET + ROUE ============================== */
+.market-section{background:#f4f4f4;border-bottom:4px solid black;padding:90px 5%}.market-inner{max-width:1250px;margin:auto}.market-title,.wheel-title{font-size:clamp(55px,10vw,120px);line-height:.85}.market-subtitle,.wheel-description{margin-top:20px;font-size:20px;font-weight:900}.market-warning{display:inline-block;margin-top:15px;padding:8px 12px;background:black;color:white;font-size:12px;font-weight:900;border-radius:6px}.market-dashboard{display:grid;grid-template-columns:2fr 1fr;gap:25px;margin-top:45px}.market-panel{background:white;border:4px solid black;border-radius:18px;box-shadow:8px 8px black;padding:25px}.market-price{font-size:clamp(42px,7vw,78px);font-weight:900;line-height:1;margin-top:10px}.market-change{display:inline-block;margin-top:12px;padding:8px 12px;border:3px solid black;border-radius:8px;font-weight:900}.market-change.up{background:#a8f0c8}.market-change.down{background:#ffb5bb}.market-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:25px}.market-stat{padding:12px;border:2px solid black;border-radius:9px}.market-stat small{display:block;font-weight:900;color:#777}.chart-container{height:310px;margin-top:30px;border:3px solid black;border-radius:12px;overflow:hidden;background:#fafafa}#market-chart{width:100%;height:100%}.wallet-balance{font-size:40px;font-weight:900;margin:12px 0 25px}.portfolio-line{padding:12px 0;border-bottom:2px solid #ddd;font-weight:900}.trade-box{margin-top:25px}.trade-box input{width:100%;padding:14px;border:3px solid black;border-radius:8px;font-size:17px;font-weight:900}.trade-buttons{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}.trade-button{padding:13px;border:3px solid black;border-radius:8px;font-weight:900;cursor:pointer}.buy-market{background:var(--green)}.sell-market{background:white}.trade-message{min-height:24px;margin-top:15px;font-weight:900}.news-board{margin-top:35px;background:black;color:white;border-radius:18px;border:4px solid black;overflow:hidden}.news-header{padding:17px 22px;background:var(--green);color:black;font-size:22px;font-weight:900;display:flex;justify-content:space-between;gap:20px}.news-content{padding:25px}.news-main{font-size:clamp(24px,4vw,40px);font-weight:900}.news-description{margin-top:15px;color:#ccc;font-size:17px;line-height:1.5}.news-impact{display:inline-block;margin-top:20px;padding:8px 12px;background:white;color:black;border-radius:7px;font-weight:900}
+.wheel-section{padding:85px 5%;background:var(--green);border-bottom:4px solid #111}.wheel-inner{max-width:1100px;margin:auto;text-align:center}.wheel-title{font-size:clamp(50px,9vw,105px);line-height:.9}.wheel-description{margin-top:20px;font-size:18px;font-weight:900}.wheel-area{position:relative;width:min(470px,94vw);margin:45px auto 22px;aspect-ratio:1;filter:drop-shadow(9px 11px 0 #111)}.wheel-pointer{position:absolute;z-index:8;left:50%;top:-9px;transform:translateX(-50%);width:0;height:0;border-left:20px solid transparent;border-right:20px solid transparent;border-top:48px solid #e21b2d;filter:drop-shadow(0 2px 0 black)}#wheel{width:100%;height:100%;display:block;overflow:visible;transition:transform 5.2s cubic-bezier(.12,.7,.13,1);transform-origin:50% 50%}.wheel-segment-label{font-size:12px;font-weight:900;text-anchor:middle;dominant-baseline:middle;pointer-events:none}.wheel-center{position:absolute;z-index:4;left:50%;top:50%;transform:translate(-50%,-50%);width:22%;aspect-ratio:1;border-radius:50%;background:var(--green);border:5px solid black;display:flex;align-items:center;justify-content:center;font-size:clamp(11px,3vw,20px);font-weight:900;box-shadow:0 2px 5px #1118}.spin-button{padding:16px 26px;background:white;border:4px solid #111;border-radius:10px;box-shadow:5px 5px #111;font-size:18px;font-weight:900;cursor:pointer}.spin-button:disabled{opacity:.55;cursor:not-allowed}#wheel-result{min-height:58px;margin:20px auto;font-size:22px;font-weight:900}.wheel-note{font-size:13px;max-width:600px;margin:12px auto;line-height:1.5;font-weight:700}@media(max-width:800px){.market-dashboard{grid-template-columns:1fr}.market-stats{grid-template-columns:repeat(3,minmax(0,1fr))}.market-panel{padding:15px}.news-header{font-size:17px}.wheel-segment-label{font-size:11px}nav{flex-wrap:wrap;justify-content:center;gap:10px}header{flex-wrap:wrap;gap:10px}}
+
+
+/* VACRE 2.0 — refonte de l'onglet Market uniquement */
+#market.market-section{background:#f8f7f0;border:0;padding:65px 5% 100px;color:#272924}
+#market .market-inner{max-width:1280px}
+#market .v2-market-eyebrow{display:flex;align-items:center;gap:18px;font-size:12px;font-weight:900;letter-spacing:.17em;color:#77796f;margin-bottom:18px}
+#market .v2-market-eyebrow span{font-size:10px;letter-spacing:.08em;color:#a4971b;background:#f1edd2;padding:8px 12px;border-radius:30px}
+#market .market-title{font-size:clamp(54px,8vw,112px);line-height:.94;letter-spacing:-.075em;text-transform:lowercase;font-weight:850}
+#market .market-title em{font-style:normal;color:#b7aa2f}
+#market .market-subtitle{font-size:clamp(15px,2vw,19px);font-weight:500;line-height:1.5;color:#6c7069;margin-top:20px;max-width:670px}
+#market .market-warning{background:#efecdc;color:#716d54;border:0;border-radius:30px;padding:10px 15px;font-size:11px;letter-spacing:.07em}
+#market .market-dashboard{grid-template-columns:minmax(0,1.75fr) minmax(300px,1fr);gap:18px;margin-top:32px;align-items:stretch}
+#market .market-panel{background:#fff;border:1px solid #eae9e0;border-radius:25px;box-shadow:0 12px 45px #23251f08;padding:30px;min-width:0}
+#market .market-panel>strong{font-size:12px;letter-spacing:.15em;color:#83867b}
+#market .market-price{font-family:Outfit,sans-serif;font-size:clamp(48px,6vw,82px);letter-spacing:-.07em;font-weight:800;margin-top:14px}
+#market .market-change{font-size:14px;border:0;border-radius:40px;padding:9px 13px}
+#market .market-change.up{background:#e8eed4;color:#647b28}
+#market .market-change.down{background:#fce5df;color:#a64d3b}
+#market .market-stats{gap:10px;margin-top:27px}
+#market .market-stat{border:1px solid #eeede5;border-radius:14px;padding:15px 13px;background:#faf9f5}
+#market .market-stat small{font-size:10px;color:#8d9085;letter-spacing:.06em}
+#market .market-stat strong{display:block;font-size:15px;margin-top:7px}
+#market .v2-chart-head{display:flex;justify-content:space-between;align-items:center;margin:32px 0 12px;gap:12px}
+#market .v2-chart-head strong{display:block;font-size:18px;font-family:Outfit,sans-serif}
+#market .v2-chart-head small{display:block;font-size:12px;color:#8c8e83;margin-top:3px}
+#market .v2-chart-period{background:#f1eed9;color:#8b8127;border-radius:20px;font-size:11px;font-weight:800;padding:9px 12px;white-space:nowrap}
+#market .v2-chart-container{position:relative;margin-top:0;height:335px;border:0;border-radius:16px;background:#fbfaf5;overflow:hidden;touch-action:pan-y;cursor:crosshair}
+#market #market-chart{display:block;width:100%;height:100%}
+#market .v2-chart-tooltip{position:absolute;top:12px;transform:translateX(-50%);padding:10px 13px;border-radius:13px;background:#292b26;color:#fff;white-space:nowrap;pointer-events:none;box-shadow:0 8px 20px #0002;font-size:11px;z-index:3}
+#market .v2-chart-tooltip strong{display:block;margin-top:3px;font-size:14px}
+#market .v2-chart-tooltip[hidden]{display:none}
+#market .v2-chart-caption{display:flex;justify-content:space-between;margin:11px 3px;font-size:10px;color:#a3a398;font-weight:800;letter-spacing:.06em}
+#market .v2-chart-disclaimer{font-size:11px;color:#96978c;line-height:1.6;margin-top:16px}
+#market .wallet-balance{font-family:Outfit,sans-serif;font-size:clamp(35px,4vw,54px);letter-spacing:-.04em;margin:20px 0 22px}
+#market .wallet-balance small{display:block;font-size:12px;letter-spacing:.1em;color:#929588;margin-top:6px}
+#market .portfolio-line{border-bottom:1px solid #eeeee6;padding:15px 0;font-size:14px;font-weight:600;line-height:1.5}
+#market .portfolio-line span{font-weight:800}
+#market .trade-box{margin-top:30px}
+#market .trade-box input{border:1px solid #deded3;background:#faf9f4;border-radius:13px;font-size:16px;padding:15px}
+#market .trade-buttons{gap:10px;margin-top:12px}
+#market .trade-button{border:0!important;border-radius:13px!important;padding:15px;font-size:13px;transition:transform .18s ease,background .18s ease}
+#market .trade-button:hover:not(:disabled){transform:translateY(-2px)}
+#market .buy-market{background:#c5b83d;color:#272924}
+#market .sell-market{background:#292b26;color:white}
+#market .trade-message{font-size:13px;line-height:1.5}
+#market .news-board{background:#292b26;color:white;border:0;border-radius:24px;margin-top:20px;box-shadow:0 12px 45px #23251f08}
+#market .news-header{background:#ded16d;color:#292b26;font-family:Outfit,sans-serif;font-size:18px;padding:19px 26px}
+#market .news-content{padding:28px}
+#market .news-main{font-family:Outfit,sans-serif;font-size:clamp(23px,3vw,35px)}
+#market .news-description{font-size:15px;color:#d1d3ca}
+#market .news-impact{background:#f0e8ac;border-radius:30px;font-size:11px}
+@media(max-width:900px){#market .market-dashboard{grid-template-columns:1fr}}
+@media(max-width:600px){#market.market-section{padding:35px 14px 75px}#market .market-panel{padding:20px 16px;border-radius:20px}#market .market-stats{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}#market .market-stat{padding:12px 8px}#market .market-stat strong{font-size:12px}#market .v2-chart-container{height:300px}#market .v2-chart-head strong{font-size:15px}#market .v2-chart-head small{font-size:10px}#market .market-price{font-size:55px}#market .news-header{font-size:15px}#market .v2-market-eyebrow{flex-wrap:wrap}}
+
+.god-pack-apology{max-width:600px;margin:22px auto 12px;line-height:1.6;font-size:1rem}
+.god-pack-reveal-slot{width:min(100%,900px);margin:18px auto}
+.god-pack-reveal-slot .pack-results{margin-top:18px}
+</style>
+
+<style>
+.social-section{max-width:1250px;margin:0 auto;padding:65px 25px}
+.social-section h2{font-size:clamp(40px,7vw,76px)}
+.social-panel{border:3px solid #111;border-radius:15px;padding:22px;margin-top:20px;box-shadow:5px 5px #111}
+.social-panel input{padding:12px;border:2px solid #111;border-radius:8px;max-width:100%;width:310px}
+.social-panel button{padding:10px 15px;border:2px solid #111;background:#15966a;border-radius:8px;font-weight:bold;cursor:pointer;margin:5px}
+.social-entry{padding:12px 0;border-bottom:1px solid #ddd}
+.social-entry strong{margin-right:12px}
+</style>
+<style id="v2-interface-style">
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap');
+:root{--green:#f0e84b;--darkgreen:#d9d03c;--lightgreen:#faf9e4;--black:#242524;--white:#fffef8;--v2-yellow:#f0e84b;--v2-dark:#242524;--v2-paper:#fffef8;--v2-muted:#74756c}
+html{scroll-behavior:smooth}body{font-family:'DM Sans',sans-serif;background:var(--v2-paper);color:var(--v2-dark);overflow-x:hidden}h1,h2,h3,.logo,.tcg-title,.market-title,.wheel-title{font-family:'Outfit',sans-serif;letter-spacing:-.035em}
+.v2-header{position:sticky;top:0;z-index:150;background:rgba(255,254,248,.94);backdrop-filter:blur(18px);border-bottom:1px solid #e9e8dc;padding:0 4%;height:88px;min-height:0;box-shadow:none}.v2-header-inner{width:min(1280px,100%);margin:auto;display:flex;align-items:center;gap:28px;height:100%}.v2-menu-trigger{width:49px;height:49px;border:0;background:none;display:flex;flex-direction:column;justify-content:center;gap:7px;cursor:pointer;padding:8px}.v2-menu-trigger span{height:2.5px;width:30px;background:var(--v2-dark);border-radius:5px;transition:transform .25s}.v2-menu-trigger:hover span:nth-child(2){transform:translateX(6px)}.v2-brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--v2-dark);font-family:Outfit,sans-serif;font-size:33px;font-weight:900;letter-spacing:-2px;line-height:1}.v2-brand small{display:block;font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0;margin-top:6px;color:#6b6b62}.v2-brand-emblem{width:42px;height:42px;border:2px solid var(--v2-dark);border-radius:50%;display:grid;place-items:center;font-size:25px;font-weight:500;transform:rotate(-12deg)}.v2-header-actions{margin-left:auto;display:flex;gap:10px}.v2-icon-button{position:relative;width:47px;height:47px;border:1px solid #e5e4d8;background:white;border-radius:15px;cursor:pointer;font-size:30px;display:grid;place-items:center;color:var(--v2-dark);transition:transform .2s,background .2s}.v2-icon-button:hover{transform:translateY(-3px);background:var(--v2-yellow)}.v2-fingerprint{font-size:35px;color:#2f99b8}.v2-cart-badge{position:absolute;top:-6px;right:-5px;border-radius:50%;background:var(--v2-yellow);border:1px solid var(--v2-dark);font-size:10px;font-weight:800;width:19px;height:19px;display:grid;place-items:center}.v2-drawer-shade{position:fixed;inset:0;background:rgba(18,19,17,.48);z-index:300;opacity:0;pointer-events:none;transition:opacity .3s}.v2-drawer{position:fixed;inset:0 auto 0 0;width:min(410px,88vw);z-index:301;background:#f4f3eb;transform:translateX(-105%);transition:transform .38s cubic-bezier(.2,.8,.2,1);box-shadow:20px 0 60px #0002;display:flex;flex-direction:column;padding:26px 28px}.v2-menu-open .v2-drawer{transform:translateX(0)}.v2-menu-open .v2-drawer-shade{opacity:1;pointer-events:auto}.v2-drawer-top{display:flex;justify-content:space-between;align-items:center;padding-bottom:22px;border-bottom:1px solid #d9d8cb}.v2-drawer-top strong{font-family:Outfit,sans-serif;font-size:32px;letter-spacing:-2px}.v2-dot{color:#c9be24}.v2-drawer-top button{border:0;background:white;width:40px;height:40px;border-radius:50%;font-size:28px;cursor:pointer}.v2-drawer-links{overflow:auto;padding:20px 0;display:flex;flex-direction:column;gap:3px}.v2-drawer-links button{display:flex;align-items:center;justify-content:space-between;text-align:left;border:0;background:transparent;color:var(--v2-dark);font-family:Outfit,sans-serif;font-size:21px;font-weight:650;padding:12px 14px;border-radius:12px;cursor:pointer;transition:background .2s,transform .2s}.v2-drawer-links button span{opacity:.35}.v2-drawer-links button:hover{background:var(--v2-yellow);transform:translateX(4px)}.v2-drawer-foot{margin-top:auto;color:#88887c;font-size:12px;padding:20px 12px 0}
+.hero{min-height:470px;max-width:1280px;margin:28px auto 0;padding:60px 6%;border-radius:32px;background:#f1f0e8;display:grid;grid-template-columns:1fr 360px;align-items:center;gap:20px;overflow:hidden;position:relative}.v2-eyebrow,.v2-section-kicker{font-size:12px;font-weight:800;letter-spacing:.15em;color:#6d6e64}.v2-eyebrow span{color:#b0a71c}.hero h1{font-size:clamp(55px,7.5vw,112px);line-height:.95;letter-spacing:-.075em;text-transform:lowercase;margin:25px 0 14px}.hero h1 em{font-style:normal;color:#b3a91e}.hero p{font-size:clamp(17px,2vw,24px);font-weight:500;color:#67685f}.v2-hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:35px}.v2-hero-actions a,.v2-hero-actions button{font-family:Outfit,sans-serif;font-size:15px;font-weight:700;padding:15px 20px;border-radius:50px;border:1px solid var(--v2-dark);background:var(--v2-yellow);color:var(--v2-dark);text-decoration:none;cursor:pointer}.v2-hero-actions button{background:transparent}.v2-hero-actions span{margin-left:18px}.v2-hero-art{height:320px;display:grid;place-items:center;position:relative}.v2-hero-symbol{width:205px;height:205px;border-radius:50%;background:var(--v2-yellow);border:3px solid var(--v2-dark);display:grid;place-items:center;font-family:Outfit,sans-serif;font-size:135px;font-weight:500;transform:rotate(-12deg);box-shadow:16px 20px 0 #242524}.v2-orbit{position:absolute;border:1px dashed #9c9a88;border-radius:50%;width:300px;height:300px;transform:rotate(20deg) scaleX(1.3)}.v2-orbit-two{width:245px;height:245px;transform:rotate(-30deg) scaleY(1.25)}.v2-art-star{position:absolute;top:5px;right:12px;font-size:54px;color:#c2b627}.v2-news-strip{max-width:1280px;margin:20px auto 0;padding:16px 22px;border:1px solid #e5e4d8;border-radius:15px;display:flex;align-items:center;gap:14px;font-size:13px}.v2-news-strip strong{white-space:nowrap;font-weight:800}.v2-news-strip>span:nth-of-type(2){color:#74756c}.v2-live-dot{width:9px;height:9px;border-radius:50%;background:#e1d432;box-shadow:0 0 0 4px #f6f3bf;flex-shrink:0}.v2-news-strip button{margin-left:auto;border:0;background:none;font-weight:800;cursor:pointer;white-space:nowrap}
+#tcg,#ouvrir,.v2-market-teaser,#boutique,#collection,#amis,#market,#roue,.v2-extra-page{scroll-margin-top:110px}#tcg{background:transparent;color:var(--v2-dark);padding-top:70px}.tcg-inner,.open-inner{max-width:1280px}.tcg-title{font-size:clamp(42px,6vw,76px);line-height:1;letter-spacing:-.065em}.tcg-title br{display:none}.tcg-title::after{content:' / BOOSTERS';color:#aaa22d}.tcg-subtitle{color:#6e7067}.booster-product{border-radius:24px;overflow:hidden;box-shadow:0 8px 35px #0000000a}.booster-info{background:#f5f4ed}.booster-actions .buy,.open-booster,.spin-button,.trade-button{border-radius:100px!important}.open-zone{background:#f3f2e9;color:var(--v2-dark);padding:60px 5%;border-radius:32px;max-width:1280px;margin:20px auto}.open-zone h2{font-family:Outfit,sans-serif;font-size:clamp(36px,5vw,62px);letter-spacing:-.055em}.open-booster.black{background:var(--v2-dark);color:white}.v2-market-teaser{max-width:1280px;margin:85px auto;padding:0 16px 60px}.v2-section-heading{display:flex;justify-content:space-between;align-items:end;margin:8px 0 26px;gap:10px}.v2-section-heading h2{font-size:clamp(44px,6vw,76px);line-height:1.05;text-transform:lowercase}.v2-section-heading em{font-style:normal;color:#b5a923}.v2-section-heading span{font-size:12px;color:#8a8a7c;font-weight:700}.v2-teaser-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:18px}.v2-teaser-wallet,.v2-teaser-chart{background:#f2f1e9;padding:32px;border-radius:24px;min-height:300px;display:flex;flex-direction:column;gap:15px}.v2-teaser-wallet>span,.v2-teaser-chart>span{font-size:12px;font-weight:800;letter-spacing:.12em;color:#797a6f}.v2-teaser-wallet strong{font-size:clamp(26px,3vw,43px);font-family:Outfit,sans-serif}.v2-teaser-wallet strong span{color:#b4a925}.v2-teaser-wallet p,.v2-teaser-chart p{font-size:14px;color:#77796d}.v2-teaser-wallet button,.v2-teaser-chart button{align-self:start;margin-top:auto;border:0;background:var(--v2-yellow);padding:12px 17px;border-radius:30px;font-weight:800;cursor:pointer}.v2-teaser-chart svg{height:140px;width:100%;color:#a9a022}.v2-extra-page{max-width:1150px;margin:60px auto;padding:35px 24px;min-height:55vh}.v2-extra-page h2{font-size:clamp(40px,6vw,68px);margin:12px 0 30px}.v2-paper{background:#f3f2e9;border-radius:22px;padding:32px;line-height:1.8}.v2-paper p{margin:0 0 14px}.v2-construction{text-align:center;background:#f2f1e9;border-radius:30px;padding:100px 25px}.v2-construction>span{font-size:80px;color:#c6b92e}.v2-construction p{font-size:22px}.v2-construction small{display:block;margin-top:20px;color:#777}
+#boutique,#collection,#amis,#market,#roue,#mentions,#chantier,#surprise{display:none}body[data-v2-page="boutique"] #boutique,body[data-v2-page="collection"] #collection,body[data-v2-page="amis"] #amis,body[data-v2-page="market"] #market,body[data-v2-page="roue"] #roue,body[data-v2-page="mentions"] #mentions,body[data-v2-page="chantier"] #chantier,body[data-v2-page="surprise"] #surprise{display:block}body:not([data-v2-page="accueil"]) .hero,body:not([data-v2-page="accueil"]) .v2-news-strip,body:not([data-v2-page="accueil"]) #tcg,body:not([data-v2-page="accueil"]) #ouvrir,body:not([data-v2-page="accueil"]) .v2-market-teaser{display:none}body[data-v2-page="accueil"] .hero{display:grid}body[data-v2-page="accueil"] .v2-news-strip{display:flex}body[data-v2-page="accueil"] #tcg,body[data-v2-page="accueil"] #ouvrir,body[data-v2-page="accueil"] .v2-market-teaser{display:block}body[data-v2-page="accueil"] .v2-market-teaser{display:block}#boutique,#collection,#amis,#market,#roue{min-height:65vh}#market .market-inner,#roue .wheel-inner{max-width:1180px}#boutique .section-head,#collection>h2{font-family:Outfit,sans-serif}#market,#roue,#amis,#collection,#boutique{padding-top:55px;padding-bottom:65px}footer{background:var(--v2-dark);color:white}footer p{color:#ccc}
+@media(max-width:800px){.v2-header{height:74px;padding:0 4%}.v2-header-inner{gap:10px}.v2-brand{font-size:28px}.v2-brand small{font-size:8px;max-width:145px}.v2-brand-emblem{width:33px;height:33px;font-size:20px}.v2-icon-button{width:40px;height:40px;font-size:24px}.v2-fingerprint{font-size:28px}.hero{margin:14px 12px 0;padding:38px 26px 30px;grid-template-columns:1fr;min-height:0;border-radius:25px}.hero h1{font-size:clamp(53px,12vw,90px)}.v2-hero-art{height:200px;order:-1}.v2-hero-symbol{width:128px;height:128px;font-size:85px;box-shadow:10px 12px 0 #242524}.v2-orbit{width:210px;height:210px}.v2-orbit-two{width:165px;height:165px}.v2-art-star{font-size:36px}.v2-news-strip{margin:12px 12px 0;flex-wrap:wrap;padding:13px 15px}.v2-news-strip button{margin-left:0}.v2-teaser-grid{grid-template-columns:1fr}.v2-market-teaser{margin:65px 12px 0;padding:0 0 50px}.v2-section-heading span{display:none}.open-zone{margin:12px;border-radius:22px}.v2-extra-page{margin:15px 12px;padding:25px 5px}.v2-construction{padding:70px 20px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important}}
+</style>
+<style id="vacre-theme-21">
+body.vacre-dark{--v2-dark:#f4f0df;--v2-yellow:#d8c64a;--v2-bg:#181a1b;background:#181a1b!important;color:#eeeadd!important}
+body.vacre-dark .v2-market-teaser,body.vacre-dark #tcg,body.vacre-dark #boutique,body.vacre-dark #collection,body.vacre-dark #amis,body.vacre-dark #market,body.vacre-dark #roue,body.vacre-dark .v2-extra-page{background:#181a1b!important;color:#eeeadd!important}
+body.vacre-dark .market-panel,body.vacre-dark #market .market-panel,body.vacre-dark .v2-teaser-wallet,body.vacre-dark .v2-teaser-chart,body.vacre-dark .v2-paper,body.vacre-dark .v2-construction,body.vacre-dark .booster-info{background:#272a2b!important;color:#eeeadd!important;border-color:#424545!important}
+body.vacre-dark p,body.vacre-dark small{color:inherit}
+#vacre-theme-toggle{font-size:23px}
+</style>
+<style id="vacre-theme-22">
+body.vacre-dark{--v2-paper:#181a1b;--v2-dark:#eeeadd;--v2-muted:#b7b8b1;--lightgreen:#303332;background:#181a1b!important;color:#eeeadd!important}
+body.vacre-dark .v2-header,body.vacre-dark .v2-drawer,body.vacre-dark .hero,body.vacre-dark .open-zone,body.vacre-dark #market.market-section,body.vacre-dark .v2-news-strip{background:#202324!important;color:#eeeadd!important;border-color:#414545!important}
+body.vacre-dark .v2-brand,body.vacre-dark .v2-drawer-links button,body.vacre-dark .hero p,body.vacre-dark .tcg-subtitle,body.vacre-dark .market-subtitle,body.vacre-dark .v2-eyebrow{color:#eeeadd!important}
+body.vacre-dark .v2-icon-button,body.vacre-dark .v2-drawer-top button,body.vacre-dark .account-panel,body.vacre-dark .account-tab,body.vacre-dark .account-form input,body.vacre-dark .social-panel,body.vacre-dark .social-panel input,body.vacre-dark .cart,body.vacre-dark .product,body.vacre-dark .booster-balance,body.vacre-dark .collection-card,body.vacre-dark .result-card,body.vacre-dark .message,body.vacre-dark #market .market-stat,body.vacre-dark #market .trade-box input,body.vacre-dark #market .v2-chart-container{background:#2b2e30!important;color:#eeeadd!important;border-color:#535657!important}
+body.vacre-dark .booster-info p,body.vacre-dark .v2-teaser-wallet p,body.vacre-dark .v2-teaser-chart p,body.vacre-dark #market .market-stat small,body.vacre-dark #market .portfolio-line,body.vacre-dark .account-note{color:#c4c6c0!important}
+body.vacre-dark .v2-menu-trigger span{background:#eeeadd}body.vacre-dark .collection-card.locked{background:#3a3b3b!important;color:#999!important}
+body.vacre-dark .card-front,body.vacre-dark .card-image{color:#111}body.vacre-dark .mythic .card-image,body.vacre-dark .epic .card-image,body.vacre-dark .rare .card-image{color:white}
+body.vacre-dark #market .market-panel>strong{color:#ddd}body.vacre-dark .social-entry{border-color:#555}
+.vacre-friend-grid{margin-top:18px}.vacre-friend-grid .collection-card{min-height:180px}.vacre-god-info{max-width:650px;margin:auto;text-align:left;line-height:1.8}.vacre-god-info strong{color:#b6a829}
+</style>
+</head>
+
+<body>
+
+<header class="v2-header">
+  <div class="v2-header-inner">
+    <button class="v2-menu-trigger" id="v2-menu-trigger" onclick="v2ToggleMenu(true)" aria-label="Ouvrir le menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <a class="v2-brand" href="#accueil" onclick="v2Navigate('accueil');return false"><span class="v2-brand-emblem">V</span><span>vacre<small>trouve le vacre, et le vacre viendra à toi.</small></span></a>
+    <div class="v2-header-actions"><button type="button" id="vacre-theme-toggle" class="v2-icon-button" aria-label="Changer le thème" title="Changer le thème">☾</button><button class="v2-icon-button" onclick="toggleCart()" aria-label="Panier" title="Panier">♧<span class="v2-cart-badge" id="v2-cart-count">0</span></button><button class="v2-icon-button v2-fingerprint" id="account-button" onclick="toggleAccount()" aria-label="Compte" title="Compte">◉</button></div>
+  </div>
+</header>
+<div class="v2-drawer-shade" id="v2-drawer-shade" onclick="v2ToggleMenu(false)"></div>
+<aside class="v2-drawer" id="v2-drawer" aria-label="Navigation VACRE">
+  <div class="v2-drawer-top"><strong>vacre<span class="v2-dot">.</span></strong><button onclick="v2ToggleMenu(false)" aria-label="Fermer le menu">×</button></div>
+  <div class="v2-drawer-links">
+    <button onclick="v2Navigate('accueil')">Accueil <span>↗</span></button>
+    <button onclick="v2Navigate('boutique')">Acheter du vacre <span>↗</span></button>
+    <button onclick="v2Navigate('collection')">Collection de vacres <span>↗</span></button>
+    <button onclick="v2Navigate('amis')">Social <span>↗</span></button>
+    <button onclick="v2Navigate('market')">Vacre Market <span>↗</span></button>
+    <button onclick="v2Navigate('roue')">Vacre Wheel <span>↗</span></button>
+    <button onclick="v2ToggleMenu(false);toggleAccount()">Compte <span>↗</span></button>
+    <button onclick="v2Navigate('mentions')">Mentions légales <span>↗</span></button>
+    <button onclick="v2Navigate('chantier')">Y*** *u*o* **a*re <span>↗</span></button>
+    <button onclick="v2Navigate('surprise')">!!! <span>✦</span></button>
+  </div>
+  <div class="v2-drawer-foot">© 2026 VACRE · Édition 2.2</div>
+</aside>
+
+
+<section class="hero" id="accueil">
+ <div class="v2-hero-content"><div class="v2-eyebrow">L’UNIVERS VACRE <span>✦</span> ÉDITION 2.2</div><h1>trouve le <em>vacre.</em></h1><p>Et le vacre viendra à toi.</p><div class="v2-hero-actions"><a href="#tcg" onclick="v2Navigate('accueil')">Découvrir les boosters <span>↗</span></a><button onclick="v2Navigate('collection')">Ma collection <span>→</span></button></div></div>
+ <div class="v2-hero-art" aria-hidden="true"><div class="v2-orbit v2-orbit-one"></div><div class="v2-orbit v2-orbit-two"></div><div class="v2-hero-symbol">V</div><span class="v2-art-star">✳</span></div>
+</section>
+<div class="v2-news-strip"><span class="v2-live-dot"></span><strong>ACTUALITÉS VACRE</strong><span>Bienvenue dans la nouvelle interface de VACRE.</span><button onclick="v2Navigate('market')">Voir le Market ↗</button></div>
+
+
+<section
+class="shop"
+id="boutique">
+
+<div class="section-head">
+
+<h2>
+VACRE
+</h2>
+
+<div class="section-number">
+6 lots disponibles
+</div>
+
+</div>
+
+<div
+class="products"
+id="normal-products">
+</div>
+
+</section>
+
+
+<section
+class="tcg-section"
+id="tcg">
+
+<div class="tcg-inner">
+
+<h2 class="tcg-title">
+
+VACRE<br>
+TCG
+
+</h2>
+
+<p class="tcg-subtitle">
+
+115 Vacres à collectionner.<br>
+10 cartes par booster.
+
+</p>
+
+<div class="booster-shop">
+
+
+<article class="booster-product">
+
+<div class="booster-visual">
+
+<div class="booster-pack">
+
+<strong>
+VACRE
+</strong>
+
+<span>
+TCG
+</span>
+
+<small>
+10 CARTES
+</small>
+
+</div>
+
+</div>
+
+<div class="booster-info">
+
+<h3>
+Booster VACRE TCG
+</h3>
+
+<p>
+10 cartes
+</p>
+
+<div class="booster-actions">
+
+<div class="price">
+4,99 €
+</div>
+
+<button
+class="buy"
+onclick="addToCart('Booster VACRE TCG',4.99)">
+
+Ajouter
+
+</button>
+
+</div>
+
+</div>
+
+</article>
+
+
+<article class="booster-product">
+
+<div class="booster-visual">
+
+<div
+class="booster-pack"
+style="transform:rotate(-4deg)">
+
+<strong>
+VACRE
+</strong>
+
+<span>
+TCG ×5
+</span>
+
+<small>
+50 CARTES
+</small>
+
+</div>
+
+</div>
+
+<div class="booster-info">
+
+<h3>
+Lot de 5 boosters
+</h3>
+
+<p>
+50 cartes
+</p>
+
+<div class="booster-actions">
+
+<div class="price">
+21,99 €
+</div>
+
+<button
+class="buy"
+onclick="addToCart('5 Boosters VACRE TCG',21.99)">
+
+Ajouter
+
+</button>
+
+</div>
+
+</div>
+
+</article>
+
+
+<article class="booster-product">
+
+<div class="booster-visual">
+
+<div class="booster-pack">
+
+<strong>
+VACRE
+</strong>
+
+<span>
+DISPLAY
+</span>
+
+<small>
+10 BOOSTERS
+</small>
+
+</div>
+
+</div>
+
+<div class="booster-info">
+
+<h3>
+Display VACRE
+</h3>
+
+<p>
+10 boosters — 100 cartes
+</p>
+
+<div class="booster-actions">
+
+<div class="price">
+39,99 €
+</div>
+
+<button
+class="buy"
+onclick="addToCart('Display VACRE TCG',39.99)">
+
+Ajouter
+
+</button>
+
+</div>
+
+</div>
+
+</article>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section
+class="open-zone"
+id="ouvrir">
+
+<div class="open-inner">
+
+<h2>
+OUVRIR DES BOOSTERS
+</h2>
+
+<p class="open-description">
+
+10 cartes par booster.
+
+</p>
+
+<div class="booster-balance">
+
+<div class="stock-left">
+
+<span id="booster-count">
+0
+</span>
+
+<small>
+BOOSTERS DISPONIBLES
+</small>
+
+</div>
+
+<div class="daily-info">
+
++1 BOOSTER TOUTES LES 11 MINUTES · MAXIMUM 10
+
+</div>
+
+</div>
+
+
+<div id="daily-message"></div>
+
+
+<div class="open-buttons">
+
+<button
+id="open-one"
+class="open-booster"
+onclick="openOneBooster()">
+
+OUVRIR 1 BOOSTER
+
+</button>
+
+<button
+id="open-ten"
+class="open-booster black"
+onclick="openThreeBoosters()">
+
+OUVRIR 3 BOOSTERS
+
+</button>
+
+</div>
+
+
+<div id="opening-title"></div>
+
+
+<div
+class="reveal-stage"
+id="reveal-stage">
+</div>
+
+
+<div
+class="reveal-counter"
+id="reveal-counter">
+</div>
+
+
+<div
+class="pack-results"
+id="pack-results">
+</div>
+
+</div>
+
+</section>
+
+
+
+<section class="v2-market-teaser" id="v2-market-teaser"><div class="v2-section-kicker">UN MARCHÉ. UN UNIVERS.</div><div class="v2-section-heading"><h2>vacre <em>market</em></h2><span>02 / LE MARCHÉ</span></div><div class="v2-teaser-grid"><div class="v2-teaser-wallet"><span>TON PORTEFEUILLE</span><strong>URACOIN <span>↗</span></strong><p>Retrouve ton solde et tes Vacres dans le Market.</p><button onclick="v2Navigate('market')">Accéder au portefeuille ↗</button></div><div class="v2-teaser-chart"><span>ÉVOLUTION DU VACRE</span><svg viewBox="0 0 500 180" preserveAspectRatio="none" aria-hidden="true"><path d="M0 145 L45 132 L90 147 L130 110 L170 117 L210 78 L250 95 L290 62 L330 78 L365 35 L405 50 L445 25 L500 12" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg><p>Aperçu décoratif · ouvre le Market pour le cours actuel.</p><button onclick="v2Navigate('market')">Explorer le graphique ↗</button></div></div></section>
+<section id="amis" class="social-section">
+<h2>AMIS VACRE</h2>
+<p>Recherche un pseudo, envoie une demande et consulte les collections de tes amis.</p>
+<div class="social-panel">
+<h3>Rechercher un joueur</h3>
+<input id="friend-search" placeholder="Pseudo VACRE" maxlength="30">
+<button onclick="searchVACREFriends()">RECHERCHER</button>
+<div id="friend-results"></div>
+</div>
+<div class="social-panel"><h3>Demandes reçues</h3><div id="friend-incoming"></div></div>
+<div class="social-panel"><h3>Mes amis et demandes envoyées</h3><div id="friend-list"></div></div>
+<div class="social-panel"><h3>Collection d'un ami</h3><div id="friend-collection">Sélectionne un ami.</div></div>
+<div id="friend-message" role="status" style="margin-top:15px"></div>
+</section>
+
+<!-- VACRE MARKET -->
+<section class="market-section" id="market"><div class="market-inner">
+<div class="v2-market-eyebrow">LE MARCHÉ FICTIF DE VACRE <span id="market-sync-status">● CONNEXION AU MARCHÉ…</span></div><h2 class="market-title">vacre <em>market.</em></h2><p class="market-subtitle">Suis le cours du Vacre, explore son évolution et gère ton portefeuille d’URACOIN.</p><span class="market-warning">ÉCONOMIE VIRTUELLE · AUCUN ARGENT RÉEL</span>
+<div class="market-dashboard"><div class="market-panel"><strong>COURS DU VACRE</strong><div class="market-price"><span id="market-price">0,00</span> U</div><div id="market-change" class="market-change">0,00 %</div><div class="market-stats"><div class="market-stat"><small>OUVERTURE</small><strong id="market-open">—</strong></div><div class="market-stat"><small>PLUS HAUT</small><strong id="market-high">—</strong></div><div class="market-stat"><small>PLUS BAS</small><strong id="market-low">—</strong></div></div><div class="v2-chart-head"><div><strong>Évolution du Vacre</strong><small>Historique mondial enregistré · actualisation automatique</small></div><span class="v2-chart-period">MONDIAL</span></div><div class="chart-container v2-chart-container" id="v2-chart-touch" tabindex="0" aria-label="Graphique du prix du Vacre sur trente jours. Déplace ton doigt ou ta souris pour consulter une cotation."><svg id="market-chart" viewBox="0 0 800 330" preserveAspectRatio="none"></svg><div class="v2-chart-tooltip" id="v2-chart-tooltip" hidden><span id="v2-chart-date"></span><strong id="v2-chart-value"></strong></div></div><div class="v2-chart-caption"><span>← IL Y A MONDIAL</span><span>DERNIÈRE COTATION →</span></div><p class="v2-chart-disclaimer">Historique réel des cotations virtuelles enregistré sur Supabase. Affichage des 500 derniers mouvements.</p></div>
+<div class="market-panel"><strong>PORTEFEUILLE</strong><div class="wallet-balance"><span id="uracoin-balance">0</span> <small>URACOIN</small></div><div class="portfolio-line">Vacres possédés : <span id="owned-vacre">0</span></div><div class="portfolio-line">Valeur : <span id="portfolio-value">0</span> U</div><div class="portfolio-line">Patrimoine total : <span id="total-wealth">0</span> U</div><div class="trade-box"><input id="trade-amount" type="number" min="1" max="3000" value="1" placeholder="Nombre de Vacres"><div class="trade-buttons"><button class="trade-button buy-market" onclick="buyVacre()">ACHETER</button><button class="trade-button sell-market" onclick="sellVacre()">VENDRE</button></div><div class="trade-message" id="trade-message"></div></div></div></div>
+<div class="news-board"><div class="news-header"><span>VACRE NEWS NETWORK</span><span id="news-date"></span></div><div class="news-content"><div class="news-main" id="news-title"></div><div class="news-description" id="news-description"></div><div class="news-impact" id="news-impact"></div></div></div>
+</div></section>
+<!-- ROUE DU VACRE -->
+<section class="wheel-section" id="roue"><div class="wheel-inner">
+<h2 class="wheel-title">ROUE DU VACRE</h2><p class="wheel-description">Une roue par jour et par compte, avec récompenses enregistrées sur Supabase.</p>
+<div class="wheel-area"><div class="wheel-pointer" aria-hidden="true"></div><svg id="wheel" viewBox="0 0 400 400" role="img" aria-label="Roue à huit récompenses"><g id="wheel-segments"></g></svg><div class="wheel-center">VACRE</div></div>
+<button id="spin-button" class="spin-button" onclick="spinWheel()">TOURNER LA ROUE</button>
+<div id="wheel-result" role="status" aria-live="polite"></div>
+<p class="wheel-note">Un tour par jour (heure de Paris). Les récompenses sont créditées par le serveur ; le stock de boosters est limité à 10.</p>
+</div></section>
+
+<section
+class="collection"
+id="collection">
+
+<h2>
+COLLECTION
+</h2>
+
+<div class="collection-progress">
+
+<span id="collection-count">
+0
+</span>
+
+/ 115 VACRES
+
+<div class="progress-background">
+
+<div id="progress-bar"></div>
+
+</div>
+
+</div>
+
+<div
+class="collection-grid"
+id="collection-grid">
+</div>
+
+</section>
+
+
+<section class="v2-extra-page" id="mentions"><div class="v2-section-kicker">INFORMATIONS</div><h2>Mentions légales</h2><div class="v2-paper"><p><strong>© 2026 VACRE — Tous droits réservés.</strong></p><p>Le site vacre.fr est un projet indépendant à vocation expérimentale.</p><p>Les cartes, les URACOIN et les transactions du VACRE Market sont entièrement fictives et ne possèdent aucune valeur monétaire réelle.</p><p>Hébergement : GitHub Pages — GitHub, Inc.</p><p>Les données des comptes sont utilisées uniquement pour assurer le fonctionnement du site et de ses fonctionnalités.</p><p>Pour toute question relative au site, contactez son responsable sur Instagram : <strong>James.ntse</strong>.</p></div></section>
+<section class="v2-extra-page" id="chantier"><div class="v2-construction"><span>✳</span><h2>Zone en construction</h2><p>Ça arrive plus tard 🤫</p></div></section>
+<section class="v2-extra-page" id="surprise"><div class="v2-construction"><span>✦</span><h2>!!!</h2><div class="vacre-god-info"><p>Une compensation exceptionnelle attend les comptes éligibles.</p><p>Une seule récupération par compte. Le contenu reste secret jusqu’à l’ouverture.</p></div><p id="god-pack-status" role="status" aria-live="polite">Connecte-toi pour vérifier ton cadeau.</p><button id="god-pack-claim" class="open-booster" onclick="claimGodPack()" disabled>VÉRIFIER MON CADEAU ✦</button><p class="god-pack-apology">ceci est un lot pour nous faire pardonner de toutes ces maintenances, merci d'avoir attendu, et bon retour sur vacre.fr !</p><div id="god-pack-reveal-slot" class="god-pack-reveal-slot"></div></div></section>
+<div class="account-modal" id="account-modal" onclick="closeAccountFromBackdrop(event)">
+  <div class="account-panel">
+    <div class="account-panel-head">
+      <h2>COMPTE VACRE</h2>
+      <button class="account-close" onclick="toggleAccount(false)" aria-label="Fermer">×</button>
+    </div>
+
+    <div id="account-guest">
+      <div class="account-tabs">
+        <button class="account-tab active" id="login-tab" onclick="showAccountForm('login')">Connexion</button>
+        <button class="account-tab" id="signup-tab" onclick="showAccountForm('signup')">Inscription</button>
+      </div>
+
+      <form class="account-form active" id="login-form" onsubmit="loginAccount(event)">
+        <label for="login-email">E-mail</label>
+        <input id="login-email" type="email" autocomplete="email" required>
+        <label for="login-password">Mot de passe</label>
+        <input id="login-password" type="password" autocomplete="current-password" required>
+        <button class="account-submit" type="submit">SE CONNECTER</button>
+      </form>
+
+      <form class="account-form" id="signup-form" onsubmit="signupAccount(event)">
+        <label for="signup-username">Pseudo</label>
+        <input id="signup-username" type="text" maxlength="30" autocomplete="username" required>
+        <label for="signup-email">E-mail</label>
+        <input id="signup-email" type="email" autocomplete="email" required>
+        <label for="signup-password">Mot de passe</label>
+        <input id="signup-password" type="password" minlength="6" autocomplete="new-password" required>
+        <button class="account-submit" type="submit">CRÉER MON COMPTE</button>
+      </form>
+      <p class="account-note">Sans compte, ta progression reste enregistrée uniquement sur cet appareil.</p>
+    </div>
+
+    <div class="account-user" id="account-user">
+      <strong id="account-username">Vacre</strong>
+      <p id="account-email"></p>
+      <p class="account-note">Ta collection, tes boosters et ton cadeau quotidien sont synchronisés avec ton compte.</p>
+      <button class="logout-button" onclick="logoutAccount()">SE DÉCONNECTER</button>
+    </div>
+
+    <div class="account-status" id="account-status"></div>
+  </div>
+</div>
+
+<aside
+class="cart"
+id="cart">
+
+<h2>
+Panier
+</h2>
+
+<div id="cart-items">
+
+Ton panier est vide.
+
+</div>
+
+<div class="total">
+
+Total :
+
+<span id="total">
+0,00
+</span>
+
+€
+
+</div>
+
+<button
+class="checkout"
+onclick="checkout()">
+
+Passer la commande
+
+</button>
+
+</aside>
+
+
+<footer>
+
+<div class="footer-logo">
+VACRE
+</div>
+
+<p>
+© 2026 VACRE — vacre.fr
+</p>
+
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+
+/* ==================================================
+   PRODUITS VACRE
+================================================== */
+
+const products = [
+
+["1 Vacre",2.99,1],
+["5 Vacres",9.99,5],
+["10 Vacres",16.99,10],
+["25 Vacres",34.99,25],
+["50 Vacres",59.99,50],
+["100 Vacres",99.99,100]
+
+];
+
+
+const productContainer =
+document.getElementById("normal-products");
+
+
+products.forEach(product=>{
+
+productContainer.innerHTML += `
+
+<article class="product">
+
+<div class="visual">
+
+<div class="circle">
+${product[2]}
+</div>
+
+</div>
+
+<div class="product-info">
+
+<h3>
+${product[0]}
+</h3>
+
+<div class="quantity">
+Lot de ${product[2]}
+</div>
+
+<div class="product-bottom">
+
+<div class="price">
+
+${product[1]
+.toFixed(2)
+.replace(".",",")} €
+
+</div>
+
+<button
+class="buy"
+onclick="addToCart('${product[0]}',${product[1]})">
+
+Ajouter
+
+</button>
+
+</div>
+
+</div>
+
+</article>
+
+`;
+
+});
+
+
+/* ==================================================
+   115 VACRES
+================================================== */
+
+const cards = [
+
+/* ======================
+   COMMUNS 1-32
+====================== */
+
+{name:"Vacre Normal",rarity:"common",symbol:"V"},
+{name:"Petit Vacre",rarity:"common",symbol:"v"},
+{name:"Vacre Carré",rarity:"common",symbol:"□"},
+{name:"Vacre Rond",rarity:"common",symbol:"○"},
+{name:"Vacre Mouillé",rarity:"common",symbol:"≈"},
+{name:"Vacre Sec",rarity:"common",symbol:"☀"},
+{name:"Vacre Fiscal",rarity:"common",symbol:"€"},
+{name:"Vacre Municipal",rarity:"common",symbol:"M"},
+{name:"Vacre de Chantier",rarity:"common",symbol:"▲"},
+{name:"Vacre Portable",rarity:"common",symbol:"↗"},
+{name:"Vacre Tiède",rarity:"common",symbol:"~"},
+{name:"Vacre Domestique",rarity:"common",symbol:"⌂"},
+{name:"Vacre Latéral",rarity:"common",symbol:"→"},
+{name:"Vacre Compact",rarity:"common",symbol:"▪"},
+{name:"Vacre Public",rarity:"common",symbol:"P"},
+{name:"Vacre Gonflable",rarity:"common",symbol:"◯"},
+{name:"Vacre Transparent",rarity:"common",symbol:"◇"},
+{name:"Vacre en Plastique",rarity:"common",symbol:"P"},
+{name:"Vacre à Roulettes",rarity:"common",symbol:"●"},
+{name:"Vacre Périmé",rarity:"common",symbol:"⌛"},
+{name:"Vacre Sans Sucre",rarity:"common",symbol:"0"},
+{name:"Vacre de Poche",rarity:"common",symbol:"▣"},
+{name:"Vacre Régional",rarity:"common",symbol:"R"},
+{name:"Vacre Flottant",rarity:"common",symbol:"≈"},
+{name:"Vacre d’Occasion",rarity:"common",symbol:"2"},
+{name:"Vacre à Piles",rarity:"common",symbol:"+"},
+{name:"Vacre Manuel",rarity:"common",symbol:"✋"},
+{name:"Vacre Thermique",rarity:"common",symbol:"°"},
+{name:"Vacre Lavable",rarity:"common",symbol:"≈"},
+{name:"Vacre Standard",rarity:"common",symbol:"S"},
+{name:"Vacre Miniature",rarity:"common",symbol:"·"},
+{name:"Vacre Recyclable",rarity:"common",symbol:"↻"},
+
+
+/* ======================
+   RARES 33-60
+====================== */
+
+{name:"Vacre Royal",rarity:"rare",symbol:"♛"},
+{name:"Vacre Chromé",rarity:"rare",symbol:"◇"},
+{name:"Vacre Souterrain",rarity:"rare",symbol:"↓"},
+{name:"Vacre Magnétique",rarity:"rare",symbol:"N"},
+{name:"Vacre Astral",rarity:"rare",symbol:"✦"},
+{name:"Vacre Inversé",rarity:"rare",symbol:"Я"},
+{name:"Vacre Industriel",rarity:"rare",symbol:"⚙"},
+{name:"Vacre Nocturne",rarity:"rare",symbol:"☾"},
+{name:"Vacre Ancien",rarity:"rare",symbol:"I"},
+
+{name:"Vacre Positif",rarity:"rare",symbol:"+"},
+{name:"Vacre Bouilli",rarity:"rare",symbol:"♨"},
+{name:"Vacre Tournesol",rarity:"rare",symbol:"☀"},
+{name:"Double Vacre",rarity:"rare",symbol:"VV"},
+{name:"Vacre Ralenti",rarity:"rare",symbol:"◀"},
+
+{name:"Vacre Nucléaire",rarity:"rare",symbol:"☢"},
+{name:"Vacre Béton",rarity:"rare",symbol:"■"},
+{name:"Vacre Blindé",rarity:"rare",symbol:"▰"},
+{name:"Vacre Solaire",rarity:"rare",symbol:"☀"},
+{name:"Vacre Lunaire",rarity:"rare",symbol:"☾"},
+{name:"Vacre Vertical",rarity:"rare",symbol:"↑"},
+{name:"Vacre Turbo",rarity:"rare",symbol:"»"},
+{name:"Vacre Cosmique",rarity:"rare",symbol:"✧"},
+{name:"Vacre Inoxydable",rarity:"rare",symbol:"I"},
+{name:"Vacre Sous Vide",rarity:"rare",symbol:"○"},
+{name:"Vacre 2000",rarity:"rare",symbol:"2K"},
+{name:"Vacre Pressurisé",rarity:"rare",symbol:"P"},
+{name:"Vacre Électrique",rarity:"rare",symbol:"⚡"},
+{name:"Vacre Mécanique",rarity:"rare",symbol:"⚙"},
+
+
+/* ======================
+   EPIQUES 61-84
+====================== */
+
+{name:"Vacre Quantique",rarity:"epic",symbol:"Ψ"},
+{name:"Vacre Interdit",rarity:"epic",symbol:"×"},
+{name:"Vacre Paradoxal",rarity:"epic",symbol:"∞"},
+{name:"Vacre Fantôme",rarity:"epic",symbol:"Ø"},
+{name:"Vacre Souverain",rarity:"epic",symbol:"♜"},
+{name:"Vacre Zéro",rarity:"epic",symbol:"0"},
+{name:"Vacre 404",rarity:"epic",symbol:"404"},
+
+{name:"Vacre Accéléré",rarity:"epic",symbol:"»"},
+{name:"Vacre Négatif",rarity:"epic",symbol:"−"},
+{name:"Vacre Flocko",rarity:"epic",symbol:"F"},
+{name:"Antivacre",rarity:"epic",symbol:"¬V"},
+{name:"Triple Vacre",rarity:"epic",symbol:"VVV"},
+{name:"Vacre Love",rarity:"epic",symbol:"♥"},
+{name:"Vacre Cuck",rarity:"epic",symbol:"C"},
+
+{name:"Vacre Imaginaire",rarity:"epic",symbol:"i"},
+{name:"Vacre Irrationnel",rarity:"epic",symbol:"π"},
+{name:"Vacre Instable",rarity:"epic",symbol:"!"},
+{name:"Vacre du Vide",rarity:"epic",symbol:"∅"},
+{name:"Vacre Dimensionnel",rarity:"epic",symbol:"4D"},
+{name:"Vacre Illégal",rarity:"epic",symbol:"!"},
+{name:"Vacre.exe",rarity:"epic",symbol:".exe"},
+{name:"Vacre²",rarity:"epic",symbol:"V²"},
+{name:"Vacre Parallèle",rarity:"epic",symbol:"∥"},
+{name:"Vacre Corrompu",rarity:"epic",symbol:"▓"},
+
+
+/* ======================
+   LEGENDAIRES 85-100
+====================== */
+
+{name:"Vacre Primordial",rarity:"legendary",symbol:"Ⅰ"},
+{name:"Grand Vacre",rarity:"legendary",symbol:"V+"},
+{name:"Vacre Originel",rarity:"legendary",symbol:"α"},
+{name:"Vacre Infini",rarity:"legendary",symbol:"∞"},
+{name:"Vacre Suprême",rarity:"legendary",symbol:"♚"},
+
+{name:"Vacre Caca",rarity:"legendary",symbol:"♨"},
+{name:"Vacre Tung Sahur",rarity:"legendary",symbol:"T"},
+{name:"Vacre Goy",rarity:"legendary",symbol:"G"},
+{name:"Quadruple Vacre",rarity:"legendary",symbol:"V⁴"},
+{name:"Vacre Jfhzbeushejfuqhavrjdhz",rarity:"legendary",symbol:"?"},
+
+{name:"Vacre Omniprésent",rarity:"legendary",symbol:"◎"},
+{name:"Vacre Transcendant",rarity:"legendary",symbol:"△"},
+{name:"Vacre Éternel",rarity:"legendary",symbol:"∞"},
+{name:"Vacre de Schrödinger",rarity:"legendary",symbol:"?"},
+{name:"Vacre Singulier",rarity:"legendary",symbol:"1"},
+{name:"Vacre Omniscient",rarity:"legendary",symbol:"◉"},
+
+
+/* ======================
+   MYTHIQUES 101-108
+====================== */
+
+{name:"VACRE ABSOLU",rarity:"mythic",symbol:"V"},
+{name:"VACRE Nº001",rarity:"mythic",symbol:"001"},
+{name:"LE VACRE",rarity:"mythic",symbol:"?"},
+
+{name:"Vacre 67",rarity:"mythic",symbol:"67"},
+{name:"Vacre Ura",rarity:"mythic",symbol:"URA"},
+{name:"Vacre Ancestral",rarity:"mythic",symbol:"A"},
+{name:"Vacre Présidentiel",rarity:"mythic",symbol:"★"},
+{name:"Vacre Ultime",rarity:"mythic",symbol:"Ω"}
+
+];
+
+
+/* VACRE 2.1 : sept nouveaux Vacres */
+cards.push(
+{name:"Vacre Cosmique",rarity:"rare",symbol:"✦"},
+{name:"Vacre Quantique",rarity:"epic",symbol:"⚛"},
+{name:"Vacre Interdit",rarity:"epic",symbol:"⊘"},
+{name:"Vacre Royal",rarity:"legendary",symbol:"♛"},
+{name:"Vacre Paradoxal",rarity:"legendary",symbol:"∞"},
+{name:"VACRE ORIGINEL",rarity:"mythic",symbol:"◈"},
+{name:"VACRE OMEGA",rarity:"mythic",symbol:"Ω"}
+);
+
+/* ==================================================
+   PROBABILITES
+================================================== */
+
+/*
+
+Probabilité POUR CHAQUE CARTE :
+
+Commun      69 %
+Rare        22 %
+Épique       7 %
+Légendaire   1,7 %
+Mythique     0,3 %
+
+Une fois la rareté déterminée,
+une carte aléatoire de cette rareté est choisie.
+
+*/
+
+const rarityChances = {
+
+common:69,
+rare:22,
+epic:7,
+legendary:1.7,
+mythic:.3
+
+};
+
+
+/* ==================================================
+   TEXTES RARETES
+================================================== */
+
+function rarityText(rarity){
+
+const names = {
+
+common:"Commun",
+rare:"Rare",
+epic:"Épique",
+legendary:"Légendaire",
+mythic:"Mythique"
+
+};
+
+return names[rarity];
+
+}
+
+
+/* ==================================================
+   COLLECTION
+================================================== */
+
+let collection = [];
+let currentUser = null;
+let currentProfile = null;
+
+function getGuestCollection(){
+  try { return JSON.parse(localStorage.getItem("vacreCollection108")) || []; }
+  catch { return []; }
+}
+
+function saveCollection(){
+  if(currentUser){
+    saveCloudState({collection:collection});
+  }else{
+    localStorage.setItem("vacreCollection108",JSON.stringify(collection));
+  }
+}
+
+
+function renderCollection(){
+
+const grid =
+document.getElementById("collection-grid");
+
+grid.innerHTML="";
+
+
+cards.forEach(card=>{
+
+const unlocked =
+collection.includes(card.name);
+
+
+grid.innerHTML += `
+
+<div class="
+collection-card
+${unlocked ? card.rarity : "locked"}
+">
+
+<div class="symbol">
+
+${unlocked ? card.symbol : "?"}
+
+</div>
+
+<strong>
+
+${unlocked ? card.name : "???"}
+
+</strong>
+
+${
+unlocked
+?
+`
+<small>
+${rarityText(card.rarity)}
+</small>
+`
+:
+""
+}
+
+</div>
+
+`;
+
+});
+
+
+document
+.getElementById("collection-count")
+.textContent =
+collection.length;
+
+
+const percentage =
+(collection.length / cards.length) * 100;
+
+
+document
+.getElementById("progress-bar")
+.style.width =
+percentage + "%";
+
+}
+
+
+/* ==================================================
+   TIRAGE RARETE
+================================================== */
+
+function randomRarity(){
+
+const roll =
+Math.random() * 100;
+
+
+if(roll < rarityChances.mythic){
+
+return "mythic";
+
+}
+
+
+if(
+roll <
+rarityChances.mythic +
+rarityChances.legendary
+){
+
+return "legendary";
+
+}
+
+
+if(
+roll <
+rarityChances.mythic +
+rarityChances.legendary +
+rarityChances.epic
+){
+
+return "epic";
+
+}
+
+
+if(
+roll <
+rarityChances.mythic +
+rarityChances.legendary +
+rarityChances.epic +
+rarityChances.rare
+){
+
+return "rare";
+
+}
+
+
+return "common";
+
+}
+
+
+/* ==================================================
+   TIRAGE CARTE
+================================================== */
+
+function randomCard(){
+
+const rarity =
+randomRarity();
+
+
+const pool =
+cards.filter(
+card =>
+card.rarity === rarity
+);
+
+
+return pool[
+Math.floor(
+Math.random() * pool.length
+)
+];
+
+}
+
+
+/* ==================================================
+   BOOSTER
+================================================== */
+
+function generateBooster(){
+/* God Pack : 0,1 % de chance, dix cartes épiques ou supérieures. */
+if(Math.random()<0.001){
+ const premium=cards.filter(c=>["epic","legendary","mythic"].includes(c.rarity));
+ const pack=Array.from({length:10},()=>premium[Math.floor(Math.random()*premium.length)]);
+ pack[0]=cards.filter(c=>c.rarity==="mythic")[Math.floor(Math.random()*cards.filter(c=>c.rarity==="mythic").length)];pack.isGodPack=true;
+ return pack;
+}
+
+
+let booster=[];
+
+
+/*
+9 cartes totalement aléatoires
+*/
+
+for(let i=0;i<9;i++){
+
+booster.push(
+randomCard()
+);
+
+}
+
+
+/*
+La dernière garantit au minimum une rare.
+*/
+
+const guaranteedRoll =
+Math.random()*100;
+
+let guaranteedRarity;
+
+
+if(guaranteedRoll < 1){
+
+guaranteedRarity="mythic";
+
+}
+
+else if(guaranteedRoll < 6){
+
+guaranteedRarity="legendary";
+
+}
+
+else if(guaranteedRoll < 26){
+
+guaranteedRarity="epic";
+
+}
+
+else{
+
+guaranteedRarity="rare";
+
+}
+
+
+const pool =
+cards.filter(
+card =>
+card.rarity === guaranteedRarity
+);
+
+
+booster.push(
+
+pool[
+Math.floor(
+Math.random()*pool.length
+)
+]
+
+);
+
+
+/*
+On trie les cartes pour révéler
+les meilleures à la fin.
+*/
+
+const order = {
+
+common:1,
+rare:2,
+epic:3,
+legendary:4,
+mythic:5
+
+};
+
+
+booster.sort(
+(a,b)=>
+order[a.rarity] -
+order[b.rarity]
+);
+
+
+return booster;
+
+}
+
+
+/* ==================================================
+   BOOSTERS GRATUITS
+================================================== */
+
+let boosterStock = 0;
+
+const BOOSTER_MS=11*60*1000;
+let guestBoosterTime=Date.now();
+function getGuestBoosters(){const n=Number(localStorage.getItem('vacreBoosters'));return Number.isFinite(n)?Math.min(10,Math.max(0,n)):10;}
+function guestRefresh(){
+ const now=Date.now(), saved=Number(localStorage.getItem('vacreBoosterAt'))||now;
+ boosterStock=getGuestBoosters();let elapsed=Math.max(0,now-saved);
+ if(boosterStock<10){const add=Math.min(10-boosterStock,Math.floor(elapsed/BOOSTER_MS));boosterStock+=add;guestBoosterTime=saved+add*BOOSTER_MS;}
+ else guestBoosterTime=now;
+ localStorage.setItem('vacreBoosters',String(boosterStock));localStorage.setItem('vacreBoosterAt',String(guestBoosterTime));
+}
+async function refreshServerBoosters(){
+ if(!currentUser)return;
+ const {data,error}=await supabaseClient.rpc('vacre_booster_status');if(error)throw error;
+ boosterStock=Number(data.stock);updateBoosterStock(false);
+ const ms=data.next_at?Math.max(0,new Date(data.next_at).getTime()-Date.now()):null;
+ document.getElementById('daily-message').textContent=ms===null?'Stock complet':`Prochain booster dans ${Math.ceil(ms/60000)} min`;
+}
+async function giveDailyBoosters(){
+ if(currentUser){try{await refreshServerBoosters()}catch(e){document.getElementById('daily-message').textContent='Synchronisation indisponible : '+e.message;}}
+ else{guestRefresh();updateBoosterStock(false);}
+}
+function updateBoosterStock(save=true){
+ document.getElementById('booster-count').textContent=boosterStock;
+ if(save&&!currentUser){localStorage.setItem('vacreBoosters',String(boosterStock));localStorage.setItem('vacreBoosterAt',String(guestBoosterTime));}
+}
+setInterval(()=>{if(currentUser)refreshServerBoosters().catch(()=>{});else{guestRefresh();updateBoosterStock(false)}},30000);
+
+/* ==================================================
+   ANIMATION OUVERTURE
+================================================== */
+
+let opening = false;
+
+
+function sleep(ms){
+
+return new Promise(
+resolve =>
+setTimeout(resolve,ms)
+);
+
+}
+
+
+function disableOpenButtons(state){
+
+document
+.getElementById("open-one")
+.disabled =
+state;
+
+
+document
+.getElementById("open-ten")
+.disabled =
+state;
+
+}
+
+
+/* ==================================================
+   REVELATION D'UNE CARTE
+================================================== */
+
+async function revealCard(
+card,
+number,
+total
+){
+
+const stage =
+document.getElementById(
+"reveal-stage"
+);
+
+
+const counter =
+document.getElementById(
+"reveal-counter"
+);
+
+
+stage.className =
+"reveal-stage";
+
+
+stage.innerHTML = `
+
+<div
+class="
+card-wrapper
+${card.rarity}
+"
+id="current-card"
+>
+
+<div class="card-flip">
+
+<div class="card-face card-back">
+
+<strong>
+VACRE
+</strong>
+
+<span>
+TCG
+</span>
+
+</div>
+
+
+<div class="card-face card-front">
+
+<div class="card-image">
+
+${card.symbol}
+
+</div>
+
+<div class="card-name">
+
+${card.name}
+
+</div>
+
+<span class="rarity">
+
+${rarityText(card.rarity)}
+
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+
+counter.textContent =
+`CARTE ${number} / ${total}`;
+
+
+const wrapper =
+document.getElementById(
+"current-card"
+);
+
+
+/*
+Temps avant retournement
+selon la rareté.
+*/
+
+let suspense = 350;
+
+
+if(card.rarity === "epic"){
+
+suspense = 550;
+
+}
+
+
+if(card.rarity === "legendary"){
+
+suspense = 1100;
+
+stage.classList.add(
+"legendary-stage"
+);
+
+}
+
+
+if(card.rarity === "mythic"){
+
+suspense = 1800;
+
+stage.classList.add(
+"mythic-stage"
+);
+
+}
+
+
+await sleep(suspense);
+
+
+/*
+Retournement
+*/
+
+wrapper.classList.add(
+"revealed"
+);
+
+
+/*
+Temps d'affichage
+*/
+
+let revealTime = 700;
+
+
+if(card.rarity === "rare"){
+
+revealTime = 850;
+
+}
+
+
+if(card.rarity === "epic"){
+
+revealTime = 1050;
+
+}
+
+
+if(card.rarity === "legendary"){
+
+revealTime = 2000;
+
+}
+
+
+if(card.rarity === "mythic"){
+
+revealTime = 3000;
+
+}
+
+
+await sleep(revealTime);
+
+
+/*
+Ajout collection
+*/
+
+if(
+!collection.includes(
+card.name
+)
+){
+
+collection.push(
+card.name
+);
+
+if(!currentUser)saveCollection();
+
+renderCollection();
+
+}
+
+}
+
+
+/* ==================================================
+   RESULTATS
+================================================== */
+
+function showResults(
+cardsOpened
+){
+
+const results =
+document.getElementById(
+"pack-results"
+);
+
+
+results.innerHTML="";
+
+
+cardsOpened.forEach(card=>{
+
+results.innerHTML += `
+
+<div class="
+result-card
+${card.rarity}
+">
+
+<div class="result-symbol">
+
+${card.symbol}
+
+</div>
+
+<strong>
+
+${card.name}
+
+</strong>
+
+<small>
+
+${rarityText(card.rarity)}
+
+</small>
+
+</div>
+
+`;
+
+});
+
+}
+
+
+/* ==================================================
+   SEQUENCE COMPLETE
+================================================== */
+
+async function revealSequence(
+cardsOpened
+){
+
+opening=true;
+
+disableOpenButtons(true);
+
+
+document
+.getElementById(
+"pack-results"
+)
+.innerHTML="";
+
+
+for(
+let i=0;
+i<cardsOpened.length;
+i++
+){
+
+await revealCard(
+cardsOpened[i],
+i+1,
+cardsOpened.length
+);
+
+
+/*
+Petite pause entre les cartes
+*/
+
+await sleep(350);
+
+}
+
+
+document
+.getElementById(
+"reveal-stage"
+)
+className =
+"reveal-stage";
+
+
+document
+.getElementById(
+"reveal-stage"
+)
+.innerHTML="";
+
+
+document
+.getElementById(
+"reveal-counter"
+)
+textContent =
+"OUVERTURE TERMINÉE";
+
+
+showResults(
+cardsOpened
+);
+
+
+opening=false;
+
+disableOpenButtons(false);
+
+}
+
+
+/* ==================================================
+   OUVRIR 1 BOOSTER
+================================================== */
+
+async function vacreOpenPacks(amount){
+ if(opening)return;
+ if(boosterStock<amount){showNoBoosters();return;}
+ opening=true;disableOpenButtons(true);
+ try{
+  let packs=[];
+  if(currentUser){
+   const {data,error}=await supabaseClient.rpc('vacre_open_boosters',{p_count:amount});if(error)throw error;
+   window.vacreLastGodPack=data.packs.some(p=>p.god);
+   packs=data.packs.map(p=>p.cards.map(c=>cards.find(x=>x.name===c.name)).filter(Boolean));
+   collection=Array.isArray(data.collection)?data.collection:collection;
+   boosterStock=Number(data.stock);updateBoosterStock(false);renderCollection();
+  }else{
+   guestRefresh();if(boosterStock<amount){showNoBoosters();return;}
+   boosterStock-=amount;guestBoosterTime=Date.now();updateBoosterStock();
+   packs=Array.from({length:amount},()=>generateBooster());
+  }
+  const god=Boolean(currentUser && window.vacreLastGodPack)||packs.some(p=>p.isGodPack);
+  const all=packs.flat();
+  const order={common:1,rare:2,epic:3,legendary:4,mythic:5};all.sort((a,b)=>order[a.rarity]-order[b.rarity]);
+  document.getElementById('opening-title').textContent=`${amount} BOOSTER${amount>1?'S':''} EN COURS D’OUVERTURE`;
+  if(god)document.getElementById('opening-title').textContent='✦ GOD PACK ! ✦';
+  opening=false;await revealSequence(all);
+  document.getElementById('opening-title').textContent=`${amount} BOOSTER${amount>1?'S':''} OUVERT${amount>1?'S':''} — ${all.length} CARTES`;
+ }catch(e){document.getElementById('opening-title').textContent='Ouverture impossible : '+e.message;}
+ finally{opening=false;disableOpenButtons(false);}
+}
+async function openOneBooster(){return vacreOpenPacks(1)}
+async function openThreeBoosters(){return vacreOpenPacks(3)}
+
+/* ==================================================
+   PLUS DE BOOSTERS
+================================================== */
+
+function showNoBoosters(){
+
+document
+.getElementById(
+"reveal-stage"
+)
+.innerHTML = `
+
+<div class="message">
+
+PLUS DE BOOSTERS.
+
+<br><br>
+
++10 gratuits demain.
+
+</div>
+
+`;
+
+}
+
+
+/* ==================================================
+   PANIER
+================================================== */
+
+let cart=[];
+
+
+function addToCart(
+name,
+price
+){
+
+cart.push({
+
+name:name,
+price:price
+
+});
+
+
+updateCart();
+
+}
+
+
+function removeFromCart(index){
+
+cart.splice(
+index,
+1
+);
+
+
+updateCart();
+
+}
+
+
+function updateCart(){
+
+const items =
+document.getElementById(
+"cart-items"
+);
+
+
+const count =
+document.getElementById(
+"v2-cart-count"
+);
+
+
+const totalElement =
+document.getElementById(
+"total"
+);
+
+
+count.textContent =
+cart.length;
+
+
+if(cart.length === 0){
+
+items.innerHTML =
+"Ton panier est vide.";
+
+
+totalElement.textContent =
+"0,00";
+
+
+return;
+
+}
+
+
+items.innerHTML="";
+
+
+let total=0;
+
+
+cart.forEach(
+(item,index)=>{
+
+total += item.price;
+
+
+items.innerHTML += `
+
+<div class="cart-item">
+
+<span>
+
+${item.name}
+
+<br>
+
+<strong>
+
+${item.price
+.toFixed(2)
+.replace(".",",")} €
+
+</strong>
+
+</span>
+
+
+<button
+class="remove"
+onclick="removeFromCart(${index})">
+
+Retirer
+
+</button>
+
+</div>
+
+`;
+
+});
+
+
+totalElement.textContent =
+total
+.toFixed(2)
+.replace(".",",");
+
+}
+
+
+function toggleCart(){
+
+document
+.getElementById(
+"cart"
+)
+.classList
+.toggle("open");
+
+}
+
+
+function checkout(){
+
+if(cart.length === 0){
+
+alert(
+"Ton panier est vide."
+);
+
+return;
+
+}
+
+
+alert(
+"Le paiement n'est pas encore activé."
+);
+
+}
+
+
+/* ==================================================
+   COMPTES SUPABASE
+================================================== */
+
+const SUPABASE_URL = "https://pzowkuzolstiwhdnzphp.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_oNLPNjv-bviOqUtJyjGFDw_P9ON1pmm";
+const supabaseClient = window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true,storage:window.localStorage,storageKey:"vacre-auth-session"}});
+
+function setAccountStatus(message,isError=false){
+  const box=document.getElementById("account-status");
+  box.textContent=message || "";
+  box.classList.toggle("show",Boolean(message));
+  box.style.background=isError ? "#ffd8d8" : "var(--lightgreen)";
+}
+
+function toggleAccount(force){
+  const modal=document.getElementById("account-modal");
+  const open=typeof force === "boolean" ? force : !modal.classList.contains("open");
+  modal.classList.toggle("open",open);
+  if(!open) setAccountStatus("");
+}
+
+function closeAccountFromBackdrop(event){
+  if(event.target.id === "account-modal") toggleAccount(false);
+}
+
+function showAccountForm(type){
+  const login=type === "login";
+  document.getElementById("login-form").classList.toggle("active",login);
+  document.getElementById("signup-form").classList.toggle("active",!login);
+  document.getElementById("login-tab").classList.toggle("active",login);
+  document.getElementById("signup-tab").classList.toggle("active",!login);
+  setAccountStatus("");
+}
+
+function updateAccountUI(){
+  const logged=Boolean(currentUser);
+  document.getElementById("account-guest").style.display=logged ? "none" : "block";
+  document.getElementById("account-user").classList.toggle("active",logged);
+  document.getElementById("account-button").textContent=logged ? (currentProfile?.username || "Compte") : "Compte";
+  if(logged){
+    document.getElementById("account-username").textContent=currentProfile?.username || "Vacre";
+    document.getElementById("account-email").textContent=currentUser.email || "";
+  }
+}
+
+async function saveCloudState(changes){
+  if(!currentUser) return;
+  const payload={...changes,updated_at:new Date().toISOString()};
+  const {error}=await supabaseClient.from("profiles").update(payload).eq("user_id",currentUser.id);
+  if(error) console.error("Sauvegarde VACRE :",error.message);
+  else if(currentProfile) Object.assign(currentProfile,payload);
+}
+
+async function loadProfile(user){
+  let {data,error}=await supabaseClient.from("profiles").select("*").eq("user_id",user.id).single();
+  if(error && error.code !== "PGRST116") throw error;
+  if(!data){
+    const username=(user.user_metadata?.username || ("Vacre_"+user.id.slice(0,8))).trim();
+    const created=await supabaseClient.from("profiles").insert({user_id:user.id,username}).select().single();
+    if(created.error) throw created.error;
+    data=created.data;
+  }
+  return data;
+}
+
+async function activateUser(user){
+  currentUser=user;
+  currentProfile=await loadProfile(user);
+
+  collection=Array.isArray(currentProfile.collection)?currentProfile.collection:[];
+  boosterStock=Math.min(10,Number(currentProfile.boosters ?? 10));
+  renderCollection();
+  updateBoosterStock(false);
+  updateAccountUI();
+  await giveDailyBoosters();
+  try { await refreshVACREFriends(); } catch(error) { console.warn("Amis VACRE :",error); }
+  try { await loadMarketWallet(); } catch(error) { console.warn("Portefeuille VACRE :",error); }
+  await window.refreshGodPackStatus?.();
+  await refreshWheelStatus();
+}
+
+function activateGuest(){
+  currentUser=null;
+  currentProfile=null;
+  collection=getGuestCollection();
+  boosterStock=getGuestBoosters();
+  renderCollection();
+  updateBoosterStock(false);
+  updateAccountUI();
+  refreshVACREFriends();
+  loadMarketWallet();
+  window.refreshGodPackStatus?.();
+  refreshWheelStatus();
+}
+
+async function signupAccount(event){
+  event.preventDefault();
+  const username=document.getElementById("signup-username").value.trim();
+  const email=document.getElementById("signup-email").value.trim();
+  const password=document.getElementById("signup-password").value;
+  if(!username){ setAccountStatus("Choisis un pseudo.",true); return; }
+  setAccountStatus("Création du compte…");
+  const {data,error}=await supabaseClient.auth.signUp({email,password,options:{data:{username}}});
+  if(error){ setAccountStatus(error.message,true); return; }
+  if(data.session){
+    await activateUser(data.user);
+    setAccountStatus("Compte créé et connecté.");
+  }else{
+    setAccountStatus("Compte créé. Vérifie ton e-mail pour confirmer ton inscription.");
+  }
+}
+
+async function loginAccount(event){
+  event.preventDefault();
+  const email=document.getElementById("login-email").value.trim();
+  const password=document.getElementById("login-password").value;
+  setAccountStatus("Connexion…");
+  const {data,error}=await supabaseClient.auth.signInWithPassword({email,password});
+  if(error){ setAccountStatus(error.message,true); return; }
+  await activateUser(data.user);
+  setAccountStatus("Connecté.");
+}
+
+async function logoutAccount(){
+  const {error}=await supabaseClient.auth.signOut();
+  if(error){ setAccountStatus(error.message,true); return; }
+  activateGuest();
+  setAccountStatus("Déconnecté.");
+}
+
+
+/* VACRE SOCIAL : les cartes ne sont jamais modifiées par ces fonctions. */
+function socialMessage(message){document.getElementById("friend-message").textContent=message;}
+function socialSafe(value){return String(value??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+async function searchVACREFriends(){
+ if(!currentUser){socialMessage("Connecte-toi pour rechercher des amis.");return;}
+ const q=document.getElementById("friend-search").value.trim();
+ if(q.length<2){socialMessage("Saisis au moins deux caractères.");return;}
+ const {data,error}=await supabaseClient.rpc("vacre_search_players",{search_text:q});
+ if(error){socialMessage("Recherche impossible : "+error.message);return;}
+ const root=document.getElementById("friend-results");root.replaceChildren();
+ if(!data?.length){root.textContent="Aucun joueur trouvé.";return;}
+ data.forEach(player=>{
+  const row=document.createElement("div");row.className="social-entry";
+  const label=document.createElement("strong");label.textContent=player.username;
+  const btn=document.createElement("button");btn.textContent="AJOUTER";
+  btn.onclick=()=>sendVACREFriendRequest(player.user_id);
+  row.append(label,btn);root.append(row);
+ });
+}
+async function sendVACREFriendRequest(id){
+ if(!currentUser)return;
+ const {error}=await supabaseClient.from("vacre_friendships").insert({requester_id:currentUser.id,addressee_id:id});
+ socialMessage(error ? "Demande impossible : "+error.message : "Demande d'ami envoyée.");
+ await refreshVACREFriends();
+}
+async function answerVACREFriendRequest(id,accept){
+ const {error}=await supabaseClient.from("vacre_friendships").update({status:accept?"accepted":"declined"}).eq("id",id).eq("addressee_id",currentUser.id).eq("status","pending");
+ socialMessage(error ? error.message : accept?"Demande acceptée.":"Demande refusée.");
+ await refreshVACREFriends();
+}
+async function refreshVACREFriends(){
+ const incoming=document.getElementById("friend-incoming"),list=document.getElementById("friend-list");
+ incoming.replaceChildren();list.replaceChildren();
+ if(!currentUser){incoming.textContent="Connecte-toi pour voir tes demandes.";list.textContent="Connecte-toi pour voir tes amis.";return;}
+ const {data,error}=await supabaseClient.from("vacre_friendships").select("id,requester_id,addressee_id,status").or("requester_id.eq."+currentUser.id+",addressee_id.eq."+currentUser.id).in("status",["pending","accepted"]);
+ if(error){socialMessage("Amis indisponibles : "+error.message);return;}
+ const ids=[...new Set((data||[]).map(r=>r.requester_id===currentUser.id?r.addressee_id:r.requester_id))];
+ let names={};
+ if(ids.length){const result=await supabaseClient.from("profiles").select("user_id,username").in("user_id",ids);if(result.error){socialMessage(result.error.message);return;}names=Object.fromEntries((result.data||[]).map(x=>[x.user_id,x.username]));}
+ for(const r of data||[]){
+  const other=r.requester_id===currentUser.id?r.addressee_id:r.requester_id;
+  const row=document.createElement("div");row.className="social-entry";
+  const label=document.createElement("strong");label.textContent=names[other]||"Joueur";row.append(label);
+  if(r.status==="pending"&&r.addressee_id===currentUser.id){
+   for(const [title,accept] of [["ACCEPTER",true],["REFUSER",false]]){const b=document.createElement("button");b.textContent=title;b.onclick=()=>answerVACREFriendRequest(r.id,accept);row.append(b);}
+   incoming.append(row);
+  }else if(r.status==="accepted"){
+   const b=document.createElement("button");b.textContent="VOIR COLLECTION";b.onclick=()=>viewVACREFriendCollection(other,names[other]);row.append(b);list.append(row);
+  }else{row.append(" — Demande en attente");list.append(row);}
+ }
+ if(!incoming.childNodes.length)incoming.textContent="Aucune demande reçue.";
+ if(!list.childNodes.length)list.textContent="Aucun ami pour le moment.";
+}
+async function viewVACREFriendCollection(id,username){
+ const {data,error}=await supabaseClient.rpc("vacre_friend_collection",{friend_user_id:id});
+ const root=document.getElementById("friend-collection");root.replaceChildren();
+ if(error){socialMessage("Collection indisponible : "+error.message);return;}
+ const title=document.createElement("h3");title.textContent="Collection de "+username;root.append(title);
+ const owned=Array.isArray(data)?data:[];
+ const count=document.createElement('p');count.textContent=owned.length+' / '+cards.length+' cartes';root.append(count);
+ const grid=document.createElement('div');grid.className='collection-grid vacre-friend-grid';
+ cards.forEach(card=>{const yes=owned.includes(card.name);const tile=document.createElement('div');tile.className='collection-card '+(yes?card.rarity:'locked');const icon=document.createElement('div');icon.className='symbol';icon.textContent=yes?card.symbol:'?';const label=document.createElement('strong');label.textContent=yes?card.name:'???';tile.append(icon,label);if(yes){const r=document.createElement('small');r.textContent=rarityText(card.rarity);tile.append(r)}grid.append(tile)});
+ root.append(grid);
+}
+
+/* ============================== VACRE MARKET ============================== */
+let uracoin=200;
+let ownedVacre=0;
+function vacreWalletKey(){return "vacreMarketWallet:"+(currentUser?.id||"guest")}
+let walletReady=false;
+let walletSaving=Promise.resolve();
+let walletSession=0;
+function walletStatus(message){
+ const e=document.getElementById("trade-message");if(e)e.textContent=message;
+}
+function setWalletControls(enabled){
+ document.querySelectorAll(".buy-market,.sell-market").forEach(b=>b.disabled=!enabled);
+}
+function readLocalMarketWallet(){
+ try{
+  const v=JSON.parse(localStorage.getItem(vacreWalletKey())||"null");
+  uracoin=Number.isFinite(v?.uracoin)&&v.uracoin>=0?v.uracoin:10000;
+  ownedVacre=Number.isFinite(v?.ownedVacre)&&v.ownedVacre>=0?v.ownedVacre:0;
+ }catch{uracoin=200;ownedVacre=0;}
+}
+async function loadMarketWallet(){
+ const session=++walletSession;
+ walletReady=false;setWalletControls(false);
+ if(!currentUser){uracoin=0;ownedVacre=0;renderMarket();walletStatus("Connecte-toi pour accéder au portefeuille mondial.");return;}
+ const userId=currentUser.id;
+ walletStatus("Synchronisation du portefeuille mondial…");
+ try{
+  // L'initialisation doit être faite côté serveur, jamais par un INSERT du navigateur.
+  const {error:initError}=await supabaseClient.rpc("vacre_market_wallet_init");
+  if(initError)throw initError;
+  const {data,error}=await supabaseClient.from("vacre_market_wallets").select("uracoin,owned_vacre").eq("user_id",userId).single();
+  if(error)throw error;
+  if(session!==walletSession||currentUser?.id!==userId)return;
+  uracoin=Number(data.uracoin);ownedVacre=Number(data.owned_vacre);
+  if(!Number.isFinite(uracoin)||!Number.isFinite(ownedVacre))throw Error("Portefeuille invalide");
+  walletReady=true;setWalletControls(true);renderMarket();updateWheelButton();walletStatus("Portefeuille mondial synchronisé.");
+ }catch(error){if(session!==walletSession)return;console.error("Portefeuille mondial :",error);walletStatus("Marché indisponible : "+error.message);}
+}
+async function refreshWorldMarket(){
+ if(!currentUser)return;
+ try{
+  const [state,history]=await Promise.all([
+   supabaseClient.from("vacre_market_state").select("price,updated_at").eq("id",1).single(),
+   supabaseClient.from("vacre_market_history").select("recorded_at,price").order("recorded_at",{ascending:false}).limit(500)
+  ]);
+  if(state.error)throw state.error;if(history.error)throw history.error;
+  const points=(history.data||[]).reverse().map(x=>({date:new Date(x.recorded_at),value:Number(x.price)})).filter(x=>Number.isFinite(x.value)&&!isNaN(x.date));
+  const price=Number(state.data.price);if(!Number.isFinite(price))throw Error("Cours invalide");
+  worldMarketHistory=points;liveMarketPrice=price;
+  const parisDay=new Intl.DateTimeFormat("en-CA",{timeZone:"Europe/Paris",year:"numeric",month:"2-digit",day:"2-digit"}).format(new Date());
+  const today=points.filter(x=>new Intl.DateTimeFormat("en-CA",{timeZone:"Europe/Paris",year:"numeric",month:"2-digit",day:"2-digit"}).format(x.date)===parisDay);
+  const values=today.length?today.map(x=>x.value):[price];
+  market.open=values[0];market.high=Math.max(...values,price);market.low=Math.min(...values,price);
+  renderMarket();
+  const status=document.getElementById("market-sync-status");if(status)status.textContent="● COURS MONDIAL SYNCHRONISÉ";
+ }catch(error){console.error("Cours mondial :",error);const status=document.getElementById("market-sync-status");if(status)status.textContent="● CONNEXION AU MARCHÉ IMPOSSIBLE";}
+}
+let worldMarketHistory=[];
+function marketDayKey(){const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
+function hashString(str){let h=2166136261;for(let i=0;i<str.length;i++){h^=str.charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0}
+function seededRandom(seed){let v=seed>>>0;return()=>{v+=0x6D2B79F5;let t=v;t=Math.imul(t^t>>>15,t|1);t^=t+Math.imul(t^t>>>7,t|61);return((t^t>>>14)>>>0)/4294967296}}
+const normalNews=[
+["Le Vacre gagne du terrain après une journée étonnamment normale.","Plusieurs analystes affirment avoir aperçu un Vacre en bon état derrière une mairie.",2],
+["La demande mondiale de Vacre augmente légèrement.","Un rapport de 843 pages ne donne absolument aucune explication, mais les investisseurs semblent satisfaits.",3],
+["Le Conseil du Vacre publie un communiqué incompréhensible.","Le document contient uniquement « situation sous contrôle » répété onze fois.",-2],
+["Une livraison de Vacres arrive avec trois heures de retard.","Les marchés réagissent beaucoup trop fortement à cette information pourtant sans intérêt.",-3],
+["Le Vacre devient tendance pendant environ 17 minutes.","Personne ne sait pourquoi, mais cela suffit à faire progresser le cours.",4],
+["Un Vacre retrouvé dans un rond-point provoque l'enthousiasme.","Des experts se sont déplacés sur place. Ils n'ont rien appris.",3],
+["Le ministère refuse de commenter la situation du Vacre.","Le refus de commenter est immédiatement interprété comme une information majeure.",-2],
+["Les investisseurs rachètent du Vacre après le déjeuner.","Le mouvement serait dû à un investisseur qui s'est trompé de bouton.",2]
+];
+const crisisNews=[
+["CRISE DU VACRE : une pénurie mondiale est déclarée.","Les réserves auraient mystérieusement disparu pendant la nuit. La demande explose.",28],
+["14 milliards de Vacres découverts derrière un supermarché.","La découverte augmente brutalement l'offre mondiale. Le marché panique.",-26],
+["Le plus grand entrepôt de Vacre au monde ferme sans explication.","Personne ne sait où il se trouvait, mais le prix s'envole.",24],
+["KRACH : une rumeur annonce l'arrivée du Bacre.","Aucun Bacre n'a jamais été observé. Cela n'empêche absolument pas la panique.",-31],
+["Le Vacre déclaré ressource stratégique mondiale.","La nouvelle provoque une ruée spectaculaire sur le marché.",35],
+["Un rapport affirme que le Vacre ne sert peut-être à rien.","Tout le monde le savait déjà, mais les marchés semblent le découvrir aujourd'hui.",-22],
+["URGENT : disparition inexpliquée de 63 % des stocks de Vacre.","Les autorités demandent de ne pas paniquer. Tout le monde panique immédiatement.",38],
+["Une usine affirme pouvoir produire du Vacre presque gratuitement.","Les détenteurs découvrent avec horreur le concept d'offre et de demande.",-37]
+];
+function createMarketDay(){const today=marketDayKey(),saved=JSON.parse(localStorage.getItem("vacreMarketDay")||"null");if(saved&&saved.date===today)return saved;let open=parseFloat(localStorage.getItem("vacreLastClose"));if(isNaN(open))open=42.67;const rnd=seededRandom(hashString(today)),crisis=rnd()<.08,list=crisis?crisisNews:normalNews,n=list[Math.floor(rnd()*list.length)],pct=n[2]+(rnd()-.5)*5,close=Math.max(2,open*(1+pct/100)),history=[];for(let i=0;i<30;i++){const p=i/29,target=open+(close-open)*p,vol=open*(crisis?.05:.015);let val=target+(rnd()-.5)*vol;if(i===0)val=open;if(i===29)val=close;history.push(Math.max(1,val))}const day={date:today,open,close,high:Math.max(...history),low:Math.min(...history),percentChange:(close-open)/open*100,crisis,news:{title:n[0],description:n[1]},history};localStorage.setItem("vacreMarketDay",JSON.stringify(day));localStorage.setItem("vacreLastClose",close);return day}
+let market=createMarketDay(),liveMarketPrice=market.close;
+function v2MarketSeries(){return worldMarketHistory.length?worldMarketHistory:[{date:new Date(),value:liveMarketPrice}];}
+function drawMarketChart(){
+  const svg=document.getElementById('market-chart');if(!svg)return;
+  const data=v2MarketSeries(),left=73,right=773,top=24,bottom=280;
+  const rawMin=Math.min(...data.map(x=>x.value)),rawMax=Math.max(...data.map(x=>x.value));
+  const pad=Math.max(.02,(rawMax-rawMin)*.12),min=Math.max(0,rawMin-pad),max=rawMax+pad,range=max-min;
+  const x=i=>left+i/Math.max(1,data.length-1)*(right-left),y=v=>bottom-(v-min)/Math.max(.000001,range)*(bottom-top);
+  const points=data.map((v,i)=>`${x(i).toFixed(1)},${y(v.value).toFixed(1)}`).join(' ');
+  const rising=data[data.length-1].value>=data[0].value;
+  const color=rising?'#b0a127':'#d7755f';
+  let grid='';for(let i=0;i<5;i++){const yy=top+(bottom-top)*i/4;const val=max-(max-min)*i/4;grid+=`<line x1="${left}" y1="${yy}" x2="${right}" y2="${yy}" stroke="#e6e3d7" stroke-width="1" stroke-dasharray="4 6"/><text x="${left-12}" y="${yy+4}" text-anchor="end" font-size="13" fill="#797b72">${val.toFixed(1)}</text>`}
+  let dates='';[0,.25,.5,.75,1].forEach(f=>{const i=Math.round(f*(data.length-1));dates+=`<text x="${x(i)}" y="${bottom+28}" text-anchor="middle" font-size="13" fill="#797b72">${data[i].date.toLocaleDateString('fr-FR',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'})}</text>`});
+  svg.innerHTML=`<defs><linearGradient id="v2-market-gradient" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${color}" stop-opacity=".24"/><stop offset="1" stop-color="${color}" stop-opacity="0"/></linearGradient></defs>${grid}<polygon points="${left},${bottom} ${points} ${right},${bottom}" fill="url(#v2-market-gradient)"/><polyline points="${points}" fill="none" stroke="${color}" stroke-width="2.3" stroke-linecap="butt" stroke-linejoin="miter"/>${dates}<line id="v2-chart-crosshair" x1="${right}" x2="${right}" y1="${top}" y2="${bottom}" stroke="#4c4e46" stroke-dasharray="5 5" stroke-width="1.5" opacity="0"/><circle id="v2-chart-point" cx="${right}" cy="${y(liveMarketPrice)}" r="6" fill="${color}" stroke="white" stroke-width="3" opacity="0"/>`;
+  const el=document.getElementById('v2-chart-touch'),tip=document.getElementById('v2-chart-tooltip');if(!el||!tip)return;
+  function show(index){index=Math.max(0,Math.min(data.length-1,index));const d=data[index];const px=x(index);svg.querySelector('#v2-chart-crosshair').setAttribute('x1',px);svg.querySelector('#v2-chart-crosshair').setAttribute('x2',px);svg.querySelector('#v2-chart-crosshair').setAttribute('opacity','1');svg.querySelector('#v2-chart-point').setAttribute('cx',px);svg.querySelector('#v2-chart-point').setAttribute('cy',y(d.value));svg.querySelector('#v2-chart-point').setAttribute('opacity','1');document.getElementById('v2-chart-date').textContent=d.date.toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'});document.getElementById('v2-chart-value').textContent=d.value.toFixed(2).replace('.',',')+' URACOIN';tip.hidden=false;tip.style.left=Math.min(78,Math.max(24,px/800*100))+'%'}
+  el.onpointermove=e=>{const rect=el.getBoundingClientRect();const t=(e.clientX-rect.left)/rect.width;show(Math.round((t*800-left)/(right-left)*(data.length-1)))};
+  el.onpointerleave=()=>{tip.hidden=true;svg.querySelector('#v2-chart-crosshair').setAttribute('opacity','0');svg.querySelector('#v2-chart-point').setAttribute('opacity','0')};
+  el.onkeydown=e=>{if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();const i=Number(el.dataset.pointIndex??(data.length-1))+(e.key==='ArrowRight'?1:-1);el.dataset.pointIndex=String(Math.max(0,Math.min(data.length-1,i)));show(Number(el.dataset.pointIndex))}};
+}
+
+function renderMarket(){if(!document.getElementById("market-price"))return;const change=(liveMarketPrice-market.open)/Math.max(.01,market.open)*100;document.getElementById("market-price").textContent=liveMarketPrice.toFixed(2).replace(".",",");const ce=document.getElementById("market-change");ce.textContent=(change>=0?"+":"")+change.toFixed(2).replace(".",",")+" %";ce.className="market-change "+(change>=0?"up":"down");document.getElementById("market-open").textContent=market.open.toFixed(2).replace(".",",")+" U";document.getElementById("market-high").textContent=Math.max(market.high,liveMarketPrice).toFixed(2).replace(".",",")+" U";document.getElementById("market-low").textContent=Math.min(market.low,liveMarketPrice).toFixed(2).replace(".",",")+" U";document.getElementById("uracoin-balance").textContent=Math.floor(uracoin).toLocaleString("fr-FR");document.getElementById("owned-vacre").textContent=ownedVacre.toFixed(2).replace(".",",");const pv=ownedVacre*liveMarketPrice;document.getElementById("portfolio-value").textContent=Math.floor(pv).toLocaleString("fr-FR");document.getElementById("total-wealth").textContent=Math.floor(uracoin+pv).toLocaleString("fr-FR");document.getElementById("news-date").textContent=new Date().toLocaleDateString("fr-FR");document.getElementById("news-title").textContent=market.news.title;document.getElementById("news-description").textContent=market.news.description;document.getElementById("news-impact").textContent=market.crisis?"ALERTE MARCHÉ — CRISE MAJEURE":(change>=0?"MARCHÉ HAUSSIER ▲":"MARCHÉ BAISSIER ▼");drawMarketChart()}
+function saveMarketWallet(){return Promise.reject(new Error("Écriture directe interdite : utilise les fonctions serveur."));}
+function showTradeMessage(t){document.getElementById("trade-message").textContent=t}
+let tradeBusy=false;
+async function tradeWorld(side){
+ if(tradeBusy||!walletReady||!currentUser)return showTradeMessage("Connecte-toi et attends la synchronisation du portefeuille.");
+ const a=Number(document.getElementById("trade-amount").value);
+ if(!Number.isSafeInteger(a)||a<1||a>3000)return showTradeMessage("Saisis une quantité entière entre 1 et 3 000.");
+ tradeBusy=true;setWalletControls(false);showTradeMessage("Transaction en cours…");
+ try{
+  const {data,error}=await supabaseClient.rpc("vacre_market_trade",{p_side:side,p_quantity:a});
+  if(error)throw error;
+  // Le serveur effectue atomiquement le transfert et l'impact sur le cours.
+  await Promise.all([refreshWorldMarket(),loadMarketWallet()]);
+  showTradeMessage(`${side==='buy'?'Achat':'Vente'} confirmé(e) : ${a} Vacre(s) à ${Number(data.executed_price).toFixed(2).replace('.',',')} U.`);
+ }catch(error){showTradeMessage("Transaction refusée : "+error.message);await loadMarketWallet();}
+ finally{tradeBusy=false;setWalletControls(walletReady);}
+}
+function buyVacre(){return tradeWorld("buy")}
+function sellVacre(){return tradeWorld("sell")}
+function fluctuateMarket(){refreshWorldMarket()}
+const wheelRewards=[
+ {short:["100","U"],label:"100 URACOIN",type:"uracoin",amount:100},
+ {short:["1","BOOSTER"],label:"1 BOOSTER",type:"booster",amount:1},
+ {short:["500","U"],label:"500 URACOIN",type:"uracoin",amount:500},
+ {short:["3","BOOSTERS"],label:"3 BOOSTERS",type:"booster",amount:3},
+ {short:["1000","U"],label:"1000 URACOIN",type:"uracoin",amount:1000},
+ {short:["5","BOOSTERS"],label:"5 BOOSTERS",type:"booster",amount:5},
+ {short:["2500","U"],label:"2500 URACOIN",type:"uracoin",amount:2500},
+ {short:["JACK","POT"],label:"JACKPOT : 10 BOOSTERS + 10 000 URACOIN",type:"jackpot",amount:1}
+];
+let wheelRotation=0,wheelSpinning=false,wheelReady=false,wheelCanSpin=false;
+async function refreshWheelStatus(){
+ const b=document.getElementById('spin-button'),out=document.getElementById('wheel-result');
+ if(!b)return;
+ if(!currentUser){wheelReady=true;wheelCanSpin=false;updateWheelButton();out.textContent='Connecte-toi pour tourner la roue.';return;}
+ wheelReady=false;updateWheelButton();
+ try{
+  const {data,error}=await supabaseClient.rpc('vacre_wheel_status');if(error)throw error;
+  wheelCanSpin=!!data.available;wheelReady=true;
+  if(!wheelCanSpin)out.textContent='Tu as déjà tourné la roue aujourd’hui. Reviens demain !';
+  else out.textContent='Un tour disponible aujourd’hui !';
+ }catch(e){wheelReady=false;out.textContent='Roue indisponible : '+e.message;}
+ updateWheelButton();
+}
+function updateWheelButton(){
+ const b=document.getElementById('spin-button');if(!b)return;
+ b.disabled=!currentUser||!wheelReady||!wheelCanSpin||wheelSpinning;
+ b.textContent=wheelSpinning?'LA ROUE TOURNE…':!currentUser?'CONNEXION REQUISE':!wheelReady?'CHARGEMENT…':wheelCanSpin?'TOURNER LA ROUE':'REVIENS DEMAIN';
+}
+function makeWheel(){
+ const svg=document.getElementById("wheel-segments");if(!svg)return;
+ svg.replaceChildren();const NS="http://www.w3.org/2000/svg";
+ const el=(name,attrs)=>{const n=document.createElementNS(NS,name);Object.entries(attrs).forEach(([k,v])=>n.setAttribute(k,v));return n};
+ const colors=["#fff","#111","#fff","#111","#fff","#111","#fff","#111"];
+ for(let i=0;i<8;i++){
+  const a=(-90+i*45)*Math.PI/180,b=(-90+(i+1)*45)*Math.PI/180;
+  const x1=200+193*Math.cos(a),y1=200+193*Math.sin(a),x2=200+193*Math.cos(b),y2=200+193*Math.sin(b);
+  const path=el("path",{d:`M200 200 L${x1} ${y1} A193 193 0 0 1 ${x2} ${y2} Z`,fill:colors[i],stroke:"#15966a","stroke-width":"2"});svg.append(path);
+  const mid=(-90+(i+.5)*45)*Math.PI/180;
+  const text=el("text",{x:200+125*Math.cos(mid),y:200+125*Math.sin(mid),fill:i%2?"white":"black",class:"wheel-segment-label"});
+  wheelRewards[i].short.forEach((line,j)=>{const t=el("tspan",{x:200+125*Math.cos(mid),dy:j?"14":"-5"});t.textContent=line;text.append(t)});svg.append(text);
+ }
+ svg.append(el("circle",{cx:200,cy:200,r:193,fill:"none",stroke:"#111","stroke-width":10}));
+}
+async function spinWheel(){
+ if(!currentUser){document.getElementById('wheel-result').textContent='Connecte-toi pour jouer.';return;}
+ if(wheelSpinning||!wheelReady||!wheelCanSpin)return;
+ wheelSpinning=true;updateWheelButton();
+ const out=document.getElementById('wheel-result');out.textContent='Validation du tour…';
+ try{
+  const {data,error}=await supabaseClient.rpc('vacre_wheel_spin');if(error)throw error;
+  const i=Number(data.reward_index);
+  if(!Number.isInteger(i)||i<0||i>=wheelRewards.length)throw Error('Récompense inconnue.');
+  wheelCanSpin=false;
+  out.textContent='La roue tourne…';
+  const desired=(360-((i+.5)*45))%360;
+  wheelRotation+=360*7+((desired-wheelRotation%360+360)%360);
+  document.getElementById('wheel').style.transform=`rotate(${wheelRotation}deg)`;
+  await new Promise(resolve=>setTimeout(resolve,5350));
+  const coins=Number(data.uracoin_awarded||0),boosters=Number(data.boosters_awarded||0);
+  const prizes=[];if(coins)prizes.push(coins+' URACOIN');if(boosters)prizes.push(boosters+' BOOSTER'+(boosters>1?'S':''));
+  if(Number(data.boosters_requested||0)>boosters)prizes.push('stock de boosters plafonné à 10');
+  out.textContent='TU GAGNES : '+(prizes.join(' + ')||'stock de boosters déjà plein');
+  await Promise.allSettled([loadMarketWallet(),refreshServerBoosters()]);
+ }catch(e){out.textContent='Impossible de tourner la roue : '+e.message;}
+ finally{wheelSpinning=false;wheelReady=true;updateWheelButton();}
+}
+
+/* ==================================================
+   DEMARRAGE
+================================================== */
+
+async function initializeVACRE(){
+  updateCart();
+  makeWheel();
+  uracoin=0;ownedVacre=0;renderMarket();setWalletControls(false);refreshWorldMarket();
+  setInterval(fluctuateMarket,10000);
+  await refreshVACREFriends();
+  try{
+    const {data,error}=await supabaseClient.auth.getSession();
+    if(error) console.error("Session VACRE :",error.message);
+    if(data?.session?.user){
+      try { await activateUser(data.session.user); }
+      catch(profileError){
+        console.error("Chargement du profil VACRE :",profileError);
+        // Ne pas déconnecter un utilisateur authentifié si son profil est indisponible.
+        currentUser=data.session.user;
+        updateAccountUI();
+        setAccountStatus("Connecté, mais certaines données du compte sont indisponibles.",true);
+      }
+    }else{ activateGuest(); await giveDailyBoosters(); }
+  }catch(error){
+    console.error("Initialisation de la session VACRE :",error);
+    activateGuest();
+  }
+}
+
+supabaseClient.auth.onAuthStateChange((event,session)=>{
+  if(event === "SIGNED_OUT") activateGuest();
+});
+
+initializeVACRE();
+
+</script>
+
+<script id="v2-navigation-script">
+(function(){
+const valid=new Set(['accueil','boutique','collection','amis','market','roue','mentions','chantier','surprise']);
+window.v2ToggleMenu=function(open){document.body.classList.toggle('v2-menu-open',!!open);document.getElementById('v2-menu-trigger')?.setAttribute('aria-expanded',String(!!open));};
+
+/* God Pack de compensation : attribution et contrôle entièrement côté Supabase. */
+window.refreshGodPackStatus=refreshGodPackStatus;
+window.claimGodPack=claimGodPack;
+async function refreshGodPackStatus(){
+ const status=document.getElementById('god-pack-status'),button=document.getElementById('god-pack-claim');
+ if(!status||!button)return;
+ button.disabled=true;
+ if(!currentUser){status.textContent='Connecte-toi pour vérifier ton cadeau.';button.textContent='CONNEXION REQUISE';return;}
+ status.textContent='Vérification du cadeau…';
+ try{
+  const {data,error}=await supabaseClient.rpc('vacre_god_pack_status');if(error)throw error;
+  if(data.claimed){status.textContent='Ce cadeau a déjà été récupéré sur ce compte.';button.textContent='DÉJÀ RÉCUPÉRÉ';}
+  else if(!data.eligible){status.textContent='Ce compte ne fait pas partie des comptes éligibles à la compensation.';button.textContent='NON ÉLIGIBLE';}
+  else{status.textContent='Un cadeau unique est disponible pour ton compte.';button.textContent='OUVRIR MON CADEAU ✦';button.disabled=false;}
+ }catch(e){status.textContent='Vérification indisponible : '+e.message;button.textContent='RÉESSAYER';button.disabled=false;}
+}
+async function claimGodPack(){
+ const status=document.getElementById('god-pack-status'),button=document.getElementById('god-pack-claim');
+ if(!currentUser||opening)return;
+ button.disabled=true;status.textContent='Ouverture en cours…';
+ try{
+  const {data,error}=await supabaseClient.rpc('vacre_claim_god_pack');if(error)throw error;
+  const pack=(data.cards||[]).map(c=>cards.find(x=>x.name===c.name)).filter(Boolean);
+  if(pack.length!==10)throw Error('Le catalogue local doit être synchronisé avec les cartes du serveur.');
+  collection=Array.isArray(data.collection)?data.collection:collection;
+  renderCollection();
+  // Déplacer temporairement la scène d'ouverture dans l'onglet God Pack.
+  const slot=document.getElementById('god-pack-reveal-slot');
+  const ids=['opening-title','reveal-stage','reveal-counter','pack-results'];
+  const moved=ids.map(id=>{const node=document.getElementById(id);return {node,parent:node.parentNode,next:node.nextSibling};});
+  moved.forEach(({node})=>slot.appendChild(node));
+  try{
+  document.getElementById('opening-title').textContent='✦ GOD PACK ✦';
+  await revealSequence(pack);
+  document.getElementById('opening-title').textContent='✦ GOD PACK OUVERT — 10 CARTES ✦';
+  status.textContent='Cadeau récupéré. Merci de faire partie de VACRE !';
+  }finally{moved.forEach(({node,parent,next})=>{if(next&&next.parentNode===parent)parent.insertBefore(node,next);else parent.appendChild(node);});}
+ }catch(e){status.textContent='Impossible de récupérer le cadeau : '+e.message;}
+ finally{await refreshGodPackStatus();}
+}
+
+window.v2Navigate=function(page){if(!valid.has(page))page='accueil';document.body.dataset.v2Page=page;v2ToggleMenu(false);history.replaceState(null,'',page==='accueil'?'#accueil':'#'+page);window.scrollTo({top:0,behavior:'smooth'});};
+document.body.dataset.v2Page=valid.has(location.hash.slice(1))?location.hash.slice(1):'accueil';
+window.addEventListener('keydown',e=>{if(e.key==='Escape')v2ToggleMenu(false)});
+window.addEventListener('hashchange',()=>{let p=location.hash.slice(1);if(valid.has(p))v2Navigate(p);});
+const badge=document.getElementById('v2-cart-count');const source=document.getElementById('cart-count');if(badge&&source){new MutationObserver(()=>{badge.textContent=source.textContent}).observe(source,{childList:true,characterData:true,subtree:true});badge.textContent=source.textContent;}
+})();
+</script>
+
+<script>
+(function(){
+ const key="vacre-theme-v21";
+ const btn=document.getElementById("vacre-theme-toggle");
+ function apply(dark){
+  document.body.classList.toggle("vacre-dark",dark);
+  btn.textContent=dark?"☀":"☾";
+  btn.setAttribute("aria-pressed",String(dark));
+ }
+ try{apply(localStorage.getItem(key)==="dark")}catch(e){apply(false)}
+ btn.addEventListener("click",()=>{
+  const dark=!document.body.classList.contains("vacre-dark");
+  apply(dark);
+  try{localStorage.setItem(key,dark?"dark":"light")}catch(e){}
+ });
+})();
+</script>
+</body>
+</html>
