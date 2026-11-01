@@ -5257,7 +5257,7 @@ async function v37ShowActivity(uid,root){
  const oldFriend=window.v32OpenFriendProfile;if(typeof oldFriend==='function')window.v32OpenFriendProfile=async function(id,...a){const r=await oldFriend.call(this,id,...a);const root=document.getElementById('v32-friend-profile');if(root)v37ShowActivity(id,root);return r};
  setInterval(()=>{if(currentUser){window.v36Heartbeat?.();if(document.body.dataset.v2Page==='assemblee'&&(v37.active==='posts'||v37.active==='requests'))v37LoadFeed()}},60000);
  if(currentUser)window.v36Heartbeat?.();
- if(document.body.dataset.v2Page==='assemblee')v37Show('posts');
+ if(document.body.dataset.v2Page==='suggestions'){window.v2Navigate('assemblee');v37Show('suggest')}else if(document.body.dataset.v2Page==='assemblee')v37Show('posts');
  if(document.body.dataset.v2Page==='collection')v37FetchLevels();
 })();
 </script>
