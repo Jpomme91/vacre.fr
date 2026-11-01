@@ -1549,6 +1549,15 @@ body.vacre-dark .v36-panel,body.vacre-dark .v36-proposal{background:#232724;colo
 @keyframes v37-glow{from{box-shadow:0 0 10px #13c996,0 0 22px #0dbd7d88}to{box-shadow:0 0 21px #1fffc5,0 0 45px #0dbd7daa}}
 @media(max-width:650px){.v37-request-row{grid-template-columns:1fr}.v37-entry{padding:15px}#assemblee{padding:25px 12px}}
 </style>
+
+<!-- VACRE 3.7 — typographie uniforme : Nunito (option J) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style id="vacre-global-nunito">
+/* Conserve les dimensions, couleurs et graisses existantes; ne touche pas aux glyphes SVG. */
+html,body,body *:not(svg):not(svg *),body *:not(svg):not(svg *)::before,body *:not(svg):not(svg *)::after{font-family:'Nunito',Arial,sans-serif!important;}
+</style>
 </head>
 
 <body>
@@ -5213,14 +5222,14 @@ function v37SelectCard(tile,card,qty){
  const b=document.createElement('button');b.type='button';b.className='v37-under-button';b.textContent=card.rarity==='special'?'CARTE SPÉCIALE':'ÉVOLUER';
  b.disabled=card.rarity==='special';b.onclick=e=>{e.stopPropagation();v37OpenEvolution(card)};tile.append(b);
 }
-function v37CloseEvolution(){v37Node('v37-evolve-modal').hidden=true;v37.selected=null}
+function v37CloseEvolution(){v37Node('v37-evolve-modal').hidden=true;v37.selected=null;v37Message('v37-evolve-status','')}
 async function v37FetchLevels(){
  if(!currentUser)return;
  const {data,error}=await supabaseClient.from('vacre_card_levels').select('card_name,level').eq('user_id',currentUser.id);
  if(!error){v37.levels=new Map((data||[]).map(r=>[r.card_name,r.level]));if(document.body.dataset.v2Page==='collection')window.v24RenderOwn?.();}
 }
 async function v37OpenEvolution(card){
- v37.selected=card;await v37FetchLevels();v37DrawEvolution();v37Node('v37-evolve-modal').hidden=false;
+ v37.selected=card;v37Message('v37-evolve-status','');await v37FetchLevels();v37DrawEvolution();v37Node('v37-evolve-modal').hidden=false;
 }
 function v37DrawEvolution(){
  const c=v37.selected;if(!c)return;const lvl=Number(v37.levels.get(c.name)||1),cost={common:65,rare:50,epic:30,legendary:10,mythic:5}[c.rarity]||0,n=Number(v23Inventory?.[c.name]||0);
