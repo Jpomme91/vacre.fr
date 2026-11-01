@@ -1513,6 +1513,42 @@ body.vacre-dark .v36-panel,body.vacre-dark .v36-proposal{background:#232724;colo
 #vacre-pet{padding:30px 18px 80px;min-height:76vh}#vacre-pet .pet-wrap{margin:0 auto;padding:8px;max-width:1050px;color:#292719}#vacre-pet .pet-head{position:static;display:block;min-height:0;height:auto;background:#ead584;border:3px solid #292719;border-radius:24px;padding:25px;box-shadow:7px 7px #292719;color:#292719}#vacre-pet .pet-panel{color:#292719}#vacre-pet .pet-adopt-preview{margin:18px 0;background:#f5f1e3;border-radius:18px;padding:14px}#vacre-pet .pet-adopt-preview h3{text-align:center;margin:0 0 10px}#vacre-pet .pet-preview{height:245px}#vacre-pet .pet-preview .pet-creature{scale:.78}#vacre-pet .pet-create-row{margin-top:14px}#vacre-pet .pet-create-row button{min-height:52px}#vacre-pet .pet-countdown{font-size:1.35rem;font-weight:900;letter-spacing:.06em}@media(max-width:760px){#vacre-pet{padding:15px 8px 45px}#vacre-pet .pet-head{padding:18px}#vacre-pet .pet-grid{grid-template-columns:1fr}}
 </style>
 <script id="vacre-urabot-display-compat">function vacreBotDisplayName(name){return String(name ?? "").replace(/\bdu (?:Vacre|Ura) Bot\b/gi,"de l’Urabot")}</script>
+
+<style id="v37-styles">
+#assemblee{max-width:1250px;margin:0 auto;padding:42px 20px 75px}#assemblee h2{font-size:clamp(35px,5vw,65px);margin:8px 0 20px}
+.v37-shell{max-width:1080px;margin:0 auto}.v37-intro{opacity:.8;margin-bottom:19px}
+.v37-tabs{display:flex;gap:9px;overflow:auto;padding:6px 0 16px;flex-wrap:wrap}
+.v37-tabs button{background:#353834;color:#faf7e9;border:1px solid #7a775b;border-radius:13px;padding:12px 15px;cursor:pointer;font-weight:850;white-space:nowrap}
+.v37-tabs button.active{background:#dfc75e;color:#181a18;border-color:#dfc75e}
+.v37-panel[hidden]{display:none!important}.v37-panel{display:grid;gap:20px}
+.v37-compose,.v37-entry{border:1px solid #6e6d58;border-radius:18px;background:#292c2a;color:#faf7ee;padding:20px}
+.v37-compose h3,.v37-entry h3{margin:0 0 12px}.v37-compose textarea,.v37-compose select,.v37-compose input{width:100%;background:#202220;border:1px solid #8d875e;color:#fff;border-radius:11px;padding:13px;font:inherit;margin:6px 0 11px}
+.v37-compose button,.v37-entry button{background:#dfc75e;color:#121411;border:0;border-radius:11px;font-weight:900;padding:10px 17px;cursor:pointer}
+.v37-compose button:disabled,.v37-entry button:disabled{background:#777b78!important;color:#d4d4d0!important;cursor:not-allowed;opacity:.65}
+.v37-compose-foot{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}.v37-compose-foot span{font-size:12px;opacity:.7;max-width:580px}
+.v37-list{display:grid;gap:13px}.v37-entry{overflow-wrap:anywhere}.v37-entry strong{font-size:17px}.v37-entry small{opacity:.7}.v37-entry p{margin:13px 0;white-space:pre-wrap;line-height:1.5}
+.v37-entry-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:10px}.v37-entry-actions button.v37-light{background:transparent;color:#f0dfa0;border:1px solid #bfae6b}
+.v37-request-row{display:grid;grid-template-columns:minmax(0,2fr) minmax(95px,1fr);gap:15px}
+#assemblee .v23-panel{background:#292c2a;color:#f6f1e4;border:1px solid #8d875e;border-radius:18px;padding:20px}
+#assemblee .v23-panel input,#assemblee .v23-panel select{background:#222;color:#fff;border:1px solid #b9a75f;border-radius:8px;padding:10px;max-width:100%}
+#assemblee .v23-panel button{border:0;background:#dfc75e;color:#121411;border-radius:10px;padding:11px 14px;cursor:pointer}
+#assemblee .v23-panel .v23-entry{color:#151515}
+#collection-grid .v37-evolvable{cursor:pointer;transition:transform .18s ease,box-shadow .18s ease;position:relative}
+#collection-grid .v37-evolvable:hover{transform:translateY(-3px)}
+#collection-grid .v37-selected{outline:3px solid #e3c653;outline-offset:2px}
+.v37-under-button{display:block!important;width:100%;background:#e4c658;border:1px solid #6b5d28;border-radius:8px;padding:10px;font-weight:900;margin-top:12px;color:#161815;cursor:pointer}
+.v37-under-button:disabled{background:#777;color:#dedede;cursor:not-allowed}
+#v37-evolve-modal[hidden]{display:none!important}
+#v37-evolve-modal{position:fixed;inset:0;z-index:300000;background:#000c;display:grid;place-items:center;padding:15px}
+.v37-evolve-box{width:min(100%,460px);border:2px solid #bfae6b;background:#252724;color:#f6f2df;border-radius:19px;padding:28px;box-shadow:0 20px 70px #0008}
+.v37-evolve-box h3{font-size:27px;margin:4px 0 14px;color:#e7cf6c}.v37-evolve-card{padding:14px;border-radius:14px;text-align:center;background:radial-gradient(#21735a,#16372e);font-size:44px;margin:12px 0}
+.v37-evolve-bar{height:16px;border:1px solid #7d7d6d;border-radius:20px;background:#424642;overflow:hidden}.v37-evolve-bar span{display:block;height:100%;background:#dfc75e;transition:width .4s}
+.v37-evolve-controls{display:flex;gap:12px;justify-content:space-between;margin-top:17px}.v37-evolve-controls button{padding:12px 17px;border-radius:10px;border:0;font-weight:900;cursor:pointer}.v37-evolve-controls .v37-advance{background:#e4c658;color:#10110c}.v37-evolve-controls .v37-advance:disabled{background:#6d726e;color:#c8c8c8;cursor:default}
+.collection-card.special,.result-card.special{border:2px solid #25f6ae!important;box-shadow:0 0 13px #13c996,0 0 26px #0dbd7d88,0 0 44px #1beb9a55!important;background:linear-gradient(135deg,#15362c,#1a6550 55%,#15362c)!important;color:#eafff5!important;animation:v37-glow 3s ease-in-out infinite alternate}
+.v361-rarity-special{border-color:#21d5a0!important;color:#afffe0!important;background:#153b30!important}
+@keyframes v37-glow{from{box-shadow:0 0 10px #13c996,0 0 22px #0dbd7d88}to{box-shadow:0 0 21px #1fffc5,0 0 45px #0dbd7daa}}
+@media(max-width:650px){.v37-request-row{grid-template-columns:1fr}.v37-entry{padding:15px}#assemblee{padding:25px 12px}}
+</style>
 </head>
 
 <body>
@@ -1539,8 +1575,8 @@ body.vacre-dark .v36-panel,body.vacre-dark .v36-proposal{background:#232724;colo
     <button onclick="v2Navigate('vacrebot')">🤖 URA BOT <span id="v312-bot-dot" class="v311-collection-dot" hidden>!</span><span>↗</span></button>
     <div class="v29-menu-group">COMMUNAUTÉ</div>
     <button onclick="v2Navigate('amis')">Social <span id="v23-social-badge" class="v23-badge" hidden>0</span> <span id="v23-trade-mark" hidden>!</span> <span>↗</span></button>
-    <button onclick="v2Navigate('assemblee')">🏛 Assemblée générale <span>↗</span></button>
-    <button onclick="v2Navigate('suggestions')">Suggestions <span id="v242-suggestion-badge" class="v242-vote-badge" hidden>0</span><span>↗</span></button>
+    <button onclick="v2Navigate('assemblee')">🌐 Communauté <span>↗</span></button>
+    
     <div class="v29-menu-group">MON COMPTE</div>
     <button onclick="v2Navigate('profil')">Mon profil <span>↗</span></button>
     <button onclick="v2Navigate('parametres')">Paramètres <span>↗</span></button>
@@ -1570,9 +1606,9 @@ id="boutique">
 <h3 id="v361-shop-heading">✦ Packs de boosters</h3>
 <p>Achète des boosters avec des urabucks. La réserve est limitée à 10 boosters ; les packs n’en font pas perdre.</p>
 <div class="v361-pack-grid">
-<article><strong>1 BOOSTER</strong><span>125 urabucks</span><button type="button" onclick="v361BuyPack(1)">ACHETER</button></article>
-<article><strong>3 BOOSTERS</strong><span>340 urabucks</span><button type="button" onclick="v361BuyPack(3)">ACHETER</button></article>
-<article><strong>5 BOOSTERS</strong><span>525 urabucks</span><button type="button" onclick="v361BuyPack(5)">ACHETER</button></article>
+<article><strong>1 BOOSTER</strong><span>1 200 urabucks</span><button type="button" onclick="v361BuyPack(1)">ACHETER</button></article>
+<article><strong>3 BOOSTERS</strong><span>3 300 urabucks</span><button type="button" onclick="v361BuyPack(3)">ACHETER</button></article>
+<article><strong>5 BOOSTERS</strong><span>5 000 urabucks</span><button type="button" onclick="v361BuyPack(5)">ACHETER</button></article>
 </div><p id="v361-buy-status" role="status" aria-live="polite"></p></section><div id="v28-shop" class="v30-grid"><p>Connexion à la boutique…</p></div><div id="v30-toast" role="status" aria-live="polite"></div></div>
 
 
@@ -1986,13 +2022,19 @@ id="collection-grid">
 
 
 <section id="convertisseur" class="v2-extra-page"><h2>CONVERTISSEUR</h2><div class="v23-panel"><p>Convertis tes exemplaires de Vacre en urabucks. Chaque exemplaire vendu disparaît de ta collection. Aucun argent réel.</p><div class="v23-rates"><span>Commun <b>2 U</b></span><span>Rare <b>5 U</b></span><span>Épique <b>10 U</b></span><span>Légendaire <b>30 U</b></span><span>Mythique <b>70 U</b></span></div><label>Carte à convertir <select id="v23-convert-card" onchange="v23UpdateQuote()"></select></label><label>Nombre d’exemplaires <select id="v23-convert-qty" onchange="v23UpdateQuote()"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option></select></label><p id="v23-convert-quote"></p><button onclick="v23Convert()">CONVERTIR EN urabucks</button><p id="v23-convert-msg" role="status"></p><div class="v31-bulk"><h3>⚡ Convertir les doublons d’une rareté</h3><p>Convertit uniquement les doublons de la rareté choisie. Un exemplaire de chaque carte est toujours conservé.</p><label for="v31-bulk-rarity">Rareté</label> <select id="v31-bulk-rarity" onchange="v31BulkQuote()"><option value="common">Commun</option><option value="rare">Rare</option><option value="epic">Épique</option><option value="legendary">Légendaire</option><option value="mythic">Mythique</option></select><p id="v31-bulk-quote" aria-live="polite"></p><button type="button" id="v31-bulk-button" onclick="v31BulkConvert()">CONVERTIR LES DOUBLONS</button><p id="v31-bulk-status" role="status"></p></div></div></section>
-<section id="suggestions" class="v2-extra-page"><h2>SUGGESTIONS DE VACRE</h2><div class="v23-panel"><p>Propose un nouveau Vacre et sa rareté ! Les propositions indiquent le pseudo de leur auteur. Chaque joueur connecté peut voter une seule fois par proposition. Les votes servent à recueillir les préférences, sans ajout automatique de carte. Nouvelle session chaque dimanche à minuit (heure de Paris).</p><label>Nom du Vacre <input id="v23-suggestion-title" maxlength="70" placeholder="Mon idée de Vacre"></label><label>Rareté <select id="v23-suggestion-rarity"><option value="common">Commun</option><option value="rare">Rare</option><option value="epic">Épique</option><option value="legendary">Légendaire</option><option value="mythic">Mythique</option></select></label><button onclick="v23Suggest()">PROPOSER MON VACRE</button><p id="v23-suggestion-msg" role="status"></p><p id="v242-vote-info" class="v242-vote-info" role="status"></p><div id="v23-suggestion-list"></div></div></section>
-<section class="v2-extra-page" id="assemblee"><div class="v2-section-kicker">COMMUNAUTÉ · VACRE 3.6.1</div><h2>ASSEMBLÉE GÉNÉRALE</h2>
+
+<section class="v2-extra-page" id="assemblee"><div class="v2-section-kicker">VACRE · COMMUNAUTÉ</div><h2>COMMUNAUTÉ</h2>
+<div class="v37-shell"><p class="v37-intro">Partage tes découvertes, entraide d'autres collectionneurs et propose des idées pour VACRE.</p>
+<div class="v37-tabs"><button type="button" data-v37-tab="posts">✦ Publications</button><button type="button" data-v37-tab="requests">🎁 Demandes de Vacres</button><button type="button" data-v37-tab="suggest">💡 Suggérer un Vacre</button><button type="button" data-v37-tab="assembly">🏛 Propositions</button></div>
+<div class="v37-panel" data-v37-panel="posts"><div class="v37-compose"><h3>Quoi de neuf dans la Vacrerie ?</h3><textarea id="v37-post-text" maxlength="500" rows="3" placeholder="Partage une découverte, une idée ou une actualité de VACRE (500 caractères max)."></textarea><div class="v37-compose-foot"><span>Messages publics. Reste respectueux et ne partage pas d'informations personnelles.</span><button type="button" id="v37-send-post">PUBLIER</button></div><p id="v37-post-status" role="status"></p></div><h3>Publications récentes</h3><div id="v37-post-feed" class="v37-list"><p>Chargement…</p></div></div>
+<div class="v37-panel" data-v37-panel="requests" hidden><div class="v37-compose"><h3>Demander des exemplaires</h3><p>Une demande publique peut être satisfaite par un autre joueur, même si vous n'êtes pas amis. Les cartes lui sont retirées et t'arrivent instantanément.</p><div class="v37-request-row"><label>Vacre recherché<select id="v37-request-card"></select></label><label>Quantité<input id="v37-request-qty" type="number" min="1" max="100" value="1"></label></div><button type="button" id="v37-send-request">PUBLIER LA DEMANDE</button><p id="v37-request-status" role="status"></p></div><h3>Demandes ouvertes</h3><div id="v37-request-feed" class="v37-list"><p>Chargement…</p></div></div>
+<div class="v37-panel" data-v37-panel="suggest" hidden><div class="v37-compose"><h2>SUGGESTIONS DE VACRE</h2><div class="v23-panel"><p>Propose un nouveau Vacre et sa rareté ! Les propositions indiquent le pseudo de leur auteur. Chaque joueur connecté peut voter une seule fois par proposition. Les votes servent à recueillir les préférences, sans ajout automatique de carte. Nouvelle session chaque dimanche à minuit (heure de Paris).</p><label>Nom du Vacre <input id="v23-suggestion-title" maxlength="70" placeholder="Mon idée de Vacre"></label><label>Rareté <select id="v23-suggestion-rarity"><option value="common">Commun</option><option value="rare">Rare</option><option value="epic">Épique</option><option value="legendary">Légendaire</option><option value="mythic">Mythique</option></select></label><button onclick="v23Suggest()">PROPOSER MON VACRE</button><p id="v23-suggestion-msg" role="status"></p><p id="v242-vote-info" class="v242-vote-info" role="status"></p><div id="v23-suggestion-list"></div></div></div></div>
+<div class="v37-panel" data-v37-panel="assembly" hidden>
 <div class="v36-panel"><p>Propose une évolution de VACRE, consulte les idées des autres joueurs et vote. Une proposition peut recevoir un vote par compte, modifiable à tout moment.</p>
 <form id="v36-assembly-form"><label>Titre de la proposition <input id="v36-proposal-title" minlength="5" maxlength="120" required placeholder="Ex. Une nouvelle catégorie de boosters"></label>
 <label>Description <textarea id="v36-proposal-desc" minlength="10" maxlength="2000" rows="4" required placeholder="Explique ton idée…"></textarea></label>
 <button type="submit">PROPOSER UNE MISE À JOUR</button></form><p id="v36-assembly-status" role="status"></p>
-<div style="display:flex;justify-content:space-between;align-items:center;gap:14px"><h3>Les propositions</h3><button type="button" onclick="v36LoadAssembly()">Actualiser ↻</button></div><div id="v36-proposal-list"></div></div></section>
+<div style="display:flex;justify-content:space-between;align-items:center;gap:14px"><h3>Les propositions</h3><button type="button" onclick="v36LoadAssembly()">Actualiser ↻</button></div><div id="v36-proposal-list"></div></div></div></div></section>
 <section class="v2-extra-page vacre-profile-page" id="profil">
  <div class="v2-section-kicker">IDENTITÉ VACRE</div><h2>MON PROFIL</h2>
  <div id="vp-profile-body"><p>Connecte-toi pour personnaliser ton profil.</p><button onclick="toggleAccount(true)">CONNEXION / INSCRIPTION</button></div>
@@ -2493,6 +2535,7 @@ const cards = [
 
 /* URA BOT : huit composants légendaires distincts */
 cards.push(
+{name:"URABOT",rarity:"special",symbol:"🤖"},
 {name:"Tête du Vacre Bot",rarity:"legendary",symbol:"⚙"},
 {name:"Bras gauche du Vacre Bot",rarity:"legendary",symbol:"⚙"},
 {name:"Bras droit du Vacre Bot",rarity:"legendary",symbol:"⚙"},
@@ -2559,7 +2602,7 @@ common:"Commun",
 rare:"Rare",
 epic:"Épique",
 legendary:"Légendaire",
-mythic:"Mythique"
+mythic:"Mythique",special:"Spéciale"
 
 };
 
@@ -4207,12 +4250,12 @@ const badge=document.getElementById('v2-cart-count');const source=document.getEl
 <script id="v24-functions">
 // VACRE 3.1 — inventory is authoritative. One distinct card name = one catalog entry.
 const v24Catalog=cards.filter((c,i)=>cards.findIndex(x=>x.name===c.name)===i);
-const v24RarityOrder={mythic:0,legendary:1,epic:2,rare:3,common:4};
+const v24RarityOrder={special:-1,mythic:0,legendary:1,epic:2,rare:3,common:4};
 let v24ObtainedAt={};let v24FirstObtainedAt={};window.v24GuestFirstObtained={};
-const v24RarityColors={common:'#a4adb8',rare:'#3889ed',epic:'#a453dc',legendary:'#e4b63b',mythic:'#e94a60'};
+const v24RarityColors={special:'#13dc9a',common:'#a4adb8',rare:'#3889ed',epic:'#a453dc',legendary:'#e4b63b',mythic:'#e94a60'};
 function v24Sort(items,mode){return [...items].sort((a,b)=>mode==='recent'?(Date.parse(b.last_obtained_at||0)||0)-(Date.parse(a.last_obtained_at||0)||0)||v24RarityOrder[a.rarity]-v24RarityOrder[b.rarity]:v24RarityOrder[a.rarity]-v24RarityOrder[b.rarity]||a.name.localeCompare(b.name,'fr'));}
 function v24Owned(){return currentUser?new Set(Object.keys(v23Inventory).filter(n=>v23Inventory[n]>0)):new Set(collection);}
-function v24CardTile(card,qty,highlight){const tile=document.createElement('div');tile.className='collection-card '+(qty>0?card.rarity:'locked')+(highlight?' v24-only':'');const sym=document.createElement('div');sym.className='symbol';sym.textContent=qty>0?card.symbol:'?';const label=document.createElement('strong');label.textContent=qty>0?vacreBotDisplayName(card.name):'???';tile.append(sym,label);if(qty>0){const small=document.createElement('small');small.textContent=rarityText(card.rarity);tile.append(small);if(qty>1){const count=document.createElement('span');count.className='v23-count';count.textContent='×'+qty;tile.append(count)}const first=(window.v24RenderingFirstDates||{})[card.name];if(first && Date.now()-Date.parse(first)>=0 && Date.now()-Date.parse(first)<86400000){const badge=document.createElement('span');badge.className='v24-new-collection';badge.textContent='NOUVEAU';tile.append(badge)}}return tile;}
+function v24CardTile(card,qty,highlight){const tile=document.createElement('div');tile.className='collection-card '+(qty>0?card.rarity:'locked')+(highlight?' v24-only':'');const sym=document.createElement('div');sym.className='symbol';sym.textContent=qty>0?card.symbol:'?';const label=document.createElement('strong');label.textContent=qty>0?vacreBotDisplayName(card.name):'???';tile.append(sym,label);if(qty>0){const small=document.createElement('small');small.textContent=rarityText(card.rarity);tile.append(small);if(qty>1){const count=document.createElement('span');count.className='v23-count';count.textContent='×'+qty;tile.append(count)}const first=(window.v24RenderingFirstDates||{})[card.name];if(first && Date.now()-Date.parse(first)>=0 && Date.now()-Date.parse(first)<86400000){const badge=document.createElement('span');badge.className='v24-new-collection';badge.textContent='NOUVEAU';tile.append(badge)}}if(qty>0&&document.getElementById('collection-grid')===document.querySelector('.collection-grid')){tile.classList.add('v37-evolvable');tile.tabIndex=0;tile.setAttribute('role','button');tile.setAttribute('aria-label','Afficher '+card.name+' et ses évolutions');tile.onclick=()=>v37SelectCard(tile,card,qty);tile.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();v37SelectCard(tile,card,qty)}};}return tile;}
 function v24FillGrid(grid,owned,quantities,mode,dates,compareAgainst){grid.replaceChildren();const items=v24Sort(v24Catalog.map(c=>({...c,last_obtained_at:dates[c.name]||null})),mode);for(const c of items)grid.append(v24CardTile(c,owned.has(c.name),compareAgainst&&owned.has(c.name)&&!compareAgainst.has(c.name)?false:undefined));}
 // More specific renderer for quantities + comparison
 function v24Paint(grid,qty,mode,dates,other,firstDates){grid.replaceChildren();window.v24RenderingFirstDates=firstDates||{};const entries=v24Sort(v24Catalog.map(c=>({...c,last_obtained_at:dates[c.name]||null})),mode);let previousRarity=null;
@@ -4220,7 +4263,7 @@ for(const c of entries){
  if(mode==='rarity' && c.rarity!==previousRarity){
    const heading=document.createElement('h3');
    heading.className='v361-rarity-heading v361-rarity-'+c.rarity;
-   heading.textContent=({common:'COMMUNS',rare:'RARES',epic:'ÉPIQUES',legendary:'LÉGENDAIRES',mythic:'MYTHIQUES'})[c.rarity]||String(c.rarity).toUpperCase();
+   heading.textContent=({common:'COMMUNS',rare:'RARES',epic:'ÉPIQUES',legendary:'LÉGENDAIRES',mythic:'MYTHIQUES',special:'SPÉCIALES'})[c.rarity]||String(c.rarity).toUpperCase();
    grid.append(heading);
    previousRarity=c.rarity;
  }
@@ -5001,7 +5044,7 @@ function v361Status(id,text){const el=document.getElementById(id);if(el)el.textC
 async function v361BuyPack(qty){
  if(v361Busy)return;
  if(!currentUser)return v361Status('v361-buy-status','Connecte-toi pour acheter un pack.');
- const prices={1:125,3:340,5:525};
+ const prices={1:1200,3:3300,5:5000};
  if(!prices[qty])return;
  if(!confirm('Acheter '+qty+' booster(s) pour '+prices[qty]+' urabucks ?'))return;
  v361Busy=true;
@@ -5106,6 +5149,118 @@ window.vacrePetStart=start;window.vacrePetRefresh=start;setInterval(()=>{if(!doc
 
 </script>
 <script id="vacre-pet-nav-hook">(function(){const old=window.v2Navigate;if(typeof old==="function"){window.v2Navigate=function(page){const value=old.apply(this,arguments);if(page==="vacre-pet"&&typeof window.vacrePetStart==="function")window.vacrePetStart();return value;};}})();</script>
+<div id="v37-evolve-modal" hidden role="dialog" aria-modal="true" aria-labelledby="v37-evolve-title"><div class="v37-evolve-box">
+<h3 id="v37-evolve-title">Évolution du Vacre</h3><div class="v37-evolve-card" id="v37-evolve-card">✦</div>
+<p id="v37-evolve-rarity"></p><p id="v37-evolve-level"></p><div class="v37-evolve-bar"><span id="v37-evolve-progress"></span></div>
+<p id="v37-evolve-amount"></p><p id="v37-evolve-status" role="status"></p>
+<div class="v37-evolve-controls"><button type="button" onclick="v37CloseEvolution()">FERMER</button><button class="v37-advance" type="button" id="v37-evolve-button">ÉVOLUER</button></div></div></div>
+<script id="v37-community-evolutions">
+const v37={active:'posts',data:null,levels:new Map(),selected:null,busy:false};
+const v37Node=id=>document.getElementById(id);
+const v37Message=(id,text)=>{const n=v37Node(id);if(n)n.textContent=text||''};
+const v37Date=value=>new Date(value).toLocaleString('fr-FR',{dateStyle:'medium',timeStyle:'short'});
+function v37Show(name){
+ v37.active=name;document.querySelectorAll('[data-v37-tab]').forEach(b=>b.classList.toggle('active',b.dataset.v37Tab===name));
+ document.querySelectorAll('[data-v37-panel]').forEach(p=>p.hidden=p.dataset.v37Panel!==name);
+ if(name==='suggest'){window.v23LoadSuggestions?.()}
+ if(name==='assembly'){window.v36LoadAssembly?.()}
+ if(name==='posts'||name==='requests')v37LoadFeed();
+}
+async function v37Call(name,args={}){
+ if(!currentUser)throw Error('Connecte-toi pour utiliser la communauté');
+ const {data,error}=await supabaseClient.rpc(name,args);if(error)throw error;return data;
+}
+async function v37LoadFeed(){
+ if(!currentUser){v37Message('v37-post-feed','Connecte-toi pour afficher la communauté');v37Message('v37-request-feed','Connecte-toi pour afficher les demandes');return}
+ try{v37.data=await v37Call('vacre_community_feed');v37RenderFeed()}catch(e){v37Message('v37-post-feed','Chargement impossible : '+e.message);v37Message('v37-request-feed','Chargement impossible : '+e.message)}
+}
+function v37RenderFeed(){
+ const posts=v37Node('v37-post-feed'),requests=v37Node('v37-request-feed');posts.replaceChildren();requests.replaceChildren();
+ for(const post of v37.data?.posts||[]){
+  const box=document.createElement('article');box.className='v37-entry';
+  const head=document.createElement('strong');head.textContent=post.username;
+  const date=document.createElement('small');date.textContent=' · '+v37Date(post.created_at);
+  const body=document.createElement('p');body.textContent=post.body;
+  const buttons=document.createElement('div');buttons.className='v37-entry-actions';
+  const btn=document.createElement('button');btn.className='v37-light';btn.textContent=post.author_id===currentUser?.id?'Supprimer':'Signaler';
+  btn.onclick=async()=>{if(!confirm(post.author_id===currentUser?.id?'Supprimer ta publication ?':'Signaler cette publication à la modération ?'))return;try{await v37Call(post.author_id===currentUser?.id?'vacre_community_delete':'vacre_community_report',{p_post:post.id});await v37LoadFeed();alert(post.author_id===currentUser?.id?'Publication supprimée':'Signalement transmis')}catch(e){alert(e.message)}};
+  buttons.append(btn);box.append(head,date,body,buttons);posts.append(box);
+ }
+ if(!posts.children.length)posts.textContent='Aucune publication pour le moment.';
+ for(const req of v37.data?.requests||[]){
+  const box=document.createElement('article');box.className='v37-entry';const head=document.createElement('strong');head.textContent=req.username;
+  const date=document.createElement('small');date.textContent=' · '+v37Date(req.created_at);const p=document.createElement('p');p.textContent='Recherche '+req.quantity+' × '+vacreBotDisplayName(req.card_name);
+  const buttons=document.createElement('div');buttons.className='v37-entry-actions';const btn=document.createElement('button');
+  const owned=Number(v23Inventory?.[req.card_name]||0),enough=owned>=req.quantity,own=req.requester_id===currentUser?.id;
+  btn.textContent=own?'Ta demande':enough?'🎁 Offrir '+req.quantity+' exemplaire(s)':'Stock insuffisant ('+owned+'/'+req.quantity+')';
+  btn.disabled=own||!enough;btn.onclick=async()=>{if(!confirm('Offrir '+req.quantity+' × '+vacreBotDisplayName(req.card_name)+' à '+req.username+' ? Ces cartes quitteront ton inventaire.'))return;btn.disabled=true;try{await v37Call('vacre_community_gift',{p_request:req.id});await window.v23RefreshInventory?.();await v37LoadFeed();alert('Don effectué !')}catch(e){alert(e.message);btn.disabled=false}};
+  buttons.append(btn);box.append(head,date,p,buttons);requests.append(box);
+ }
+ if(!requests.children.length)requests.textContent='Aucune demande en attente.';
+}
+async function v37SendPost(){
+ const text=v37Node('v37-post-text').value.trim(),btn=v37Node('v37-send-post');btn.disabled=true;
+ try{await v37Call('vacre_community_post',{p_body:text});v37Node('v37-post-text').value='';v37Message('v37-post-status','Publication ajoutée !');await v37LoadFeed()}catch(e){v37Message('v37-post-status',e.message)}finally{btn.disabled=false}
+}
+async function v37SendRequest(){
+ const btn=v37Node('v37-send-request');btn.disabled=true;
+ try{await v37Call('vacre_community_request',{p_card:v37Node('v37-request-card').value,p_quantity:Number(v37Node('v37-request-qty').value)});v37Message('v37-request-status','Demande publiée !');await v37LoadFeed()}catch(e){v37Message('v37-request-status',e.message)}finally{btn.disabled=false}
+}
+function v37SelectCard(tile,card,qty){
+ if(!currentUser)return;
+ document.querySelectorAll('#collection-grid .v37-selected').forEach(n=>{n.classList.remove('v37-selected');n.querySelector('.v37-under-button')?.remove()});
+ tile.classList.add('v37-selected');
+ const b=document.createElement('button');b.type='button';b.className='v37-under-button';b.textContent=card.rarity==='special'?'CARTE SPÉCIALE':'ÉVOLUER';
+ b.disabled=card.rarity==='special';b.onclick=e=>{e.stopPropagation();v37OpenEvolution(card)};tile.append(b);
+}
+function v37CloseEvolution(){v37Node('v37-evolve-modal').hidden=true;v37.selected=null}
+async function v37FetchLevels(){
+ if(!currentUser)return;
+ const {data,error}=await supabaseClient.from('vacre_card_levels').select('card_name,level').eq('user_id',currentUser.id);
+ if(!error)v37.levels=new Map((data||[]).map(r=>[r.card_name,r.level]));
+}
+async function v37OpenEvolution(card){
+ v37.selected=card;await v37FetchLevels();v37DrawEvolution();v37Node('v37-evolve-modal').hidden=false;
+}
+function v37DrawEvolution(){
+ const c=v37.selected;if(!c)return;const lvl=Number(v37.levels.get(c.name)||1),cost={common:65,rare:50,epic:30,legendary:10,mythic:5}[c.rarity]||0,n=Number(v23Inventory?.[c.name]||0);
+ v37Node('v37-evolve-title').textContent=vacreBotDisplayName(c.name);
+ v37Node('v37-evolve-card').textContent=c.symbol||'✦';
+ v37Node('v37-evolve-rarity').textContent='Rareté : '+rarityText(c.rarity);
+ v37Node('v37-evolve-level').textContent='Niveau '+lvl+' / 3';
+ v37Node('v37-evolve-progress').style.width=(lvl>=3?100:Math.min(100,n/cost*100))+'%';
+ v37Node('v37-evolve-amount').textContent=lvl>=3?'Niveau maximum atteint':n+' / '+cost+' exemplaires pour atteindre le niveau '+(lvl+1)+' (exemplaires consommés à chaque évolution)';
+ const btn=v37Node('v37-evolve-button');btn.disabled=v37.busy||lvl>=3||n<cost;btn.textContent=lvl>=3?'MAXIMUM':v37.busy?'ÉVOLUTION…':'ÉVOLUER';
+}
+async function v37Evolve(){
+ const c=v37.selected;if(!c||v37.busy)return;v37.busy=true;v37DrawEvolution();
+ try{const res=await v37Call('vacre_card_evolve',{p_card:c.name});await Promise.all([window.v23RefreshInventory?.(),v37FetchLevels()]);window.v24RenderOwn?.();v37Message('v37-evolve-status','Évolution réussie ! '+vacreBotDisplayName(c.name)+' est maintenant niveau '+res.level+'.')}
+ catch(e){v37Message('v37-evolve-status',e.message)}finally{v37.busy=false;v37DrawEvolution()}
+}
+async function v37ShowActivity(uid,root){
+ if(!uid||!root||!currentUser)return;
+ let status=root.querySelector('.v37-activity');if(!status){status=document.createElement('p');status.className='v37-activity';root.prepend(status)}
+ status.textContent='Dernière activité : chargement…';
+ try{const {data,error}=await supabaseClient.rpc('vacre_361_profile_activity',{p_user:uid});if(error)throw error;
+ status.textContent=data?.is_online?'🟢 En ligne':data?.last_seen_at?'Dernière activité : '+v37Date(data.last_seen_at):'Dernière activité : inconnue';}
+ catch(e){status.textContent='Dernière activité indisponible'}
+}
+(function(){
+ for(const b of document.querySelectorAll('[data-v37-tab]'))b.addEventListener('click',()=>v37Show(b.dataset.v37Tab));
+ v37Node('v37-send-post').addEventListener('click',v37SendPost);v37Node('v37-send-request').addEventListener('click',v37SendRequest);
+ v37Node('v37-evolve-button').addEventListener('click',v37Evolve);
+ v37Node('v37-evolve-modal').addEventListener('click',e=>{if(e.target.id==='v37-evolve-modal')v37CloseEvolution()});
+ const select=v37Node('v37-request-card');for(const c of cards.filter(c=>c.rarity!=='special').sort((a,b)=>a.name.localeCompare(b.name,'fr'))){const o=document.createElement('option');o.value=c.name;o.textContent=vacreBotDisplayName(c.name);select.append(o)}
+ const navigate=window.v2Navigate;window.v2Navigate=function(page){const r=navigate.call(this,page==='suggestions'?'assemblee':page);if(page==='assemblee'||page==='suggestions'){v37Show('posts');v37FetchLevels()}if(page==='collection')v37FetchLevels();return r};
+ const oldShow=window.vpShowPublic;if(typeof oldShow==='function')window.vpShowPublic=function(p){const r=oldShow.apply(this,arguments);const root=document.querySelector('#vp-search-results .vp-card');if(root)v37ShowActivity(p.user_id||p.id,root);return r};
+ const oldOwn=window.vpRenderOwn;if(typeof oldOwn==='function')window.vpRenderOwn=async function(...a){const r=await oldOwn.apply(this,a);const root=document.querySelector('#vp-profile-body .vp-card');if(root&&currentUser)v37ShowActivity(currentUser.id,root);return r};
+ const oldFriend=window.v32OpenFriendProfile;if(typeof oldFriend==='function')window.v32OpenFriendProfile=async function(id,...a){const r=await oldFriend.call(this,id,...a);const root=document.getElementById('v32-friend-profile');if(root)v37ShowActivity(id,root);return r};
+ setInterval(()=>{if(currentUser){window.v36Heartbeat?.();if(document.body.dataset.v2Page==='assemblee'&&(v37.active==='posts'||v37.active==='requests'))v37LoadFeed()}},60000);
+ if(currentUser)window.v36Heartbeat?.();
+ if(document.body.dataset.v2Page==='assemblee')v37Show('posts');
+ if(document.body.dataset.v2Page==='collection')v37FetchLevels();
+})();
+</script>
 </body>
 </html>
 
