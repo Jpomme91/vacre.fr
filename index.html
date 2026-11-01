@@ -1512,6 +1512,7 @@ body.vacre-dark .v36-panel,body.vacre-dark .v36-proposal{background:#232724;colo
 
 #vacre-pet{padding:30px 18px 80px;min-height:76vh}#vacre-pet .pet-wrap{margin:0 auto;padding:8px;max-width:1050px;color:#292719}#vacre-pet .pet-head{position:static;display:block;min-height:0;height:auto;background:#ead584;border:3px solid #292719;border-radius:24px;padding:25px;box-shadow:7px 7px #292719;color:#292719}#vacre-pet .pet-panel{color:#292719}#vacre-pet .pet-adopt-preview{margin:18px 0;background:#f5f1e3;border-radius:18px;padding:14px}#vacre-pet .pet-adopt-preview h3{text-align:center;margin:0 0 10px}#vacre-pet .pet-preview{height:245px}#vacre-pet .pet-preview .pet-creature{scale:.78}#vacre-pet .pet-create-row{margin-top:14px}#vacre-pet .pet-create-row button{min-height:52px}#vacre-pet .pet-countdown{font-size:1.35rem;font-weight:900;letter-spacing:.06em}@media(max-width:760px){#vacre-pet{padding:15px 8px 45px}#vacre-pet .pet-head{padding:18px}#vacre-pet .pet-grid{grid-template-columns:1fr}}
 </style>
+<script id="vacre-urabot-display-compat">function vacreBotDisplayName(name){return String(name ?? "").replace(/\bdu (?:Vacre|Ura) Bot\b/gi,"de l’Urabot")}</script>
 </head>
 
 <body>
@@ -2492,14 +2493,14 @@ const cards = [
 
 /* URA BOT : huit composants légendaires distincts */
 cards.push(
-{name:"Tête du Ura Bot",rarity:"legendary",symbol:"⚙"},
-{name:"Bras gauche du Ura Bot",rarity:"legendary",symbol:"⚙"},
-{name:"Bras droit du Ura Bot",rarity:"legendary",symbol:"⚙"},
-{name:"Jambe gauche du Ura Bot",rarity:"legendary",symbol:"⚙"},
-{name:"Jambe droite du Ura Bot",rarity:"legendary",symbol:"⚙"},
-{name:"Corps du Ura Bot",rarity:"legendary",symbol:"⚙"},
-{name:"Arme du Ura Bot",rarity:"legendary",symbol:"⚙"},
-{name:"Bite du Ura Bot",rarity:"legendary",symbol:"⚙"}
+{name:"Tête du Vacre Bot",rarity:"legendary",symbol:"⚙"},
+{name:"Bras gauche du Vacre Bot",rarity:"legendary",symbol:"⚙"},
+{name:"Bras droit du Vacre Bot",rarity:"legendary",symbol:"⚙"},
+{name:"Jambe gauche du Vacre Bot",rarity:"legendary",symbol:"⚙"},
+{name:"Jambe droite du Vacre Bot",rarity:"legendary",symbol:"⚙"},
+{name:"Corps du Vacre Bot",rarity:"legendary",symbol:"⚙"},
+{name:"Arme du Vacre Bot",rarity:"legendary",symbol:"⚙"},
+{name:"Bite du Vacre Bot",rarity:"legendary",symbol:"⚙"}
 );
 
 /* VACRE 3.1 : sept nouveaux Vacres */
@@ -2618,7 +2619,7 @@ ${unlocked ? card.symbol : "?"}
 
 <strong>
 
-${unlocked ? card.name : "???"}
+${unlocked ? vacreBotDisplayName(card.name) : "???"}
 
 </strong>
 
@@ -4071,7 +4072,7 @@ const v23Rates={common:2,rare:5,epic:10,legendary:30,mythic:70};
 let v23Inventory={};let v23WheelBonus=0;
 function v23Msg(id,s){const el=document.getElementById(id);if(el)el.textContent=s;}
 function v23Card(name){return cards.find(c=>c.name===name)}
-function v23Select(id,names){const s=document.getElementById(id);if(!s)return;s.replaceChildren();names.forEach(name=>{const o=document.createElement('option');o.value=name;o.textContent=name+(v23Inventory[name]?' (×'+v23Inventory[name]+')':'');s.append(o)});}
+function v23Select(id,names){const s=document.getElementById(id);if(!s)return;s.replaceChildren();names.forEach(name=>{const o=document.createElement('option');o.value=name;o.textContent=vacreBotDisplayName(name)+(v23Inventory[name]?' (×'+v23Inventory[name]+')':'');s.append(o)});}
 function v23DecorateCollection(){const root=document.getElementById('collection-grid');if(!root)return;const tiles=root.querySelectorAll('.collection-card');cards.forEach((c,i)=>{const tile=tiles[i];if(!tile)return;tile.querySelector('.v23-count')?.remove();const n=v23Inventory[c.name]||0;if(n){const b=document.createElement('span');b.className='v23-count';b.textContent='×'+n;tile.append(b);}})}
 async function v23RefreshInventory(){if(!currentUser){v23Inventory=Object.fromEntries(collection.map(n=>[n,1]));v23WheelBonus=0;v23DecorateCollection();return;}try{const {data,error}=await supabaseClient.rpc('vacre_inventory_status');if(error)throw error;v23Inventory=Object.fromEntries((data.items||[]).map(x=>[x.name,Number(x.quantity)]));v23WheelBonus=Number(data.wheel_bonus||0);v23Msg('wheel-bonus-count',String(v23WheelBonus));v23DecorateCollection();v23Select('v23-convert-card',Object.keys(v23Inventory).filter(n=>v23Inventory[n]>0));v23UpdateQuote();window.v31BulkQuote?.();}catch(e){console.warn('Inventaire 2.3 :',e.message);}}
 function v23UpdateQuote(){
@@ -4211,7 +4212,7 @@ let v24ObtainedAt={};let v24FirstObtainedAt={};window.v24GuestFirstObtained={};
 const v24RarityColors={common:'#a4adb8',rare:'#3889ed',epic:'#a453dc',legendary:'#e4b63b',mythic:'#e94a60'};
 function v24Sort(items,mode){return [...items].sort((a,b)=>mode==='recent'?(Date.parse(b.last_obtained_at||0)||0)-(Date.parse(a.last_obtained_at||0)||0)||v24RarityOrder[a.rarity]-v24RarityOrder[b.rarity]:v24RarityOrder[a.rarity]-v24RarityOrder[b.rarity]||a.name.localeCompare(b.name,'fr'));}
 function v24Owned(){return currentUser?new Set(Object.keys(v23Inventory).filter(n=>v23Inventory[n]>0)):new Set(collection);}
-function v24CardTile(card,qty,highlight){const tile=document.createElement('div');tile.className='collection-card '+(qty>0?card.rarity:'locked')+(highlight?' v24-only':'');const sym=document.createElement('div');sym.className='symbol';sym.textContent=qty>0?card.symbol:'?';const label=document.createElement('strong');label.textContent=qty>0?card.name.replace(/\bdu Ura Bot\b/gi,'de l’urabot'):'???';tile.append(sym,label);if(qty>0){const small=document.createElement('small');small.textContent=rarityText(card.rarity);tile.append(small);if(qty>1){const count=document.createElement('span');count.className='v23-count';count.textContent='×'+qty;tile.append(count)}const first=(window.v24RenderingFirstDates||{})[card.name];if(first && Date.now()-Date.parse(first)>=0 && Date.now()-Date.parse(first)<86400000){const badge=document.createElement('span');badge.className='v24-new-collection';badge.textContent='NOUVEAU';tile.append(badge)}}return tile;}
+function v24CardTile(card,qty,highlight){const tile=document.createElement('div');tile.className='collection-card '+(qty>0?card.rarity:'locked')+(highlight?' v24-only':'');const sym=document.createElement('div');sym.className='symbol';sym.textContent=qty>0?card.symbol:'?';const label=document.createElement('strong');label.textContent=qty>0?vacreBotDisplayName(card.name):'???';tile.append(sym,label);if(qty>0){const small=document.createElement('small');small.textContent=rarityText(card.rarity);tile.append(small);if(qty>1){const count=document.createElement('span');count.className='v23-count';count.textContent='×'+qty;tile.append(count)}const first=(window.v24RenderingFirstDates||{})[card.name];if(first && Date.now()-Date.parse(first)>=0 && Date.now()-Date.parse(first)<86400000){const badge=document.createElement('span');badge.className='v24-new-collection';badge.textContent='NOUVEAU';tile.append(badge)}}return tile;}
 function v24FillGrid(grid,owned,quantities,mode,dates,compareAgainst){grid.replaceChildren();const items=v24Sort(v24Catalog.map(c=>({...c,last_obtained_at:dates[c.name]||null})),mode);for(const c of items)grid.append(v24CardTile(c,owned.has(c.name),compareAgainst&&owned.has(c.name)&&!compareAgainst.has(c.name)?false:undefined));}
 // More specific renderer for quantities + comparison
 function v24Paint(grid,qty,mode,dates,other,firstDates){grid.replaceChildren();window.v24RenderingFirstDates=firstDates||{};const entries=v24Sort(v24Catalog.map(c=>({...c,last_obtained_at:dates[c.name]||null})),mode);let previousRarity=null;
@@ -4491,7 +4492,7 @@ const oldNav=window.v2Navigate;window.v2Navigate=function(page){oldNav(page);if(
 <script>
 /* URA BOT 3.0 — Supabase is the only authority for ownership and rewards. */
 (function(){
- const names=['Tête du Ura Bot','Bras gauche du Ura Bot','Bras droit du Ura Bot','Jambe gauche du Ura Bot','Jambe droite du Ura Bot','Corps du Ura Bot','Arme du Ura Bot','Bite du Ura Bot'];
+ const names=['Tête du Vacre Bot','Bras gauche du Vacre Bot','Bras droit du Vacre Bot','Jambe gauche du Vacre Bot','Jambe droite du Vacre Bot','Corps du Vacre Bot','Arme du Vacre Bot','Bite du Vacre Bot'];
  let qty=Array(8).fill(0),rewarded=false,selected=0,loading=false,ready=false,prev=Array(8).fill(false);
  const el=id=>document.getElementById(id);
  function paint(){
@@ -4500,7 +4501,7 @@ const oldNav=window.v2Navigate;window.v2Navigate=function(page){oldNav(page);if(
   names.forEach((name,i)=>{
    const owned=qty[i]>0,entry=document.createElement('button');entry.type='button';entry.className='vb-entry'+(owned?' vb-yes':'')+(selected===i?' vb-active':'');
    const num=document.createElement('span');num.className='vb-number';num.textContent=String(i+1).padStart(2,'0')+'/08';
-   const label=document.createElement('span');label.className='vb-name';label.textContent=name;
+   const label=document.createElement('span');label.className='vb-name';label.textContent=vacreBotDisplayName(name);
    const amount=document.createElement('span');amount.className='vb-qty';amount.textContent=owned?'×'+qty[i]:'🔒';
    entry.append(num,label,amount);entry.onclick=()=>{selected=i;paint()};list.append(entry);
    document.querySelectorAll('[data-vb-part="'+(i+1)+'"] .vb-part,[data-vb-part="'+(i+1)+'"] .vb-detail').forEach(path=>path.classList.toggle('vb-owned',owned));
@@ -4508,7 +4509,7 @@ const oldNav=window.v2Navigate;window.v2Navigate=function(page){oldNav(page);if(
    if(ready&&owned&&!prev[i]){document.querySelectorAll('[data-vb-part="'+(i+1)+'"] .vb-part').forEach(path=>{path.classList.remove('vb-revealed');void path.getBoundingClientRect();path.classList.add('vb-revealed')})}
   });
   prev=qty.map(x=>x>0);ready=true;
-  el('vb-status').textContent=names[selected]+' · '+(qty[selected]>0?'LÉGENDAIRE · '+qty[selected]+' exemplaire(s) possédé(s). Cette partie est active.':'LÉGENDAIRE · Non possédée. Cette partie reste grise.');
+  el('vb-status').textContent=vacreBotDisplayName(names[selected])+' · '+(qty[selected]>0?'LÉGENDAIRE · '+qty[selected]+' exemplaire(s) possédé(s). Cette partie est active.':'LÉGENDAIRE · Non possédée. Cette partie reste grise.');
   el('vb-activate').disabled=loading||count!==8||rewarded||!currentUser;
   el('vb-activate').textContent=rewarded?'RÉCOMPENSE DÉJÀ OBTENUE':count===8?'ACTIVER LE URA BOT':'ENCORE '+(8-count)+' PIÈCE(S)';
   el('vb-reward-info').textContent=rewarded?'Carte mythique exclusive débloquée définitivement ! Tu peux ensuite échanger tes pièces, mais le robot reflétera toujours ton inventaire actuel.':'Réunis les huit pièces différentes simultanément pour débloquer ta carte mythique exclusive, une seule fois par compte.';
@@ -4638,7 +4639,7 @@ window.addEventListener('load',()=>{v311Coins();v311RestoreNotice();if(document.
    On mémorise la dernière collection consultée par utilisateur, pas un booléen
    qui reste bloqué à vrai. Aucun badge lors de la première installation. */
 (function(){
-const BOT_PARTS=new Set(['Tête du Ura Bot','Bras gauche du Ura Bot','Bras droit du Ura Bot','Jambe gauche du Ura Bot','Jambe droite du Ura Bot','Corps du Ura Bot','Arme du Ura Bot','Bite du Ura Bot']);
+const BOT_PARTS=new Set(['Tête du Vacre Bot','Bras gauche du Vacre Bot','Bras droit du Vacre Bot','Jambe gauche du Vacre Bot','Jambe droite du Vacre Bot','Corps du Vacre Bot','Arme du Vacre Bot','Bite du Vacre Bot']);
 function key(){return currentUser?.id||null}
 function owned(){return new Set(Object.entries(v23Inventory||{}).filter(([,q])=>Number(q)>0).map(([n])=>n))}
 function readSeen(uid){try{const raw=localStorage.getItem('v312-seen-'+uid);if(!raw)return null;const parsed=JSON.parse(raw);return Array.isArray(parsed)?new Set(parsed):null}catch{return null}}
