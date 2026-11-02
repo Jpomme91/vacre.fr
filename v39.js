@@ -20,10 +20,16 @@ async function v39RefreshShop(){
 async function v39Cards(){
  await v23RefreshInventory();
  const sel=v39El('v39-card'),previous=sel.value;sel.replaceChildren();
- Object.keys(v23Inventory||{}).filter(n=>v23Inventory[n]>0&&cards.some(c=>c.name===n&&c.rarity!=='special'))
- .sort((a,b)=>{const order={common:0,rare:1,epic:2,legendary:3,mythic:4};return (order[cards.find(c=>c.name===b)?.rarity]||0)-(order[cards.find(c=>c.name===a)?.rarity]||0)})
- .forEach(n=>{const c=cards.find(c=>c.name===n),o=document.createElement('option');o.value=n;o.textContent=n+' · '+c.rarity+' ×'+v23Inventory[n];sel.append(o)});
- if([...sel.options].some(o=>o.value===previous))sel.value=previous;
+ try{
+  const {data,error}=await supabaseClient.rpc('vacre_41_get_deck');if(error)throw error;
+  const available=(data.cards||[]).filter(c=>c.amount>0&&v23Inventory[c.name]>0);
+  for(const c of available){
+   const option=document.createElement('option');option.value=c.name;
+   option.textContent='CASE '+c.slot+' · '+c.name+' · NIV. '+c.level+' · ×'+Math.min(c.amount,v23Inventory[c.name]);sel.append(option);
+  }
+  if([...sel.options].some(o=>o.value===previous))sel.value=previous;
+  if(!available.length&&!v39Done)v39Say('⚠ Ton deck de combat est vide ! Ouvre ton profil, prépare tes 5 emplacements, puis reviens combattre.');
+ }catch(e){v39Say('Deck indisponible : '+e.message)}
  v39El('v39-attack').disabled=sel.options.length===0||v39Busy||v39Done;
 }
 function v39Draw(s){
@@ -42,7 +48,7 @@ async function v39Start(qty){
   const {data:current,error:err}=await supabaseClient.rpc('vacre_39_battle_state');if(err)throw err;
   if(current.active){v39Done=false;v39Draw(current);return}
   const {data:q,error:qe}=await supabaseClient.rpc('vacre_39_quote',{p_quantity:qty});if(qe)throw qe;
-  if(!q.can_fraud)throw Error('Plus de 10 000 U nécessaires');
+  if(!q.can_fraud)throw Error('5 000 U minimum nécessaires');
   if(!confirm('MINISTÈRE DES FINANCES\n\nPour ce combat, '+v39Money(q.price+2*q.tax)+' U seront mis de côté.\nVictoire : taxe annulée et jusqu’à 5 cartes gagnées.\nDéfaite : taxe doublée.\nChaque carte jouée est consommée.\nAbandon : taxe normale.\n\nDéfier l’huissier ?'))return;
   const {data,error}=await supabaseClient.rpc('vacre_39_fight_start',{p_quantity:qty});if(error)throw error;
   v39Done=false;v39Draw(data);v39Say('L’huissier est furieux ! Choisis une carte pour attaquer.');loadMarketWallet();
@@ -50,17 +56,26 @@ async function v39Start(qty){
 }
 async function v39Attack(){
  if(v39Busy||v39Done||!v39Active)return;const card=v39El('v39-card').value;if(!card)return;
- v39Busy=true;v39El('v39-attack').disabled=true;v39Say('⚔ '+card+' attaque !');
+ v39Busy=true;v39El('v39-attack').disabled=true;v39Say('⚔ Tu utilises '+card+' !');
  try{
   const {data,error}=await supabaseClient.rpc('vacre_39_fight_turn',{p_card:card});if(error)throw error;
+  const battle=v39El('v39-battle');
+  const world=battle.querySelector('.v39-world');
+  const play=world?.querySelector('.v39-sprite.player'),enemy=world?.querySelector('.v39-sprite.enemy');
+  const flash=(node,cls)=>{if(!node)return;node.classList.remove(cls);void node.getBoundingClientRect();node.classList.add(cls);setTimeout(()=>node.classList.remove(cls),900)};
+  flash(play,'v41-attack-fx');flash(enemy,'v41-hit-fx');
+  if(data.player_critical)flash(world,'v41-critical-fx');
+  const popup=document.createElement('div');popup.className='v41-float-damage';popup.textContent='−'+data.player_damage+(data.player_critical?' CRITIQUE !':'');world?.append(popup);setTimeout(()=>popup.remove(),1250);
+  if(data.enemy_damage>0){setTimeout(()=>{flash(enemy,'v41-attack-fx');flash(play,'v41-hit-fx');const hit=document.createElement('div');hit.className='v41-float-damage v41-player-damage';hit.textContent='−'+data.enemy_damage+(data.enemy_critical?' CRITIQUE !':'');world?.append(hit);setTimeout(()=>hit.remove(),1200)},650)}
   v39Draw({...v39Active,hp:data.hp,enemy_hp:data.enemy_hp,enemy_cards:data.enemy_cards,used_cards:data.used_cards,turns:(v39Active.turns||0)+1});
+  const narration='Tu utilises '+card+' (niveau '+(data.player_level||1)+') : '+data.player_damage+' dégâts'+(data.player_critical?' — COUP CRITIQUE !':'')+'. '+(data.enemy_damage>0?'L’huissier utilise '+(data.enemy_play||'un Vacre')+' : '+data.enemy_damage+' dégâts'+(data.enemy_critical?' — CRITIQUE !':'')+'.':'L’huissier ne peut pas riposter.');
+  v39Say(narration);
   if(data.status==='won'||data.status==='lost'){
    v39Done=true;
-   v39Say(data.status==='won'?'🏆 VICTOIRE ! Taxe annulée et '+data.recovered+' cartes ennemies gagnées !':'💀 DÉFAITE ! Taxe doublée : '+v39Money(data.tax)+' U.');
-   v39El('v39-attack').disabled=true;
-   v39El('v39-abandon').textContent='FERMER';
+   setTimeout(()=>v39Say(narration+' '+(data.status==='won'?'🏆 VICTOIRE ! Taxe annulée, '+data.recovered+' Vacres gagnés.':'💀 DÉFAITE ! Taxe doublée : '+v39Money(data.tax)+' U.')),850);
+   v39El('v39-attack').disabled=true;v39El('v39-abandon').textContent='FERMER';
    await Promise.allSettled([refreshServerBoosters(),loadMarketWallet(),v23RefreshInventory(),v39RefreshShop()]);
-  }else v39Say(card+' : '+data.player_damage+' dégâts'+(data.player_critical?' CRITIQUE !':'')+' · L’huissier envoie '+(data.enemy_play||'un Vacre')+' : '+data.enemy_damage+' dégâts.');
+  }
  }catch(e){v39Say('Attaque refusée : '+e.message)}
  finally{v39Busy=false;if(!v39Done)v39Cards()}
 }
