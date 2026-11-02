@@ -1559,7 +1559,7 @@ body.vacre-dark .v36-panel,body.vacre-dark .v36-proposal{background:#232724;colo
 html,body,body *:not(svg):not(svg *),body *:not(svg):not(svg *)::before,body *:not(svg):not(svg *)::after{font-family:'Nunito',Arial,sans-serif!important;}
 </style>
 <style id="v38-styles">
-body[data-v2-page="journal"] #journal{display:block}#journal{display:none}
+body[data-v2-page="journal"] #journal{display:block}#journal{display:none;background:#1d211d;min-height:75vh}
 .v38-wrap{max-width:1150px;margin:auto;padding:52px max(18px,4vw) 90px;color:#efede3}.v38-wrap h2{font-size:clamp(31px,5vw,62px);font-weight:900;color:#d9c362;margin:14px 0}.v38-sub{opacity:.8;margin-bottom:25px}
 .v38-level-card{display:flex;align-items:center;gap:19px;padding:24px;border:1px solid #b09b56;background:#282b26;border-radius:19px;margin-bottom:22px}
 .v38-level-circle{width:75px;height:75px;flex:none;background:#e0cb67;color:#24251b;border-radius:19px;display:grid;place-items:center;font-size:32px;font-weight:900}
@@ -5017,7 +5017,7 @@ const v36OldShowPublic=window.vpShowPublic;window.vpShowPublic=function(p){const
 const v36OldRenderOwn=window.vpRenderOwn;window.vpRenderOwn=async function(...a){const ret=await v36OldRenderOwn?.apply(this,a);await v36UpdateOwnPresence();return ret;};
 function v36SafeText(tag,text,klass){const e=document.createElement(tag);e.textContent=String(text||'');if(klass)e.className=klass;return e}
 async function v36LoadAssembly(){const root=document.getElementById('v36-proposal-list');if(!root)return;root.replaceChildren();if(!currentUser){root.textContent='Connecte-toi pour consulter et voter.';return}try{const {data,error}=await supabaseClient.rpc('vacre_36_assembly');if(error)throw error;if(!data?.length){root.textContent='Aucune proposition pour le moment.';return}for(const p of data){const a=v36SafeText('article','', 'v36-proposal');a.append(v36SafeText('h3',p.title),v36SafeText('p',p.description),v36SafeText('small',p.votes+' vote(s)'));const b=v36SafeText('button',p.my_vote?'Retirer mon vote':'Voter pour cette idée');b.onclick=async()=>{b.disabled=true;try{const {error}=await supabaseClient.rpc('vacre_36_vote',{p_proposal:p.id,p_vote:!p.my_vote});if(error)throw error;await v36LoadAssembly()}catch(e){alert(e.message);b.disabled=false}};a.append(b);root.append(a)}}catch(e){root.textContent='Assemblée indisponible : '+e.message}}
-async function v36LoadPromos(){const el=document.getElementById('v36-promo-banner');if(!el)return;el.hidden=true;if(!currentUser)return;try{const {data,error}=await supabaseClient.rpc('vacre_36_active_promotions');if(error)throw error;const p=(data||[])[0];if(p){el.textContent='✦ PROMOTION VACRE 3.6.1 · '+p.label+' · jusqu’au '+new Date(p.ends_at).toLocaleString('fr-FR');el.hidden=false}}catch(e){console.warn('Promotions:',e.message)}}
+async function v36LoadPromos(){const el=document.getElementById('v36-promo-banner');if(!el)return;el.hidden=true;if(!currentUser)return;try{const {data,error}=await supabaseClient.rpc('vacre_36_active_promotions');if(error)throw error;const p=(data||[])[0];if(p){el.textContent='✦ PROMOTION VACRE 3.8 · '+p.label+' · jusqu’au '+new Date(p.ends_at).toLocaleString('fr-FR');el.hidden=false}}catch(e){console.warn('Promotions:',e.message)}}
 window.addEventListener('DOMContentLoaded',()=>{
  const form=document.getElementById('v36-assembly-form');form?.addEventListener('submit',async e=>{e.preventDefault();const status=document.getElementById('v36-assembly-status');if(!currentUser){status.textContent='Connecte-toi pour proposer.';return}const btn=form.querySelector('button');btn.disabled=true;try{const {error}=await supabaseClient.rpc('vacre_36_propose',{p_title:document.getElementById('v36-proposal-title').value,p_description:document.getElementById('v36-proposal-desc').value});if(error)throw error;form.reset();status.textContent='Proposition enregistrée !';await v36LoadAssembly()}catch(ex){status.textContent=ex.message}finally{btn.disabled=false}});
  setTimeout(()=>{v36Heartbeat();v36LoadPromos();v36LoadPresence().catch(()=>{})},1500);
@@ -5319,7 +5319,7 @@ function v38Paint(){
   const box=document.createElement('article');box.className='v38-mission';
   const h=document.createElement('h3');h.textContent=m.title;const desc=document.createElement('p');desc.textContent=m.desc;
   const progress=document.createElement('div');progress.className='v38-progress';const fill=document.createElement('i');fill.style.width=Math.min(100,100*p/target)+'%';progress.append(fill);
-  const detail=document.createElement('small');detail.textContent=Math.min(p,target)+' / '+target+(m.kind==='daily'?' · se renouvelle chaque jour':m.kind==='weekly'?' · se renouvelle chaque lundi':'');
+  const detail=document.createElement('small');detail.textContent=(m.previous?'⌛ Ancienne mission du '+m.period+' · ':'')+Math.min(p,target)+' / '+target+(m.kind==='daily'?' · se renouvelle chaque jour':m.kind==='weekly'?' · se renouvelle chaque lundi':'');
   const prize=document.createElement('small');prize.textContent=[m.reward?.xp?m.reward.xp+' XP':null,m.reward?.coins?Number(m.reward.coins).toLocaleString('fr-FR')+' urabucks':null,m.reward?.boosters?m.reward.boosters+' booster(s)':null].filter(Boolean).join(' · ');
   const footer=document.createElement('div');footer.className='v38-bottom';const badge=document.createElement('small');badge.textContent=m.claimed?'✅ Récupérée':ready?'🎉 Prête à récupérer':'En cours';
   const btn=document.createElement('button');btn.type='button';btn.textContent=m.claimed?'Récupérée':ready?'RÉCUPÉRER':'VERROUILLÉ';btn.disabled=m.claimed||!ready||v38State.busy;btn.onclick=()=>v38Claim(m.kind,m.key,m.period);
@@ -5347,6 +5347,9 @@ function v38ProfileUpdate(){
  document.querySelectorAll('[data-v38-tab]').forEach(b=>b.addEventListener('click',()=>v38SetTab(b.dataset.v38Tab)));
  const prev=window.v2Navigate;window.v2Navigate=function(page,...args){const result=prev.call(this,page,...args);if(page==='journal'||page==='profil')v38Refresh();return result};
  window.v38Refresh=v38Refresh;
+ const v38OldOwn=window.vpRenderOwn;
+ if(typeof v38OldOwn==='function')window.vpRenderOwn=async function(...args){const result=await v38OldOwn.apply(this,args);await v38Refresh();return result};
+
  if(document.body.dataset.v2Page==='journal'||document.body.dataset.v2Page==='profil')v38Refresh();
  setInterval(()=>{if(currentUser&&(document.body.dataset.v2Page==='journal'||document.body.dataset.v2Page==='profil'))v38Refresh()},45000);
 })();
