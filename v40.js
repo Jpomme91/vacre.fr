@@ -46,12 +46,13 @@ function v40DrawPoints(){
   const dist=Math.hypot(x-p.x,y-p.y);
   if(dist>24)continue;
   const b=document.createElement('button');b.type='button';b.className='v40-node';b.style.left=p.x+'%';b.style.top=p.y+'%';b.title='Éliminer anomalie '+p.id;b.setAttribute('aria-label','Éliminer anomalie '+p.id);
-  b.onclick=e=>{e.stopPropagation();v40Fix(p.id)};root.append(b);
+  b.addEventListener('pointerdown',e=>{e.preventDefault();e.stopPropagation();v40Fix(p.id)});b.addEventListener('pointermove',e=>e.stopPropagation());b.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();v40Fix(p.id)});root.append(b);
  }
  const done=v40ScanData.resolved?.length||0;
  v40El('v40-progress').textContent=done+'/'+(v40ScanData.points?.length||0)+' anomalies éliminées';
 }
 function v40Move(e){
+ if(e.target?.closest?.('.v40-node'))return;
  const area=v40El('v40-canvas');if(!area||!v40ScanData?.infected)return;
  const r=area.getBoundingClientRect();v40Coord.x=Math.min(100,Math.max(0,100*(e.clientX-r.left)/r.width));v40Coord.y=Math.min(100,Math.max(0,100*(e.clientY-r.top)/r.height));
  v40El('v40-scanner-line').style.top=v40Coord.y+'%';v40DrawPoints();
