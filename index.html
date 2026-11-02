@@ -3221,7 +3221,7 @@ ${card.name}
 
 </strong>
 ${window.v24LastOpenedNew?.has(card.name) ? '<span class="v24-new-result">NOUVEAU</span>' : ''}
-<small class="v243-owned">${Number(window.v243PreCounts?.[card.name]||0)} exemplaire(s) avant ouverture</small>
+<small class="v243-owned">${card.is_urabucks ? "+"+card.amount+" urabucks crédités" : Number(window.v243PreCounts?.[card.name]||0)+" exemplaire(s) avant ouverture"}</small>
 
 <small>
 
@@ -3275,7 +3275,7 @@ cardsOpened[i],
 i+1,
 cardsOpened.length
 );
-if(!v23PreviouslyOwned.has(cardsOpened[i].name)&&!v23Seen.has(cardsOpened[i].name)){
+if(!cardsOpened[i].is_urabucks&&!v23PreviouslyOwned.has(cardsOpened[i].name)&&!v23Seen.has(cardsOpened[i].name)){
  window.v24LastOpenedNew.add(cardsOpened[i].name);if(!currentUser)window.v24GuestFirstObtained[cardsOpened[i].name] ||= new Date().toISOString();
  const st=document.getElementById('reveal-stage');const badge=document.createElement('div');badge.className='v23-new';badge.textContent='NOUVEAU';st.append(badge);await sleep(1050);
 }
@@ -3324,8 +3324,7 @@ showResults(
 cardsOpened
 );
 v28Controls(false);
-window.v23PreviouslyOwned=null;
-if(currentUser)window.v23RefreshInventory?.();else window.v24RenderOwn?.();
+window.v23PreviouslyOwned=null; if(currentUser){window.v23RefreshInventory?.();window.loadMarketWallet?.();window.v38Refresh?.();}else window.v24RenderOwn?.();
 
 
 opening=false;
@@ -3351,7 +3350,7 @@ async function vacreOpenPacks(amount){
    const {data,error}=await supabaseClient.rpc('vacre_open_boosters',{p_count:amount});if(error)throw error;
    window.vacreLastGodPack=data.packs.some(p=>p.god);
    window.v36Surprises=(data.packs||[]).map(p=>p.surprise_id).filter(Boolean);
-   packs=data.packs.map(p=>p.cards.map(c=>cards.find(x=>x.name===c.name)||c));
+   packs=data.packs.map(p=>p.cards.map(c=>cards.find(x=>x.name===c.name)||c));window.v38LastLoot=Number(data.urabucks_awarded||0);
    collection=Array.isArray(data.collection)?data.collection:collection;
    boosterStock=Number(data.stock);updateBoosterStock(false);renderCollection();
   }else{
@@ -4640,7 +4639,7 @@ function v311FriendActions(card,id,username){const existing=card.querySelector('
 // Garder le même profil, mais insérer la collection sous sa fiche.
 const v311OldInline=window.v31ShowFriendInline;window.v31ShowFriendInline=async function(id,name,root){await v311OldInline(id,name,root);const card=root.querySelector('.vp-card');if(card)v311FriendActions(card,id,name)};
 const v311OldOpen=window.v32OpenFriendProfile;window.v32OpenFriendProfile=async function(id,name){await v311OldOpen(id,name);const card=document.querySelector('#v32-friend-profile .vp-card');if(card)v311FriendActions(card,id,name)};
-async function v311PromoRedeem(){const field=document.getElementById('v311-promo-input'),msg=document.getElementById('v311-promo-status'),btn=document.getElementById('v311-promo-button');if(!field||!msg)return;if(!currentUser){msg.textContent='Connecte-toi pour utiliser un code.';return;}const code=field.value.trim().toLowerCase();if(!code)return;btn.disabled=true;msg.textContent='Vérification du code…';try{const {data,error}=await supabaseClient.rpc('vacre_311_redeem_code',{p_code:code});if(error)throw error;field.value='';msg.textContent=data.message||'Récompense attribuée !';await Promise.allSettled([v23RefreshInventory(),loadMarketWallet(),v28Completion()]);if(code==='vacre'){msg.textContent='Deux boosters disponibles ! Ouverture du premier…';await v23RefreshInventory();for(let i=0;i<2;i++){if(!currentUser)break;const go=await v28PackIntro('🎁 BOOSTER PROMO '+(i+1)+'/2');if(!go){msg.textContent='Tes boosters non ouverts restent disponibles dans la rubrique des boosters de la roue.';break;}await v23OpenWheel(1);await v23RefreshInventory();}msg.textContent='Tes boosters ont été ajoutés. Ceux non ouverts restent disponibles.';}else if(code==='ura'||code==='caca'){msg.textContent=code==='ura'?'Trois Vacres épiques ont été ajoutés à ta collection !':'Vacre Caca a été ajouté à ta collection !';}}catch(e){msg.textContent='Code non activé : '+e.message}finally{btn.disabled=false;v311Coins()}}
+async function v311PromoRedeem(){const field=document.getElementById('v311-promo-input'),msg=document.getElementById('v311-promo-status'),btn=document.getElementById('v311-promo-button');if(!field||!msg)return;if(!currentUser){msg.textContent='Connecte-toi pour utiliser un code.';return}const code=field.value.trim().toLowerCase();if(!code)return;btn.disabled=true;msg.textContent='Vérification du code…';try{const {data,error}=await supabaseClient.rpc('vacre_311_redeem_code',{p_code:code});if(error)throw error;field.value='';msg.textContent=data.message||'Récompense attribuée !';await Promise.allSettled([v23RefreshInventory(),loadMarketWallet(),refreshServerBoosters()]);if(code==='ntm'&&data.surprise_id){msg.textContent='🪨 Rocher Surprise débloqué !';await v36RockQTE(data.surprise_id);msg.textContent='QTE terminé !'}else if(code==='vacre'){msg.textContent='Deux boosters ajoutés au stock principal !'}else if(code==='ura'||code==='caca'){msg.textContent=code==='ura'?'Trois Vacres épiques ajoutés à ta collection !':'Vacre Caca a été ajouté à ta collection !'}}catch(e){msg.textContent='Code non activé : '+e.message}finally{btn.disabled=false;v311Coins();window.v38Refresh?.()}}
 function v311PromoUI(){const root=document.getElementById('vp-settings-body');if(!root||document.getElementById('v311-promo-input'))return;const card=vpCard('🎁 Codes promo');card.classList.add('v311-promo');card.append(vpNode('p','Chaque code est utilisable une seule fois par compte.','vp-muted'));const input=document.createElement('input');input.id='v311-promo-input';input.placeholder='Entrer un code promo';input.autocomplete='off';input.maxLength=40;const btn=vpButton('ACTIVER LE CODE',v311PromoRedeem);btn.id='v311-promo-button';const status=vpNode('p','','vp-muted');status.id='v311-promo-status';card.append(input,btn,status);root.append(card)}
 const v311OldSettings=window.vpRenderSettings;window.vpRenderSettings=function(...args){const r=v311OldSettings.apply(this,args);v311PromoUI();return r};
 // Corrige les halos sur les grilles triées, sans dépendre de l'ordre historique des cartes.
