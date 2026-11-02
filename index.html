@@ -5294,7 +5294,7 @@ const v38Text=(id,s)=>{const e=document.getElementById(id);if(e)e.textContent=St
 const v38Title={booster:['Le collectionneur','Ouvrir 6 boosters'],pet:['Le compagnon fidèle','Interagir 5 fois avec ton Vacre Pet'],craft:['Alchimiste','Découvrir 2 recettes à la Vacrerie'],evolve:["L’évolution",'Faire évoluer 3 cartes'],new_card:['Explorateur','Découvrir 10 nouvelles cartes'],gift:['Générosité','Répondre à 3 demandes de cartes'],pet_hatch:['Première naissance','Faire éclore son premier Vacre Pet'],bot:['La machine ultime',"Activer l’Urabot"],mythic_10:['Collectionneur mythique','Obtenir 10 mythiques différents'],level3_5:['Maître de l’évolution','Atteindre le niveau 3 avec 5 cartes différentes']};
 function v38SetTab(tab){v38State.tab=tab;document.querySelectorAll('[data-v38-tab]').forEach(b=>b.classList.toggle('active',b.dataset.v38Tab===tab));v38Paint();}
 async function v38Refresh(){
- if(!currentUser){v38Text('v38-status','Connecte-toi pour consulter ton Journal.');return}
+ if(!currentUser){v38State.data=null;v38Paint();v38Text('v38-status','Connecte-toi pour consulter ton Journal.');return}
  try{const {data,error}=await supabaseClient.rpc('vacre_38_overview');if(error)throw error;v38State.data=data;v38Paint();v38ProfileUpdate()}
  catch(e){v38Text('v38-status','Journal indisponible : '+e.message)}
 }
