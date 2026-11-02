@@ -60,7 +60,7 @@ async function v39Attack(){
    v39El('v39-attack').disabled=true;
    v39El('v39-abandon').textContent='FERMER';
    await Promise.allSettled([refreshServerBoosters(),loadMarketWallet(),v23RefreshInventory(),v39RefreshShop()]);
-  }else v39Say(card+' : '+data.player_damage+' dégâts'+(data.player_critical?' CRITIQUE !':'')+' · L’huissier réplique : '+data.enemy_damage+' dégâts.');
+  }else v39Say(card+' : '+data.player_damage+' dégâts'+(data.player_critical?' CRITIQUE !':'')+' · L’huissier envoie '+(data.enemy_play||'un Vacre')+' : '+data.enemy_damage+' dégâts.');
  }catch(e){v39Say('Attaque refusée : '+e.message)}
  finally{v39Busy=false;if(!v39Done)v39Cards()}
 }
