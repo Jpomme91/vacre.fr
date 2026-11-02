@@ -5288,6 +5288,69 @@ async function v37ShowActivity(uid,root){
  if(document.body.dataset.v2Page==='collection')v37FetchLevels();
 })();
 </script>
+<script id="v38-journal-script">
+const v38State={tab:'daily',data:null,busy:false};
+const v38Text=(id,s)=>{const e=document.getElementById(id);if(e)e.textContent=String(s??'')};
+const v38Title={booster:['Le collectionneur','Ouvrir 6 boosters'],pet:['Le compagnon fidèle','Interagir 5 fois avec ton Vacre Pet'],craft:['Alchimiste','Découvrir 2 recettes à la Vacrerie'],evolve:["L’évolution",'Faire évoluer 3 cartes'],new_card:['Explorateur','Découvrir 10 nouvelles cartes'],gift:['Générosité','Répondre à 3 demandes de cartes'],pet_hatch:['Première naissance','Faire éclore son premier Vacre Pet'],bot:['La machine ultime',"Activer l’Urabot"],mythic_10:['Collectionneur mythique','Obtenir 10 mythiques différents'],level3_5:['Maître de l’évolution','Atteindre le niveau 3 avec 5 cartes différentes']};
+function v38SetTab(tab){v38State.tab=tab;document.querySelectorAll('[data-v38-tab]').forEach(b=>b.classList.toggle('active',b.dataset.v38Tab===tab));v38Paint();}
+async function v38Refresh(){
+ if(!currentUser){v38Text('v38-status','Connecte-toi pour consulter ton Journal.');return}
+ try{const {data,error}=await supabaseClient.rpc('vacre_38_overview');if(error)throw error;v38State.data=data;v38Paint();v38ProfileUpdate()}
+ catch(e){v38Text('v38-status','Journal indisponible : '+e.message)}
+}
+function v38Paint(){
+ const root=document.getElementById('v38-missions'),state=v38State.data;if(!root)return;
+ if(!state){root.textContent='Connecte-toi pour découvrir tes missions.';return}
+ const l=state.level||{},lvl=Number(l.level||1),xp=Number(l.xp_in_level||0),next=Number(l.xp_next||0);
+ v38Text('v38-level',lvl);v38Text('v38-level-title','Niveau de compte '+lvl);
+ v38Text('v38-level-xp',lvl>=100?'Niveau maximum · '+l.xp_total+' XP':xp+' / '+next+' XP');
+ const bar=document.getElementById('v38-level-bar');if(bar)bar.style.width=(next?Math.min(100,xp/next*100):100)+'%';
+ root.replaceChildren();let missions=[];
+ if(v38State.tab==='level'){
+  const claimed=new Set((state.claimed_levels||[]).map(Number));
+  for(let n=5;n<=100;n+=5){const coins=n%10===0?0:200+n*20,boosters=n%10===0?(n===100?10:n/10):0;
+   missions.push({kind:'level',key:String(n),title:'Palier du niveau '+n,desc:n===100?'Légende du Vacre — palier ultime':'Récompense de progression',progress:lvl>=n?1:0,target:1,claimed:claimed.has(n),reward:{xp:0,coins,boosters}});
+  }
+ }else{
+  missions=(state.missions||[]).filter(m=>m.kind===v38State.tab).map(m=>({...m,title:v38Title[m.key]?.[0]||m.key,desc:v38Title[m.key]?.[1]||m.key}));
+ }
+ for(const m of missions){
+  const p=Number(m.progress||0),target=Math.max(1,Number(m.target||1)),ready=p>=target;
+  const box=document.createElement('article');box.className='v38-mission';
+  const h=document.createElement('h3');h.textContent=m.title;const desc=document.createElement('p');desc.textContent=m.desc;
+  const progress=document.createElement('div');progress.className='v38-progress';const fill=document.createElement('i');fill.style.width=Math.min(100,100*p/target)+'%';progress.append(fill);
+  const detail=document.createElement('small');detail.textContent=Math.min(p,target)+' / '+target+(m.kind==='daily'?' · se renouvelle chaque jour':m.kind==='weekly'?' · se renouvelle chaque lundi':'');
+  const prize=document.createElement('small');prize.textContent=[m.reward?.xp?m.reward.xp+' XP':null,m.reward?.coins?Number(m.reward.coins).toLocaleString('fr-FR')+' urabucks':null,m.reward?.boosters?m.reward.boosters+' booster(s)':null].filter(Boolean).join(' · ');
+  const footer=document.createElement('div');footer.className='v38-bottom';const badge=document.createElement('small');badge.textContent=m.claimed?'✅ Récupérée':ready?'🎉 Prête à récupérer':'En cours';
+  const btn=document.createElement('button');btn.type='button';btn.textContent=m.claimed?'Récupérée':ready?'RÉCUPÉRER':'VERROUILLÉ';btn.disabled=m.claimed||!ready||v38State.busy;btn.onclick=()=>v38Claim(m.kind,m.key,m.period);
+  footer.append(badge,btn);box.append(h,desc,progress,detail,prize,footer);root.append(box);
+ }
+ if(!missions.length)root.textContent='Aucune mission pour le moment.';
+ const dot=document.getElementById('v38-journal-dot');if(dot)dot.hidden=!(state.missions||[]).some(m=>m.progress>=m.target&&!m.claimed)&&!Array.from({length:20},(_,i)=>(i+1)*5).some(n=>n<=lvl&&!(state.claimed_levels||[]).includes(n));
+}
+async function v38Claim(kind,key,period){
+ if(!currentUser||v38State.busy)return;v38State.busy=true;v38Text('v38-status','Attribution de la récompense…');v38Paint();
+ try{const {data,error}=await supabaseClient.rpc('vacre_38_claim',{p_kind:kind,p_key:key,p_period:period||null});if(error)throw error;
+  v38Text('v38-status','✅ Récupéré : '+[data.xp?data.xp+' XP':'',data.coins?data.coins+' urabucks':'',data.boosters?data.boosters+' booster(s)':''].filter(Boolean).join(' + '));
+  await Promise.allSettled([window.loadMarketWallet?.(),window.refreshServerBoosters?.()]);
+ }catch(e){v38Text('v38-status','Récupération impossible : '+e.message)}
+ finally{v38State.busy=false;await v38Refresh()}
+}
+function v38ProfileUpdate(){
+ const s=v38State.data,l=s?.level,root=document.getElementById('vp-profile-body');if(!l||!root)return;
+ let box=root.querySelector('.v38-profile-progress');if(!box){box=document.createElement('div');box.className='v38-profile-progress';root.prepend(box)}
+ box.replaceChildren();const strong=document.createElement('strong');strong.textContent='📖 Niveau de compte '+l.level;
+ const track=document.createElement('div');track.className='v38-progress';const fill=document.createElement('i');fill.style.width=(l.xp_next?Math.min(100,100*l.xp_in_level/l.xp_next):100)+'%';track.append(fill);
+ const info=document.createElement('small');info.textContent=l.level===100?'Niveau maximum':l.xp_in_level+' / '+l.xp_next+' XP';box.append(strong,track,info);
+}
+(function(){
+ document.querySelectorAll('[data-v38-tab]').forEach(b=>b.addEventListener('click',()=>v38SetTab(b.dataset.v38Tab)));
+ const prev=window.v2Navigate;window.v2Navigate=function(page,...args){const result=prev.call(this,page,...args);if(page==='journal'||page==='profil')v38Refresh();return result};
+ window.v38Refresh=v38Refresh;
+ if(document.body.dataset.v2Page==='journal'||document.body.dataset.v2Page==='profil')v38Refresh();
+ setInterval(()=>{if(currentUser&&(document.body.dataset.v2Page==='journal'||document.body.dataset.v2Page==='profil'))v38Refresh()},45000);
+})();
+</script>
 </body>
 </html>
 
