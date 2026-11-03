@@ -9,6 +9,9 @@ async function v41Render(){
  v41Loading=true;
  try{
   await v23RefreshInventory();
+  const levelsResponse=await supabaseClient.from('vacre_card_levels').select('card_name,level').eq('user_id',currentUser.id);
+  if(levelsResponse.error)throw levelsResponse.error;
+  const deckLevels=new Map((levelsResponse.data||[]).map(r=>[r.card_name,Number(r.level)]));
   v41Deck=await v41Rpc('vacre_41_get_deck');
   mount.replaceChildren();
   const head=document.createElement('div');head.className='v41-head';
@@ -27,15 +30,15 @@ async function v41Render(){
    const none=document.createElement('option');none.value='';none.textContent='— Emplacement libre —';select.append(none);
    const used=new Set(v41Deck.cards.filter(c=>c.slot!==slot).map(c=>c.name));
    for(const [name,qty] of Object.entries(v23Inventory||{}).filter(([name,q])=>q>0&&!used.has(name)&&cards.some(c=>c.name===name&&c.rarity!=='special')).sort((a,b)=>a[0].localeCompare(b[0],'fr'))){
-    const opt=document.createElement('option');opt.value=name;opt.textContent=name+' (×'+qty+')';select.append(opt);
+    const opt=document.createElement('option');opt.value=name;const match=cards.find(c=>c.name===name);const label={common:'COMMUN',rare:'RARE',epic:'ÉPIQUE',legendary:'LÉGENDAIRE',mythic:'MYTHIQUE'}[match?.rarity]||'VACRE';opt.textContent=name+' · '+label+' · NIV. '+(deckLevels.get(name)||1)+' · ×'+qty;select.append(opt);
    }
    select.value=existing?.name||'';card.append(select);
    const foot=document.createElement('div');foot.className='v41-slot-foot';
    const count=document.createElement('input');count.type='number';count.min=1;count.max=10;count.value=existing?.amount||1;count.setAttribute('aria-label','Nombre de Vacres');foot.append(count);
    const save=document.createElement('button');save.textContent='ENREGISTRER';foot.append(save);
-   save.onclick=async()=>{save.disabled=true;try{const num=select.value?Number(count.value):0;v41Deck=await v41Rpc('vacre_41_set_deck',{p_slot:slot,p_card:select.value||null,p_amount:num});v41Message('Deck enregistré !');await v41Render()}catch(e){v41Message('Erreur : '+e.message)}finally{save.disabled=false}};
+   save.onclick=async()=>{save.disabled=true;try{const num=select.value?Number(count.value):0;v41Deck=await v41Rpc('vacre_41_set_deck',{p_slot:slot,p_card:select.value||null,p_amount:num});v41Message('Deck enregistré !');setTimeout(v41Render,0)}catch(e){v41Message('Erreur : '+e.message)}finally{save.disabled=false}};
    card.append(foot);
-   const detail=document.createElement('small');detail.textContent=existing?'Niveau '+existing.level+' · '+existing.amount+' sélectionné(s) · '+existing.owned+' possédé(s)':'Choisis un Vacre de ta collection';card.append(detail);grid.append(card);
+   const detail=document.createElement('small');const describe=()=>{const chosen=select.value,found=cards.find(c=>c.name===chosen),rarity={common:'COMMUN',rare:'RARE',epic:'ÉPIQUE',legendary:'LÉGENDAIRE',mythic:'MYTHIQUE'}[found?.rarity]||'';detail.textContent=chosen?rarity+' · NIVEAU '+(deckLevels.get(chosen)||1)+' · '+Number(v23Inventory[chosen]||0)+' exemplaires possédés':'Choisis un Vacre de ta collection';card.dataset.rarity=found?.rarity||'none'};select.addEventListener('change',describe);describe();card.append(detail);grid.append(card);
   }
   const info=document.createElement('p');info.className='v41-caption';info.textContent='Combat fiscal : chaque attaque consomme un exemplaire sélectionné dans ton deck. L’évolution est conservée.';mount.append(info);
   const status=document.createElement('p');status.id='v41-status';status.setAttribute('role','status');mount.append(status);
