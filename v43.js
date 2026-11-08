@@ -37,7 +37,8 @@
  $('profil')?.insertBefore(birthday,$('profil')?.querySelector('.vp-card')||null);
  const page=document.createElement('section');page.id='arbre';page.className='v2-extra-page';
  page.innerHTML='<div class="v43-tree-wrap"><div class="v2-section-kicker">NATURE & COLLECTION</div><h2>🌳 L’ARBRE À VACRES</h2><p>Arrose ton arbuste une fois par jour pour le faire grandir. Chaque arrosage peut faire pousser un fruit-Vacre à cueillir. Plus il grandit, plus les Vacres rares deviennent fréquents.</p><div class="v43-tree-stats"><div class="v43-tree-stat" id="v43-tree-level">🌿 Stade 1</div><div class="v43-tree-stat" id="v43-tree-days">💧 0 jour arrosé</div><div class="v43-tree-stat" id="v43-tree-picked">🍎 0 Vacre récolté</div></div><div class="v43-tree-stage" id="v43-tree-stage"><svg class="v43-tree-svg" viewBox="0 0 600 500" preserveAspectRatio="xMidYMax meet" aria-label="Arbre VACRE"><g id="v43-tree-drawing"></g></svg><button type="button" class="v43-fruit" id="v43-fruit" hidden aria-label="Cueillir le Vacre sur la branche">✦</button></div><div class="v43-tree-control"><button id="v43-water" type="button">💧 ARROSER MON ARBRE</button></div><p id="v43-tree-feedback" class="v43-tree-feedback" role="status"></p></div>';
- document.querySelector('main')?.append(page);if(!page.isConnected)document.body.append(page);
+ // Ne jamais placer l'arbre dans le <main> de Vacre Pet : ce parent est masqué hors de son onglet.
+ document.body.append(page);
  const navs=document.querySelector('.v2-drawer-links');if(navs){const b=document.createElement('button');b.type='button';b.innerHTML='🌳 Arbre à Vacres <span>↗</span>';b.onclick=()=>window.v2Navigate('arbre');const existing=[...navs.querySelectorAll('button')].find(x=>x.textContent.includes('Ma collection'));if(existing)existing.after(b);else navs.append(b)}
  const drawing=$('v43-tree-drawing'),fruit=$('v43-fruit'),water=$('v43-water');
  let treeStatus=null,treeBusy=false;
