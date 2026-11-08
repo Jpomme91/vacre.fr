@@ -100,6 +100,7 @@ function showArt(spec){
    const active=Number(state.inventory[spec.parts[n-1]]||0)>0;
    g.querySelectorAll('.vb-part,.vb-detail,.vb-eye').forEach(el=>el.classList.toggle('vb-owned',active));
   });
+  clone.querySelectorAll('[data-vb-part]').forEach(g=>{g.style.cursor='pointer';g.addEventListener('click',()=>{selected=Number(g.dataset.vbPart)-1;paint()})});
   stage.append(clone);
  }else{
   stage.innerHTML=art[spec.id];
@@ -108,6 +109,7 @@ function showArt(spec){
    g.classList.add('vt44-part');
    g.classList.toggle('owned',Number(state.inventory[spec.parts[n-1]]||0)>0);
    g.style.setProperty('--vt44-color',colors[(n+index)%colors.length]);
+   g.style.cursor='pointer';g.addEventListener('click',()=>{selected=n-1;paint()});
   });
  }
 }
