@@ -112,6 +112,11 @@
  if(typeof oldShow==='function')window.vpShowPublic=function(p){const value=oldShow.apply(this,arguments);const root=$('vp-search-results');showPresence(p.user_id||p.id,root);return value};
  function ownPresence(){const own=$('vp-profile-body')?.querySelector('.vp-hero');if(own&&currentUser)showPresence(currentUser.id,own)}
  function initProfile(){if(!currentUser)return;loadBirthday();setTimeout(ownPresence,350)}
+ const ownRoot=$('vp-profile-body');
+ if(ownRoot){new MutationObserver(()=>{
+   const name=ownRoot.querySelector('.vp-hero h3');
+   if(currentUser&&name&&!name.querySelector('.v43-activity'))ownPresence();
+ }).observe(ownRoot,{childList:true,subtree:true})}
  const oldNav=window.v2Navigate;
  window.v2Navigate=function(page,...args){const result=oldNav.apply(this,[page,...args]);if(page==='arbre')loadTree();if(page==='profil')setTimeout(initProfile,500);return result};
  window.addEventListener('load',()=>{if(currentUser){if(document.body.dataset.v2Page==='profil')setTimeout(initProfile,900);if(document.body.dataset.v2Page==='arbre')setTimeout(loadTree,500)}});
