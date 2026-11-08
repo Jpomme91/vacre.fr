@@ -32,9 +32,12 @@
  window.v33Preview=function(side,quantity){
   return new Promise(resolve=>{
    const modal=document.getElementById('v33-trade-modal'),body=document.getElementById('v33-preview-body');
-   const price=Number(liveMarketPrice),factor=1+quantity/1500;
-   const next=side==='buy'?price*factor:Math.max(.01,price/factor);
-   const average=(price+next)/2,subtotal=average*quantity,fee=subtotal*.005;
+   const price=Number(liveMarketPrice),k=.00025,floor=.01;
+   const factor=Math.exp((side==='buy'?1:-1)*k*quantity);
+   const floorQty=Math.log(Math.max(1,price/floor))/k;
+   const next=side==='buy'?price*factor:Math.max(floor,price*factor);
+   const subtotal=side==='buy'?price*(factor-1)/k:quantity<=floorQty?price*(1-factor)/k:(price-floor)/k+(quantity-floorQty)*floor;
+   const average=subtotal/quantity,fee=subtotal*.005;
    const total=side==='buy'?subtotal+fee:subtotal-fee;
    const impact=Math.abs((next/price-1)*100);
    const fmt=(n,dec=2)=>Number(n).toLocaleString('fr-FR',{maximumFractionDigits:dec,minimumFractionDigits:dec});
@@ -47,10 +50,10 @@
    hero.append(label,val,detail);body.append(hero);
    const section=document.createElement('div');section.className='v42-section';section.textContent='Détails du cours';body.append(section);
    row('Cours actuel',fmt(price)+' U');
-   row('Cours moyen d’exécution',fmt(average)+' U');
+   row('Cours moyen d’exécution',fmt(average,4)+' U');
    row('Frais du Market (0,5 %)',fmt(fee)+' U');
    row('Impact estimé sur le cours',(side==='buy'?'+':'−')+fmt(impact)+' %',side==='buy'?'v42-positive':'v42-negative');
-   row('Cours après transaction',fmt(next)+' U');
+   row('Cours après transaction',fmt(next,4)+' U');
    const section2=document.createElement('div');section2.className='v42-section';section2.textContent='Après la transaction';body.append(section2);
    row('Solde urabucks estimé',fmt(uracoin+(side==='buy'?-total:total))+' U');
    row('Vacres possédés',fmt(ownedVacre+(side==='buy'?quantity:-quantity),0));
