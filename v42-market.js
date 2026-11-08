@@ -32,8 +32,11 @@
  window.v33Preview=function(side,quantity){
   return new Promise(resolve=>{
    const modal=document.getElementById('v33-trade-modal'),body=document.getElementById('v33-preview-body');
-   const price=Number(liveMarketPrice),total=Math.round(price*quantity*10000)/10000,impact=quantity*.09;
-   const next=Math.max(.01,price*(side==='buy'?1+impact/100:1-impact/100));
+   const price=Number(liveMarketPrice),factor=1+quantity/1500;
+   const next=side==='buy'?price*factor:Math.max(.01,price/factor);
+   const average=(price+next)/2,subtotal=average*quantity,fee=subtotal*.005;
+   const total=side==='buy'?subtotal+fee:subtotal-fee;
+   const impact=Math.abs((next/price-1)*100);
    const fmt=(n,dec=2)=>Number(n).toLocaleString('fr-FR',{maximumFractionDigits:dec,minimumFractionDigits:dec});
    const row=(label,value,style='')=>{const d=document.createElement('div');d.className='v42-row';const l=document.createElement('span');l.textContent=label;const v=document.createElement('strong');v.textContent=value;if(style)v.className=style;d.append(l,v);body.append(d)};
    body.replaceChildren();
@@ -44,12 +47,14 @@
    hero.append(label,val,detail);body.append(hero);
    const section=document.createElement('div');section.className='v42-section';section.textContent='Détails du cours';body.append(section);
    row('Cours actuel',fmt(price)+' U');
+   row('Cours moyen d’exécution',fmt(average)+' U');
+   row('Frais du Market (0,5 %)',fmt(fee)+' U');
    row('Impact estimé sur le cours',(side==='buy'?'+':'−')+fmt(impact)+' %',side==='buy'?'v42-positive':'v42-negative');
    row('Cours après transaction',fmt(next)+' U');
    const section2=document.createElement('div');section2.className='v42-section';section2.textContent='Après la transaction';body.append(section2);
    row('Solde urabucks estimé',fmt(uracoin+(side==='buy'?-total:total))+' U');
    row('Vacres possédés',fmt(ownedVacre+(side==='buy'?quantity:-quantity),0));
-   document.getElementById('v33-preview-note').textContent='Estimation : le cours et le montant définitifs sont recalculés par le serveur à la validation. Aucun plafond quotidien.';
+   document.getElementById('v33-preview-note').textContent='Prix moyen progressif et frais inclus dans le total. Le serveur recalcule les montants à la validation ; aucune limite quotidienne.';
    modal.hidden=false;
    const ok=document.getElementById('v33-confirm'),cancel=document.getElementById('v33-cancel');
    const close=approved=>{modal.hidden=true;ok.onclick=null;cancel.onclick=null;resolve(approved)};
