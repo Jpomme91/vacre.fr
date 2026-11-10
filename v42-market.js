@@ -37,7 +37,7 @@
    const floorQty=Math.log(Math.max(1,price/floor))/k;
    const next=side==='buy'?price*factor:Math.max(floor,price*factor);
    const subtotal=side==='buy'?price*(factor-1)/k:quantity<=floorQty?price*(1-factor)/k:(price-floor)/k+(quantity-floorQty)*floor;
-   const average=subtotal/quantity,fee=subtotal*.005;
+   const average=subtotal/quantity,fee=subtotal*.007;
    const total=side==='buy'?subtotal+fee:subtotal-fee;
    const impact=Math.abs((next/price-1)*100);
    const fmt=(n,dec=2)=>Number(n).toLocaleString('fr-FR',{maximumFractionDigits:dec,minimumFractionDigits:dec});
@@ -51,7 +51,7 @@
    const section=document.createElement('div');section.className='v42-section';section.textContent='Détails du cours';body.append(section);
    row('Cours actuel',fmt(price)+' U');
    row('Cours moyen d’exécution',fmt(average,4)+' U');
-   row('Frais du Market (0,5 %)',fmt(fee)+' U');
+   row('Frais du Market (0,7 %)',fmt(fee)+' U');
    row('Impact estimé sur le cours',(side==='buy'?'+':'−')+fmt(impact)+' %',side==='buy'?'v42-positive':'v42-negative');
    row('Cours après transaction',fmt(next,4)+' U');
    const section2=document.createElement('div');section2.className='v42-section';section2.textContent='Après la transaction';body.append(section2);
