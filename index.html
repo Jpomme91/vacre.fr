@@ -4053,7 +4053,7 @@ async function tradeWorld(side){
   if(error)throw error;
   // Le serveur effectue atomiquement le transfert et l'impact sur le cours.
   await Promise.all([refreshWorldMarket(),loadMarketWallet()]);
-  showTradeMessage(`${side==='buy'?'Achat':'Vente'} confirmé(e) : ${a} Vacre(s) au prix moyen de ${Number(data.executed_price).toFixed(2).replace('.',',')} U · Total ${Number(data.total).toFixed(2).replace('.',',')} U frais compris. Nouveau cours : ${Number(data.new_price).toFixed(2).replace('.',',')} U.`);
+  showTradeMessage(`${side==='buy'?'Achat':'Vente'} confirmé(e) : ${a} Vacre(s) au prix moyen de ${Number(data.executed_price).toFixed(2).replace('.',',')} U · Total ${Number(data.total).toFixed(2).replace('.',',')} U frais compris.${Number(data.fiscal_withheld||0)>0?' Retenue pour dette fiscale : −'+Number(data.fiscal_withheld).toFixed(2).replace('.',',')+' U.':''} Nouveau cours : ${Number(data.new_price).toFixed(2).replace('.',',')} U.`);
  }catch(error){showTradeMessage("Transaction refusée : "+error.message);await loadMarketWallet();}
  finally{tradeBusy=false;setWalletControls(walletReady);}
 }
