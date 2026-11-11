@@ -28,8 +28,33 @@
  '#v45-market-status{font-size:12px;min-height:17px;color:#3b5a51;margin:7px 0}',
  '.v45-header-logo{display:block;width:55px;height:55px;object-fit:contain;flex:none;border-radius:10px;background:#000}',
  '.v45-hero-visual{display:block;width:100%;height:100%;object-fit:contain;background:#000;border-radius:17px}',
- '.v45-brand-word{font-family:Georgia,serif;font-size:clamp(15px,2vw,23px);letter-spacing:1.1px;font-weight:900}',
- '@media(max-width:800px){.v45-header-logo{width:32px;height:32px}.v45-brand-word{font-size:15px}.v45-market-dates input{width:100%;max-width:none}}'
+ '.v45-brand-word{font-family:Georgia,serif;font-size:clamp(15px,2vw,22px);letter-spacing:.7px;font-weight:900}',
+
+ '#v45-home-wealth{box-sizing:border-box;width:min(1280px,calc(100% - 40px));max-width:1280px;margin:14px auto 0;padding:15px 20px;border:1px solid #444d42;border-radius:17px;background:#242a26;color:#f8f6e9;box-shadow:0 8px 26px #0000000f;display:flex;align-items:center;gap:20px;justify-content:space-between;flex-wrap:wrap;line-height:1.35;min-height:84px;font-family:inherit}',
+ '#v45-home-wealth[hidden],#v45-bank-isv[hidden],#v45-market-isv[hidden]{display:none!important}',
+ '#v45-home-wealth .v45-compact-lead{min-width:185px;flex:1 1 205px;display:flex;flex-direction:column;gap:4px;align-items:flex-start}',
+ '#v45-home-wealth .v45-compact-kicker{font-size:10px;font-weight:900;letter-spacing:1.3px;text-transform:uppercase;color:#dfc959}',
+ '#v45-home-wealth .v45-compact-title{font-size:15px!important;font-weight:850!important;line-height:1.32!important;color:#fcfaf0!important;margin:0!important;letter-spacing:0!important}',
+ '#v45-home-wealth .v45-compact-values{flex:2 1 425px;display:grid;grid-template-columns:repeat(3,minmax(105px,1fr));gap:8px 18px;align-items:center}',
+ '#v45-home-wealth .v45-compact-metric{min-width:0;display:flex;flex-direction:column;gap:4px;overflow-wrap:anywhere}',
+ '#v45-home-wealth .v45-compact-metric small{font-size:10px;font-weight:750;letter-spacing:.4px;color:#c2c6bb!important;line-height:1.3}',
+ '#v45-home-wealth .v45-compact-metric b{font-size:14px;line-height:1.2;font-weight:850;color:#fff!important;font-variant-numeric:tabular-nums}',
+ '#v45-home-wealth .v45-compact-metric .v45-amount-emphasis{color:#e7d067!important}',
+ '#v45-home-wealth .v45-compact-action{flex:none;border:1px solid #999f86;border-radius:10px;background:transparent;color:#faf5e0;padding:10px 12px;font:inherit;font-size:12px;font-weight:850;line-height:1.2;cursor:pointer;white-space:nowrap}',
+ '#v45-home-wealth .v45-compact-action:hover,#v45-home-wealth .v45-compact-action:focus-visible{background:#353c31;outline:2px solid #d9c34e;outline-offset:2px}',
+ '#v45-home-wealth.v45-debt{border-color:#b45252;background:#302225}',
+ '#v45-home-wealth.v45-debt .v45-compact-kicker,#v45-home-wealth.v45-debt .v45-amount-emphasis{color:#ffa09c!important}',
+ '#v45-home-wealth .v45-negative{color:#ffa09c!important}',
+ '#v45-bank-isv,#v45-market-isv{font-size:14px;line-height:1.6;overflow-wrap:anywhere}',
+ '#v45-bank-isv p,#v45-market-isv p{font-size:13px!important;line-height:1.6!important;font-weight:500!important;letter-spacing:normal!important;color:inherit!important;opacity:1!important;margin:7px 0!important}',
+ '#v45-bank-isv h3,#v45-market-isv h3{font-size:17px!important;line-height:1.35!important;letter-spacing:normal!important;margin:0 0 8px!important}',
+ '#v45-bank-isv .v45-values,#v45-market-isv .v45-values{font-size:13px!important;line-height:1.4!important}',
+ '#v45-bank-isv .v45-negative,#v45-market-isv .v45-negative{color:#ffaaa8!important}',
+ '#accueil .v2-hero-art{overflow:visible;isolation:isolate}',
+ '#accueil .v45-hero-visual{display:block;width:min(100%,320px);height:100%;max-height:315px;object-fit:contain;background:transparent!important;border:none!important;border-radius:0!important;filter:drop-shadow(0 13px 20px #00000022)}',
+
+ '@media(max-width:900px){#v45-home-wealth{padding:15px 17px;gap:12px}#v45-home-wealth .v45-compact-values{flex-basis:100%}#v45-home-wealth .v45-compact-action{align-self:center}}',
+ '@media(max-width:650px){#v45-home-wealth{width:calc(100% - 24px);margin:11px 12px 0;border-radius:14px;gap:13px}#v45-home-wealth .v45-compact-lead{flex-basis:100%}#v45-home-wealth .v45-compact-values{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}#v45-home-wealth .v45-compact-metric b{font-size:13px}#v45-home-wealth .v45-compact-action{align-self:stretch;width:100%;text-align:center}#accueil .v2-hero-art{height:190px;order:-1}#accueil .v45-hero-visual{max-height:190px}.v45-header-logo{width:32px;height:32px}.v45-brand-word{font-size:15px}.v45-market-dates input{width:100%;max-width:none}}'
  ].join('');
  document.head.append(css);
  function card(where,id){
@@ -73,12 +98,45 @@
    if(ul.children.length)root.append(ul);
   }
  }
+ function fillHome(root,data){
+  if(!root)return;
+  const cash=Number(data?.cash||0),wealth=Number(data?.fortune||0),debt=Number(data?.debt||0);
+  if(!data||(wealth<=5000&&cash>=0&&debt<=0)){root.hidden=true;root.replaceChildren();return;}
+  root.hidden=false;
+  root.classList.add('v45-tax-compact');
+  root.classList.toggle('v45-debt',cash<0||debt>0);
+  root.replaceChildren();
+  const head=make('div','v45-compact-lead');
+  const kicker=make('span','v45-compact-kicker');
+  kicker.textContent='⚖ ministère des finances';
+  const heading=make('strong','v45-compact-title');
+  heading.textContent=cash<0?'Votre compte est à découvert.':debt>0?'Votre dette intéresse le ministère.':'Vous êtes beaucoup trop riche.';
+  head.append(kicker,heading);
+  const stats=make('div','v45-compact-values');
+  const items=[['Patrimoine',fmt(wealth)+' U'],['ISV estimé',fmt(data.estimated_isv)+' U'],['Prochain contrôle',when(data.next_due)]];
+  if(debt>0)items.splice(1,1,['Dette à rembourser',fmt(debt)+' U']);
+  if(cash<0)items[0]=['Solde',fmt(cash)+' U'];
+  for(const [label,value] of items){
+    const item=make('div','v45-compact-metric');
+    const caption=make('small');caption.textContent=label;
+    const amount=make('b');amount.textContent=value;
+    if(label==='ISV estimé'||label==='Dette à rembourser')amount.className='v45-amount-emphasis';
+    if(label==='Solde')amount.classList.add('v45-negative');
+    item.append(caption,amount);stats.append(item);
+  }
+  const action=make('button','v45-compact-action');
+  action.type='button';action.textContent='Détails à la banque ↗';
+  action.addEventListener('click',()=>{if(typeof window.v2Navigate==='function')window.v2Navigate('v34-bank')});
+  root.append(head,stats,action);
+ }
  function apply(){
   if(!signedIn()){for(const id of ['v45-home-wealth','v45-bank-isv','v45-market-isv']){const e=$(id);if(e)e.hidden=true;}return;}
-  const hero=document.querySelector('#accueil .v2-hero-content');
+  const hero=document.getElementById('accueil');
   const bank=document.getElementById('v34-bank');
   const market=document.querySelector('#market .market-dashboard .market-panel:last-child');
-  fill(card(hero,'v45-home-wealth'),fiscal,false);
+  let home=$('v45-home-wealth');
+  if(!home&&hero){home=make('aside','v45-tax-card v45-tax-compact');home.id='v45-home-wealth';home.setAttribute('aria-label','Avis du ministère des finances');hero.after(home);}
+  fillHome(home,fiscal);
   let target=$('v45-bank-isv');
   if(!target&&bank){target=make('section','v45-tax-card');target.id='v45-bank-isv';const tabs=bank.querySelector('.v35-tabs');if(tabs)tabs.before(target);else bank.append(target);}
   fill(target,fiscal,true);
