@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220" role="img" aria-label="Logo VACRE">
+<rect width="220" height="220" fill="#000"/>
+<g fill="none" stroke="#ffdd42" stroke-width="2.6">
+<ellipse cx="110" cy="110" rx="58" ry="130" transform="rotate(-17 110 110)"/>
+<ellipse cx="110" cy="110" rx="62" ry="130" transform="rotate(50 110 110)"/>
+</g>
+<circle cx="110" cy="110" r="61" fill="#000" stroke="#469545" stroke-width="1.8"/>
+<path d="M91 81 C97 76 99 83 100 91 L108 139 Q111 152 119 132 Q137 99 138 82" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
