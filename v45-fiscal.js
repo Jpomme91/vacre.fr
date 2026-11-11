@@ -153,6 +153,7 @@
   periods.addEventListener('click',evt=>{
    const target=evt.target.closest('button[data-period]');
    if(!target)return;
+   v245Period=target.dataset.period;
    if(target.dataset.period==='all'){range.hidden=true;seriesReady=false;loadPeriod();}
    else if(target.dataset.period==='custom'){range.hidden=false;seriesReady=false;loadPeriod();}
    else{range.hidden=true;seriesReady=false;periodRequest++;}
