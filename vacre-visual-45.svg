@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 760" role="img" aria-label="VACRE.FR — orbites jaunes, V blanc, cercle vert">
+<rect width="720" height="760" fill="#000"/>
+<g fill="none" stroke="#ffde47" stroke-width="3.3">
+<ellipse cx="345" cy="385" rx="150" ry="345" transform="rotate(-13 345 385)"/>
+<ellipse cx="345" cy="385" rx="145" ry="344" transform="rotate(49 345 385)"/>
+</g>
+<circle cx="345" cy="385" r="100" fill="#000" stroke="#498e43" stroke-width="2.5"/>
+<path d="M315 339 C325 330 330 343 331 354 L346 426 Q350 448 358 429 Q388 372 387 339" fill="none" stroke="#fff" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="505" y="408" fill="#fff" font-size="22" font-family="Georgia,serif" font-weight="bold" letter-spacing="2">VACRE.FR</text>
+</svg>
