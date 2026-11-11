@@ -77,19 +77,22 @@
     wealth>5000?'Ministère : vous êtes beaucoup trop riche.':'Ministère : exonération de l’ISV';
   root.append(head);
   const intro=make('p');intro.textContent=wealth>5000?
-    'Votre fortune virtuelle pourrait financer les futures mises à jour et les bugs que le développeur n’a pas encore inventés.':
+    'Seule la moitié de vos Vacres du Market compte dans l’ISV. Le ministère compte sur vous pour financer ses prochaines absurdités.':
     'Le ministère juge que votre patrimoine ne permet pas encore de payer le café imaginaire du développeur.';
   root.append(intro);
   const stats=make('div','v45-values');
-  const values=[['Patrimoine',fmt(wealth)+' U'],['ISV estimé',fmt(estimate)+' U'],['Prochain contrôle',when(data.next_due)]];
+  const values=[['Patrimoine imposable',fmt(wealth)+' U'],['ISV estimé',fmt(estimate)+' U'],['Prochain contrôle',when(data.next_due)]];
   if(cash<0)values.unshift(['Découvert',fmt(cash)+' U / −1 000 U']);
   if(debt>0)values.push(['Dette fiscale restante',fmt(debt)+' U']);
   for(const item of values){const n=make('span');n.textContent=item[0]+' : '+item[1];if(item[0]==='Découvert')n.classList.add('v45-negative');stats.append(n)}
   root.append(stats);
   if(debt>0){const p=make('p');p.textContent='Les gains futurs rétablissent d’abord le solde ; ensuite 25 % des gains positifs remboursent la dette. Aucun nouvel ISV tant que cette dette subsiste.';root.append(p);}
   else if(soon){const p=make('p');p.textContent='Préavis fiscal : prélèvement dans moins de 24 heures. Les taxes déjà payées sur la période diminuent l’ISV.';root.append(p);}
-  else if(wealth>5000){const p=make('p');p.textContent='La taxe minimale est de 2 % tous les 3 jours, après déduction des autres taxes. Le découvert autorisé ne peut pas dépasser −1 000 U.';root.append(p);}
+  else if(wealth>5000){const p=make('p');p.textContent='La taxe minimale est de 2 % tous les 3 jours : solde disponible + 50 % des Vacres du Market valorisés au cours actuel. Les autres taxes sont déduites. Découvert maximal : −1 000 U.';root.append(p);}
   if(full){
+   const details=make('p');
+   details.textContent='Calcul ISV : solde disponible ('+fmt(cash)+' U) + 50 % des '+fmt(data.market_vacres)+' Vacres du Market, soit '+fmt(data.market_taxable_value)+' U retenus sur '+fmt(data.market_investment_value)+' U investis. Les cartes de collection sont exclues.';
+   root.append(details);
    const ul=make('ul','v45-tax-history');
    for(const e of (data.history||[]).slice(0,6)){
     const li=make('li');
@@ -114,7 +117,7 @@
   heading.textContent=cash<0?'Votre compte est à découvert.':debt>0?'Votre dette intéresse le ministère.':'Vous êtes beaucoup trop riche.';
   head.append(kicker,heading);
   const stats=make('div','v45-compact-values');
-  const items=[['Patrimoine',fmt(wealth)+' U'],['ISV estimé',fmt(data.estimated_isv)+' U'],['Prochain contrôle',when(data.next_due)]];
+  const items=[['Patrimoine imposable',fmt(wealth)+' U'],['ISV estimé',fmt(data.estimated_isv)+' U'],['Prochain contrôle',when(data.next_due)]];
   if(debt>0)items.splice(1,1,['Dette à rembourser',fmt(debt)+' U']);
   if(cash<0)items[0]=['Solde',fmt(cash)+' U'];
   for(const [label,value] of items){
