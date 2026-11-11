@@ -40,6 +40,7 @@
  '#v45-home-wealth .v45-compact-metric small{font-size:10px;font-weight:750;letter-spacing:.4px;color:#c2c6bb!important;line-height:1.3}',
  '#v45-home-wealth .v45-compact-metric b{font-size:14px;line-height:1.2;font-weight:850;color:#fff!important;font-variant-numeric:tabular-nums}',
  '#v45-home-wealth .v45-compact-metric .v45-amount-emphasis{color:#e7d067!important}',
+ '#v45-home-wealth .v45-compact-metric b.v45-negative{color:#ff9b9b!important}',
  '#v45-home-wealth .v45-compact-action{flex:none;border:1px solid #999f86;border-radius:10px;background:transparent;color:#faf5e0;padding:10px 12px;font:inherit;font-size:12px;font-weight:850;line-height:1.2;cursor:pointer;white-space:nowrap}',
  '#v45-home-wealth .v45-compact-action:hover,#v45-home-wealth .v45-compact-action:focus-visible{background:#353c31;outline:2px solid #d9c34e;outline-offset:2px}',
  '#v45-home-wealth.v45-debt{border-color:#b45252;background:#302225}',
