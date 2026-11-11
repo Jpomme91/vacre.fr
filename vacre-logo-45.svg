@@ -1,9 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220" role="img" aria-label="Logo VACRE">
-<rect width="220" height="220" fill="#000"/>
-<g fill="none" stroke="#ffdd42" stroke-width="2.6">
-<ellipse cx="110" cy="110" rx="58" ry="130" transform="rotate(-17 110 110)"/>
-<ellipse cx="110" cy="110" rx="62" ry="130" transform="rotate(50 110 110)"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" role="img" aria-label="VACRE — symbole original">
+<rect width="192" height="192" fill="#000"/>
+<g fill="none" stroke="#ffdc40" stroke-width="2.7" stroke-linecap="round">
+<path d="M0 18C6 60 17 129 36 192"/>
+<path d="M140 0C155 56 162 122 175 159L179 192"/>
+<path d="M153 192L192 132"/>
 </g>
-<circle cx="110" cy="110" r="61" fill="#000" stroke="#469545" stroke-width="1.8"/>
-<path d="M91 81 C97 76 99 83 100 91 L108 139 Q111 152 119 132 Q137 99 138 82" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="87.5" cy="92.5" r="69" stroke="#509a49" stroke-width="1.9" fill="#000"/>
+<path fill="#fff" d="M110,54L107,56L108,59L108,75L107,76L107,82L106,83L106,87L105,88L105,92L104,93L102,104L98,116L92,128L88,132L86,132L83,129L77,112L77,108L76,107L74,94L73,93L73,89L72,88L72,81L71,80L72,62L69,59L66,59L62,62L64,65L65,71L66,72L70,103L71,104L71,108L72,109L72,113L73,114L75,125L79,134L84,138L92,138L94,136L95,133L97,131L97,129L102,118L102,115L105,108L105,105L106,104L106,101L109,92L109,87L110,86L110,81L111,80L111,74L112,73L112,57Z"/>
 </svg>
