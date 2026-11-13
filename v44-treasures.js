@@ -62,6 +62,18 @@ css.textContent=[
 '#vt44-gallery .vt44-claim{width:100%;border:0;background:#f1d57c;color:#251d11;padding:13px;border-radius:12px;font-weight:900}',
 '#vt44-gallery .vt44-claim:disabled{opacity:.58;cursor:default}',
 '#vt44-gallery .vt44-unlock{color:#b6efcf;font-weight:800;font-size:13px;margin-top:10px}',
+'#vt44-gallery .vt461-evolution{margin-top:17px;border:1px solid #5d7e69;background:linear-gradient(135deg,#1a352f,#202a29);padding:15px;border-radius:15px}',
+'#vt44-gallery .vt461-evolution[hidden]{display:none!important}',
+'#vt44-gallery .vt461-evolution h5{color:#a9f5cb;font-size:16px;margin:0 0 7px}',
+'#vt44-gallery .vt461-evolution p{color:#dfecdf;font-size:12px;line-height:1.5;margin:7px 0 12px}',
+'#vt44-gallery .vt461-evolution button{display:block;width:100%;border:1px solid #84efc0;border-radius:11px;padding:13px 8px;background:linear-gradient(100deg,#2ac78b,#b0f5c3);font-weight:950;color:#0e261a}',
+'#vt44-gallery .vt461-evolution button:disabled{cursor:not-allowed;opacity:.55;filter:grayscale(.6)}',
+'#vt44-gallery .vt44-stage.vt461-upgraded{box-shadow:inset 0 0 75px #1cbf8b33,0 0 29px #1cbf8b22;border-color:#3ed5a2}',
+'#vt44-gallery .vt44-stage.vt461-upgraded .vb-part.vb-owned{fill:url(#vt44-metal);stroke:#72ffcb;filter:drop-shadow(0 0 11px #27e5ad)}',
+'#vt44-gallery .vt44-stage.vt461-upgraded .vb-eye.vb-owned{fill:#6fffd6}',
+'#vt44-gallery .vt44-stage.vt461-upgraded .vt44-art:before{content:"✦ URABOT ÉVOLUÉ ✦";position:absolute;top:2%;left:0;right:0;text-align:center;color:#85ffda;font-size:12px;font-weight:900;letter-spacing:2px;text-shadow:0 0 12px #27dda0;z-index:3;pointer-events:none}',
+'#vt44-gallery .vt44-stage.vt461-evolving .vt44-art svg{animation:vt461-power 1.65s ease-in-out}',
+'@keyframes vt461-power{0%{transform:scale(.93);filter:brightness(.7)}45%{transform:scale(1.07);filter:brightness(2) drop-shadow(0 0 20px #61ffc1)}100%{transform:scale(1);filter:brightness(1)}}',
 '#vacrerie .vx-slot-catalyst{border:1px solid #d6bf70;background:#303626;border-radius:12px;color:#f3db8a;display:flex;justify-content:center;flex-direction:column;align-items:center;gap:4px;font-size:24px;min-height:70px}',
 '#vacrerie .vx-slot-catalyst small{font-size:10px;max-width:98%;overflow-wrap:anywhere;text-align:center}',
 '@keyframes vt44-appear{from{opacity:.3;transform:scale(.96)}to{opacity:1;transform:scale(1)}}',
@@ -78,11 +90,11 @@ tools.append(opener);
 const root=document.createElement('section');
 root.id='vt44-gallery';root.hidden=true;
 root.setAttribute('aria-label','Mes trésors à assembler');
-root.innerHTML='<div class="vt44-head"><div><span class="vt44-kicker">COLLECTION • SALLE DES TRÉSORS</span><h3>MES TRÉSORS</h3></div><button type="button" id="vt44-close" class="vt44-close" aria-label="Fermer mes trésors">×</button></div><div class="vt44-layout"><div class="vt44-stage" id="vt44-stage"><div class="vt44-art" id="vt44-art"></div><div class="vt44-pedestal" aria-hidden="true"><span>VACRE.FR</span></div><button type="button" id="vt44-prev" class="vt44-arrow vt44-prev" aria-label="Trésor précédent">‹</button><button type="button" id="vt44-next" class="vt44-arrow vt44-next" aria-label="Trésor suivant">›</button></div><div class="vt44-panel"><span id="vt44-page" class="vt44-page">01 / 04</span><h4 id="vt44-name" class="vt44-name"></h4><p id="vt44-hint" class="vt44-hint"></p><strong id="vt44-count">0 / 8 pièces</strong><div class="vt44-meter"><i id="vt44-bar"></i></div><div class="vt44-parts" id="vt44-parts"></div><p class="vt44-info" id="vt44-info" role="status"></p><button type="button" id="vt44-claim" class="vt44-claim" disabled>ASSEMBLER</button><p id="vt44-unlock" class="vt44-unlock"></p></div></div>';
+root.innerHTML='<div class="vt44-head"><div><span class="vt44-kicker">COLLECTION • SALLE DES TRÉSORS</span><h3>MES TRÉSORS</h3></div><button type="button" id="vt44-close" class="vt44-close" aria-label="Fermer mes trésors">×</button></div><div class="vt44-layout"><div class="vt44-stage" id="vt44-stage"><div class="vt44-art" id="vt44-art"></div><div class="vt44-pedestal" aria-hidden="true"><span>VACRE.FR</span></div><button type="button" id="vt44-prev" class="vt44-arrow vt44-prev" aria-label="Trésor précédent">‹</button><button type="button" id="vt44-next" class="vt44-arrow vt44-next" aria-label="Trésor suivant">›</button></div><div class="vt44-panel"><span id="vt44-page" class="vt44-page">01 / 04</span><h4 id="vt44-name" class="vt44-name"></h4><p id="vt44-hint" class="vt44-hint"></p><strong id="vt44-count">0 / 8 pièces</strong><div class="vt44-meter"><i id="vt44-bar"></i></div><div class="vt44-parts" id="vt44-parts"></div><p class="vt44-info" id="vt44-info" role="status"></p><button type="button" id="vt44-claim" class="vt44-claim" disabled>ASSEMBLER</button><p id="vt44-unlock" class="vt44-unlock"></p><div id="vt461-evolution" class="vt461-evolution" hidden><h5>✦ ÉVOLUTION DE L’URABOT</h5><p id="vt461-requirements">Réunis 5 exemplaires de chaque pièce.</p><button type="button" id="vt461-evolve" disabled>FAIRE ÉVOLUER L’URABOT</button></div></div></div>';
 collection.querySelector('#collection-grid')?.before(root);
 if(!root.isConnected)collection.append(root);
 let index=0,selected=0,busy=false,loading=false,opened=false;
-let state={inventory:{},completed:[],urabot_rewarded:false};
+let state={inventory:{},completed:[],urabot_rewarded:false,urabot_evolved:false};
 let lastUser=null;
 const colors=['#b5d48d','#6ba7a5','#e8bb64','#a2afda','#5bba91','#e7c66b','#c28c6f','#e8da98'];
 function ownedCount(s){return s.parts.filter(n=>Number(state.inventory[n]||0)>0).length}
@@ -115,6 +127,9 @@ function showArt(spec){
 }
 function paint(){
  const spec=treasures[index],n=ownedCount(spec),claimed=isClaimed(spec);
+ const isBot=spec.id==='urabot';
+ const upgraded=isBot&&!!state.urabot_evolved;
+ $('vt44-stage').classList.toggle('vt461-upgraded',upgraded);
  $('vt44-page').textContent=String(index+1).padStart(2,'0')+' / 04';
  $('vt44-name').textContent=spec.name;
  $('vt44-hint').textContent=spec.hint;
@@ -138,12 +153,24 @@ function paint(){
  const button=$('vt44-claim');
  button.disabled=busy||loading||!currentUser||claimed||n!==spec.parts.length;
  button.textContent=claimed?'✓ TRÉSOR DÉJÀ ASSEMBLÉ':n===spec.parts.length?'✦ ASSEMBLER LE TRÉSOR':'ENCORE '+(spec.parts.length-n)+' PIÈCE(S)';
- $('vt44-unlock').textContent=claimed?(spec.id==='vacrerie'?'✓ Quatrième emplacement du chaudron activé.':spec.id==='urabot'?'✓ Carte exclusive URABOT obtenue.':'✓ Trésor conservé définitivement dans ton musée.'):'';
+ $('vt44-unlock').textContent=claimed?(spec.id==='vacrerie'?'✓ Quatrième emplacement du chaudron activé.':spec.id==='urabot'?(upgraded?'✓ Urabot évolué définitivement.':'✓ Carte exclusive URABOT obtenue.'):'✓ Trésor conservé définitivement dans ton musée.'):'';
+ const evolvePanel=$('vt461-evolution');
+ evolvePanel.hidden=!isBot;
+ if(isBot){
+   const enough=spec.parts.filter(name=>Number(state.inventory[name]||0)>=5).length;
+   $('vt461-requirements').textContent=upgraded?
+      'Évolution achevée ! Chaque composant a conservé au moins 1 exemplaire au moment de l’évolution.':
+      'Progression : '+enough+' / 8 pièces en ×5. L’évolution consomme 4 exemplaires par pièce et en conserve au minimum 1 de chaque.';
+   const evolutionButton=$('vt461-evolve');
+   evolutionButton.disabled=busy||loading||!currentUser||upgraded||enough<8;
+   evolutionButton.textContent=upgraded?'✓ URABOT ÉVOLUÉ':enough===8?'FAIRE ÉVOLUER L’URABOT':'FAIRE ÉVOLUER L’URABOT · '+enough+'/8';
+ }
+
 }
 async function refresh(){
- if(!currentUser){state={inventory:{},completed:[],urabot_rewarded:false};window.v44VacrerieUnlocked=false;paint();return}
+ if(!currentUser){state={inventory:{},completed:[],urabot_rewarded:false,urabot_evolved:false};window.v44VacrerieUnlocked=false;paint();return}
  if(lastUser!==currentUser.id){
-  state={inventory:{},completed:[],urabot_rewarded:false};lastUser=currentUser.id;
+  state={inventory:{},completed:[],urabot_rewarded:false,urabot_evolved:false};lastUser=currentUser.id;
  }
  if(loading)return;
  loading=true;
@@ -151,7 +178,7 @@ async function refresh(){
  try{
   const result=await supabaseClient.rpc('vacre_44_treasures_status');
   if(result.error)throw result.error;
-  state={inventory:result.data?.inventory||{},completed:result.data?.completed||[],urabot_rewarded:!!result.data?.urabot_rewarded};
+  state={inventory:result.data?.inventory||{},completed:result.data?.completed||[],urabot_rewarded:!!result.data?.urabot_rewarded,urabot_evolved:!!result.data?.urabot_evolved};
   window.v44VacrerieUnlocked=state.completed.includes('vacrerie');
   window.v44RedrawVacrerie?.();
  }catch(e){
@@ -179,6 +206,24 @@ async function claim(){
  }catch(e){$('vt44-info').textContent='Assemblage impossible : '+e.message}
  finally{busy=false;await refresh()}
 }
+async function evolveUrabot(){
+ const spec=treasures[index];
+ if(!currentUser||busy||loading||spec.id!=='urabot'||state.urabot_evolved||spec.parts.some(n=>Number(state.inventory[n]||0)<5))return;
+ if(!confirm('Faire évoluer l’Urabot ? 4 exemplaires de chacune des 8 pièces seront consommés (32 pièces), mais au moins 1 de chaque sera conservé.'))return;
+ busy=true;paint();
+ try{
+  const {data,error}=await supabaseClient.rpc('vacre_461_evolve_urabot');
+  if(error)throw error;
+  if(!data?.evolved)throw Error('Évolution non confirmée');
+  await refresh();
+  $('vt44-stage').classList.remove('vt461-evolving');
+  void $('vt44-stage').offsetWidth;
+  $('vt44-stage').classList.add('vt461-evolving');
+  $('vt44-info').textContent='✦ URABOT ÉVOLUÉ ! 32 exemplaires consommés, les 8 pièces de base sont conservées.';
+  await window.v23RefreshInventory?.();
+ }catch(e){$('vt44-info').textContent='Évolution impossible : '+e.message}
+ finally{busy=false;await refresh();}
+}
 function move(dir){index=(index+treasures.length+dir)%treasures.length;selected=0;paint()}
 function open(){
  opened=true;root.hidden=false;paint();refresh();
@@ -189,6 +234,7 @@ $('vt44-close').onclick=()=>{opened=false;root.hidden=true;opener.focus()};
 $('vt44-prev').onclick=()=>move(-1);
 $('vt44-next').onclick=()=>move(1);
 $('vt44-claim').onclick=claim;
+$('vt461-evolve').onclick=evolveUrabot;
 let touchX=null;
 $('vt44-stage').addEventListener('touchstart',e=>{touchX=e.changedTouches[0]?.screenX??null},{passive:true});
 $('vt44-stage').addEventListener('touchend',e=>{if(touchX===null)return;const dx=e.changedTouches[0].screenX-touchX;touchX=null;if(Math.abs(dx)>50)move(dx<0?1:-1)},{passive:true});
