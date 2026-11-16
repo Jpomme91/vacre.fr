@@ -7,9 +7,9 @@ const collection=$('collection');
 if(!collection)return;
 const treasures=[
  {id:'urabot',name:'URABOT',hint:'Le prototype original, conservé avec ses huit pièces légendaires.',parts:['Tête du Vacre Bot','Bras gauche du Vacre Bot','Bras droit du Vacre Bot','Jambe gauche du Vacre Bot','Jambe droite du Vacre Bot','Corps du Vacre Bot','Arme du Vacre Bot','Bite du Vacre Bot']},
- {id:'dragon',name:'DRAGON VACRE',hint:'Deux ailes, une tête, une queue et un torse : reconstitue le dragon.',parts:['Aile gauche du Dragon Vacre','Aile droite du Dragon Vacre','Tête du Dragon Vacre','Queue du Dragon Vacre','Torse du Dragon Vacre']},
- {id:'vfr4000',name:'LANCEUR VACRE THERMONUCLÉAIRE VFR4000',hint:'Une relique de science-fiction VACRE, composée de quatre éléments.',parts:['Socle du VFR4000','Ogive gravée VACRE du VFR4000','Corps central du VFR4000','Arrière du VFR4000']},
- {id:'vacrerie',name:'CADRE DE LA VACRERIE',hint:'Reconstitue les quatre quarts du cadre pour ouvrir le quatrième emplacement du chaudron.',parts:['Cadre de la Vacrerie — haut gauche','Cadre de la Vacrerie — haut droit','Cadre de la Vacrerie — bas gauche','Cadre de la Vacrerie — bas droit']}
+ {id:'dragon',name:'DRAGON VACRE',hint:'Deux ailes, une tête, une queue et un torse : reconstitue le dragon pour obtenir sa carte exclusive verte.',parts:['Aile gauche du Dragon Vacre','Aile droite du Dragon Vacre','Tête du Dragon Vacre','Queue du Dragon Vacre','Torse du Dragon Vacre']},
+ {id:'vfr4000',name:'LANCEUR VACRE THERMONUCLÉAIRE VFR4000',hint:'Une relique de science-fiction VACRE composée de quatre éléments, avec sa propre carte exclusive.',parts:['Socle du VFR4000','Ogive gravée VACRE du VFR4000','Corps central du VFR4000','Arrière du VFR4000']},
+ {id:'vacrerie',name:'CADRE DE LA VACRERIE',hint:'Reconstitue le cadre pour débloquer le quatrième emplacement du chaudron et sa carte exclusive.',parts:['Cadre de la Vacrerie — haut gauche','Cadre de la Vacrerie — haut droit','Cadre de la Vacrerie — bas gauche','Cadre de la Vacrerie — bas droit']}
 ];
 const art={
  dragon:'<svg viewBox="0 0 560 480" aria-label="Dragon Vacre à reconstruire"><g data-vt44-piece="4"><path class="vt44-shape" d="M339 333 Q408 321 444 371 Q480 412 523 370 Q505 438 449 434 Q385 434 323 371Z"/><path class="vt44-detail" d="M408 365 Q458 403 499 395"/></g><g data-vt44-piece="1"><path class="vt44-shape" d="M278 260 Q215 133 106 119 Q138 169 88 179 Q169 201 130 260 Q205 231 248 320Z"/><path class="vt44-detail" d="M125 146 L239 280 M127 184 L219 285"/></g><g data-vt44-piece="2"><path class="vt44-shape" d="M305 258 Q374 126 481 119 Q453 165 503 183 Q423 203 465 264 Q397 231 338 320Z"/><path class="vt44-detail" d="M471 149 L340 275 M479 190 L357 292"/></g><g data-vt44-piece="5"><path class="vt44-shape" d="M254 235 Q296 221 337 249 L365 341 Q349 385 326 399 L315 426 L282 426 L282 401 L246 407 L214 428 L202 409 L231 369 Q217 311 254 235Z"/><path class="vt44-detail" d="M263 317 L333 318 M246 366 Q296 393 336 363"/></g><g data-vt44-piece="3"><path class="vt44-shape" d="M253 130 L275 98 L289 135 L322 100 L330 149 Q363 164 366 202 L344 235 L301 250 L254 227 L229 190Z"/><path class="vt44-detail" d="M254 180 L273 184 M328 184 L343 180 M267 213 Q301 226 329 213"/></g></svg>',
@@ -176,6 +176,12 @@ async function refresh(){
  loading=true;
  if(opened)paint();
  try{
+  const sync=await supabaseClient.rpc('vacre_463_treasure_sync');
+  if(sync.error)throw sync.error;
+  if(sync.data?.granted?.length){
+   await window.v23RefreshInventory?.();
+   if(opened)$('vt44-info').textContent='✦ Carte exclusive obtenue : '+sync.data.granted.map(x=>x.name).join(', ');
+  }
   const result=await supabaseClient.rpc('vacre_44_treasures_status');
   if(result.error)throw result.error;
   state={inventory:result.data?.inventory||{},completed:result.data?.completed||[],urabot_rewarded:!!result.data?.urabot_rewarded,urabot_evolved:!!result.data?.urabot_evolved};
