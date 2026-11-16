@@ -40,7 +40,7 @@
   root.dataset.v462Done='1';
   const blocks=[...root.children];
   // Les notes sont maintenant réellement limitées aux deux dernières versions dans index.html.
-  if(blocks[0]?.textContent?.includes('4.6.2')){
+  if(blocks[0]?.textContent?.includes('4.6.3')||blocks[0]?.textContent?.includes('4.6.2')){
     for(const node of blocks.slice(2))node.remove();
     return;
   }
