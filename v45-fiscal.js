@@ -74,21 +74,21 @@
   root.classList.toggle('v45-debt',cash<0||debt>0);
   root.replaceChildren();
   const head=make('h3');head.textContent=cash<0?'Ministère : votre compte est à découvert.':
-    wealth>5000?'Ministère : vous êtes beaucoup trop riche.':'Ministère : exonération de l’ISV';
+    wealth>Number(data.threshold||1500000)?'Ministère : vous êtes beaucoup trop riche.':'Ministère : exonération de l’ISV';
   root.append(head);
-  const intro=make('p');intro.textContent=wealth>5000?
+  const intro=make('p');intro.textContent=wealth>Number(data.threshold||1500000)?
     'Seule la moitié de vos Vacres du Market compte dans l’ISV. Le ministère compte sur vous pour financer ses prochaines absurdités.':
     'Le ministère juge que votre patrimoine ne permet pas encore de payer le café imaginaire du développeur.';
   root.append(intro);
   const stats=make('div','v45-values');
-  const values=[['Patrimoine imposable',fmt(wealth)+' U'],['ISV estimé',fmt(estimate)+' U'],['Prochain contrôle',when(data.next_due)]];
+  const values=[['Patrimoine imposable',fmt(wealth)+' U'],['ISV estimé',fmt(estimate)+' U'],['Prochain lundi à minuit',when(data.next_due)]];
   if(cash<0)values.unshift(['Découvert',fmt(cash)+' U / −1 000 U']);
   if(debt>0)values.push(['Dette fiscale restante',fmt(debt)+' U']);
   for(const item of values){const n=make('span');n.textContent=item[0]+' : '+item[1];if(item[0]==='Découvert')n.classList.add('v45-negative');stats.append(n)}
   root.append(stats);
   if(debt>0){const p=make('p');p.textContent='Les gains futurs rétablissent d’abord le solde ; ensuite 25 % des gains positifs remboursent la dette. Aucun nouvel ISV tant que cette dette subsiste.';root.append(p);}
   else if(soon){const p=make('p');p.textContent='Préavis fiscal : prélèvement dans moins de 24 heures. Les taxes déjà payées sur la période diminuent l’ISV.';root.append(p);}
-  else if(wealth>5000){const p=make('p');p.textContent='La taxe minimale est de 2 % tous les 3 jours : solde disponible + 50 % des Vacres du Market valorisés au cours actuel. Les autres taxes sont déduites. Découvert maximal : −1 000 U.';root.append(p);}
+  else if(wealth>Number(data.threshold||1500000)){const p=make('p');p.textContent='La taxe minimale est de 2 % chaque lundi à minuit : solde disponible + 50 % des Vacres du Market valorisés au cours actuel. Les autres taxes sont déduites. Découvert maximal : −1 000 U.';root.append(p);}
   if(full){
    const details=make('p');
    details.textContent='Calcul ISV : solde disponible ('+fmt(cash)+' U) + 50 % des '+fmt(data.market_vacres)+' Vacres du Market, soit '+fmt(data.market_taxable_value)+' U retenus sur '+fmt(data.market_investment_value)+' U investis. Les cartes de collection sont exclues.';
@@ -105,7 +105,7 @@
  function fillHome(root,data){
   if(!root)return;
   const cash=Number(data?.cash||0),wealth=Number(data?.fortune||0),debt=Number(data?.debt||0);
-  if(!data||(wealth<=5000&&cash>=0&&debt<=0)){root.hidden=true;root.replaceChildren();return;}
+  if(!data||(wealth<=Number(data.threshold||1500000)&&cash>=0&&debt<=0)){root.hidden=true;root.replaceChildren();return;}
   root.hidden=false;
   root.classList.add('v45-tax-compact');
   root.classList.toggle('v45-debt',cash<0||debt>0);
@@ -114,7 +114,7 @@
   const kicker=make('span','v45-compact-kicker');
   kicker.textContent='⚖ ministère des finances';
   const heading=make('strong','v45-compact-title');
-  heading.textContent=cash<0?'Votre compte est à découvert.':debt>0?'Votre dette intéresse le ministère.':'Vous êtes beaucoup trop riche.';
+  heading.textContent=cash<0?'Votre compte est à découvert.':debt>0?'Votre dette intéresse le ministère.':'Vous dépassez le seuil de 1,5 million U.';
   head.append(kicker,heading);
   const stats=make('div','v45-compact-values');
   const items=[['Patrimoine imposable',fmt(wealth)+' U'],['ISV estimé',fmt(data.estimated_isv)+' U'],['Prochain contrôle',when(data.next_due)]];
