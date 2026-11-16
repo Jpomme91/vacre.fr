@@ -1646,6 +1646,7 @@ body[data-v2-page="journal"] #journal{display:block}#journal{display:none;backgr
  <div class="v2-hero-art" aria-hidden="true"><div class="v2-orbit v2-orbit-one"></div><div class="v2-orbit v2-orbit-two"></div><div class="v2-hero-symbol">V</div><span class="v2-art-star">✳</span></div>
 </section>
 <div class="v2-news-strip v23-news-card" id="v23-news-card"><span class="v2-live-dot"></span><strong>ACTUALITÉS VACRE <small>· MISE À JOUR 4.6.3</small></strong><span class="v23-news-summary">VACRE 4.6.3 : nouveaux packs quotidiens en préparation, cartes de trésor exclusives, résultats des boosters réparés et notifications des quêtes corrigées !</span><button type="button" id="v23-news-toggle" onclick="v23ToggleNews()" aria-expanded="false" aria-controls="v23-news-details">Voir les nouveautés ↓</button><div id="v23-news-details" class="v23-news-details" hidden>
+<div class="v361-news"><b>VACRE 4.6.3 — TRÉSORS ET BOOSTERS</b><p>Trois packs de rareté à rotation quotidienne sont visibles en boutique : 15 cartes communes, 10 rares ou 3 épiques. Les achats resteront désactivés jusqu’à la fixation des prix. Chaque trésor assemblé débloque sa carte spéciale à halo vert, y compris pour les anciens propriétaires. Les résultats des boosters apparaissent désormais dans la zone de révélation, les raretés sont corrigées en mode sombre et la notification des quêtes respecte le statut réel.</p></div>
 <div class="v361-news"><b>VACRE 4.6.2 — COMMUNAUTÉ ET CORRECTIFS</b><p>Réponds aux publications et réagis avec un pouce levé ou baissé. L’ISV s’applique uniquement au-delà de 1,5 million U de patrimoine imposable et revient chaque lundi à minuit, heure de Paris. Les crédits bancaires fonctionnent à nouveau et leur solde est bleu quand un prêt est actif. Les Vacre Pets décédés peuvent être remplacés. L’historique des achats du Market est repliable, les suggestions changent de semaine le lundi et les encadrés inutiles disparaissent.</p></div>
 <div class="v361-news"><b>VACRE 4.6.1 — ÉVOLUTION ET CADEAUX</b><p>Les cartes N3 ne peuvent plus apparaître dans tes boosters. L’Urabot peut évoluer avec 5 exemplaires de chacune de ses 8 pièces, en en consommant 4 par pièce pour en conserver 1. Les cadeaux sont désormais révélés dans l’interface d’ouverture des boosters.</p></div>
 </div></div>
@@ -3312,6 +3313,14 @@ ${rarityText(card.rarity)}
 async function revealSequence(
 cardsOpened
 ){
+// Le bilan du booster précédent se trouvait dans l'espace d'animation.
+// Le remettre à sa place avant la révélation de nouvelles cartes.
+const v463Stage=document.getElementById('reveal-stage');
+const v463Results=document.getElementById('pack-results');
+if(v463Stage&&v463Results&&v463Stage.contains(v463Results)){
+ v463Stage.parentElement.append(v463Results);
+ v463Stage.classList.remove('v463-results-active');
+}
 window.v28Skip=false;v28Controls(true);
 if(Array.isArray(cardsOpened)){const trolls=cardsOpened.filter(c=>c.name==='VACRE TROLL');if(trolls.length){const rest=cardsOpened.filter(c=>c.name!=='VACRE TROLL');const ix=rest.findIndex(c=>c.rarity==='legendary');rest.splice(ix>=0?ix:rest.length,0,...trolls);cardsOpened=rest;}}
 const v23PreviouslyOwned=new Set(window.v23PreviouslyOwned||collection);const v23Seen=new Set();window.v24LastOpenedNew=new Set();
@@ -3390,6 +3399,15 @@ textContent =
 showResults(
 cardsOpened
 );
+// Les cartes obtenues remplacent directement l'animation dans son emplacement.
+// Le conteneur est déplacé (pas cloné) pour rester compatible avec les cadeaux et God Packs.
+const finishedStage=document.getElementById('reveal-stage');
+const finishedResults=document.getElementById('pack-results');
+if(finishedStage&&finishedResults){
+ finishedStage.className='reveal-stage v463-results-active';
+ finishedStage.style.animation='none';
+ finishedStage.append(finishedResults);
+}
 v28Controls(false);
 window.v23PreviouslyOwned=null; if(currentUser){window.v23RefreshInventory?.();window.loadMarketWallet?.();window.v38Refresh?.();}else window.v24RenderOwn?.();
 
