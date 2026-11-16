@@ -39,8 +39,12 @@
   const root=$('v23-news-details');if(!root||root.dataset.v462Done)return;
   root.dataset.v462Done='1';
   const blocks=[...root.children];
+  // Les notes sont maintenant réellement limitées aux deux dernières versions dans index.html.
+  if(blocks[0]?.textContent?.includes('4.6.2')){
+    for(const node of blocks.slice(2))node.remove();
+    return;
+  }
   const last=blocks[0];
-  // Conservons uniquement cette MAJ et la précédente, sans archives depuis la création.
   for(const el of blocks.slice(1))el.remove();
   const b=document.createElement('div');b.className='v361-news';
   const h=document.createElement('b');h.textContent='VACRE 4.6.2 — COMMUNAUTÉ ET CORRECTIFS';
