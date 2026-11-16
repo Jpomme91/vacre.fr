@@ -1642,10 +1642,10 @@ body[data-v2-page="journal"] #journal{display:block}#journal{display:none;backgr
 
 
 <section class="hero" id="accueil">
- <div class="v2-hero-content"><div class="v2-eyebrow">L’UNIVERS VACRE <span>✦</span> ÉDITION 4.6.2</div><h1>trouve le <em>vacre</em></h1><p>et le vacre viendra à toi.</p><div class="v2-hero-actions"><a href="#tcg" onclick="v2Navigate('accueil')">Découvrir les boosters <span>↗</span></a><button onclick="v2Navigate('collection')">Ma collection <span>→</span></button></div></div>
+ <div class="v2-hero-content"><div class="v2-eyebrow">L’UNIVERS VACRE <span>✦</span> ÉDITION 4.6.3</div><h1>trouve le <em>vacre</em></h1><p>et le vacre viendra à toi.</p><div class="v2-hero-actions"><a href="#tcg" onclick="v2Navigate('accueil')">Découvrir les boosters <span>↗</span></a><button onclick="v2Navigate('collection')">Ma collection <span>→</span></button></div></div>
  <div class="v2-hero-art" aria-hidden="true"><div class="v2-orbit v2-orbit-one"></div><div class="v2-orbit v2-orbit-two"></div><div class="v2-hero-symbol">V</div><span class="v2-art-star">✳</span></div>
 </section>
-<div class="v2-news-strip v23-news-card" id="v23-news-card"><span class="v2-live-dot"></span><strong>ACTUALITÉS VACRE <small>· MISE À JOUR 4.6.2</small></strong><span class="v23-news-summary">VACRE 4.6.2 : réponses et réactions aux publications, nouveau calendrier fiscal, crédits réparés, Vacre Pet renouvelable et interfaces allégées !</span><button type="button" id="v23-news-toggle" onclick="v23ToggleNews()" aria-expanded="false" aria-controls="v23-news-details">Voir les nouveautés ↓</button><div id="v23-news-details" class="v23-news-details" hidden>
+<div class="v2-news-strip v23-news-card" id="v23-news-card"><span class="v2-live-dot"></span><strong>ACTUALITÉS VACRE <small>· MISE À JOUR 4.6.3</small></strong><span class="v23-news-summary">VACRE 4.6.3 : nouveaux packs quotidiens en préparation, cartes de trésor exclusives, résultats des boosters réparés et notifications des quêtes corrigées !</span><button type="button" id="v23-news-toggle" onclick="v23ToggleNews()" aria-expanded="false" aria-controls="v23-news-details">Voir les nouveautés ↓</button><div id="v23-news-details" class="v23-news-details" hidden>
 <div class="v361-news"><b>VACRE 4.6.2 — COMMUNAUTÉ ET CORRECTIFS</b><p>Réponds aux publications et réagis avec un pouce levé ou baissé. L’ISV s’applique uniquement au-delà de 1,5 million U de patrimoine imposable et revient chaque lundi à minuit, heure de Paris. Les crédits bancaires fonctionnent à nouveau et leur solde est bleu quand un prêt est actif. Les Vacre Pets décédés peuvent être remplacés. L’historique des achats du Market est repliable, les suggestions changent de semaine le lundi et les encadrés inutiles disparaissent.</p></div>
 <div class="v361-news"><b>VACRE 4.6.1 — ÉVOLUTION ET CADEAUX</b><p>Les cartes N3 ne peuvent plus apparaître dans tes boosters. L’Urabot peut évoluer avec 5 exemplaires de chacune de ses 8 pièces, en en consommant 4 par pièce pour en conserver 1. Les cadeaux sont désormais révélés dans l’interface d’ouverture des boosters.</p></div>
 </div></div>
@@ -2264,6 +2264,9 @@ Ajouter
 ================================================== */
 
 const cards = [
+{name:"Dragon Vacre — Trésor",rarity:"special",symbol:"🐉"},
+{name:"VFR4000 — Trésor",rarity:"special",symbol:"🚀"},
+{name:"Cadre de la Vacrerie — Trésor",rarity:"special",symbol:"✦"},
 // VACRE 3.5 — nouvelles cartes
 {name:"vacre ACAB",rarity:"mythic",symbol:"✹"},
 {name:"BismiVacre c’est les ténèbres",rarity:"mythic",symbol:"✹"},
@@ -5425,7 +5428,7 @@ function v38Paint(){
   footer.append(badge,btn);box.append(h,desc,progress,detail,prize,footer);root.append(box);
  }
  if(!missions.length)root.textContent='Aucune mission pour le moment.';
- const dot=document.getElementById('v38-journal-dot');if(dot)dot.hidden=!(state.missions||[]).some(m=>m.progress>=m.target&&!m.claimed)&&!Array.from({length:20},(_,i)=>(i+1)*5).some(n=>n<=lvl&&!(state.claimed_levels||[]).includes(n));
+ const dot=document.getElementById('v38-journal-dot');if(dot){const claimedLevels=new Set((state.claimed_levels||[]).map(Number));dot.hidden=!(state.missions||[]).some(m=>Number(m.progress)>=Number(m.target)&&!m.claimed)&&!Array.from({length:20},(_,i)=>(i+1)*5).some(n=>n<=lvl&&!claimedLevels.has(n));}
 }
 async function v38Claim(kind,key,period){
  if(!currentUser||v38State.busy)return;v38State.busy=true;v38Text('v38-status','Attribution de la récompense…');v38Paint();
@@ -5466,7 +5469,7 @@ function v38ProfileUpdate(){
 <div class="v39-hud player"><span>VACREUR</span><div class="v39-pvbar"><i id="v39-player-bar"></i></div><small id="v39-player-hp">PV 100/100</small></div></div>
 <div class="v39-commands"><div id="v39-message" class="v39-message" role="status">L'huissier demande des justificatifs…</div><div class="v39-commands-bar"><select id="v39-card" class="v39-select" aria-label="Choisir un Vacre à sacrifier"></select><button id="v39-attack" type="button" onclick="v39Attack()">ATTAQUER !</button><button id="v39-abandon" class="v39-surrender" type="button" onclick="v39Abandon()">PAYER L'IMPÔT</button></div><div class="v39-footer" id="v39-detail">1 carte sacrifiée par attaque · 10 % critique · 5 cartes d'huissier récupérables maximum</div></div>
 </div></div>
-<script src="v39.js"></script><script src="v40.js"></script><script src="v41.js"></script><script src="v42-market.js"></script><script src="v42-evolution.js"></script><script src="v43.js"></script><script src="v44-treasures.js"></script><script src="v45.js"></script><script src="v45-fiscal.js"></script><script src="v461-gifts.js"></script><script src="v462.js"></script>
+<script src="v39.js"></script><script src="v40.js"></script><script src="v41.js"></script><script src="v42-market.js"></script><script src="v42-evolution.js"></script><script src="v43.js"></script><script src="v44-treasures.js"></script><script src="v45.js"></script><script src="v45-fiscal.js"></script><script src="v461-gifts.js"></script><script src="v462.js"></script><script src="v463.js"></script>
 </body>
 </html>
 
