@@ -50,7 +50,7 @@ css.textContent=[
 ].join('\n');
 document.head.append(css);
 
-let latestDay=null,fetching=false;
+let latestDay=null,latestUser=null,fetching=false;
 const parisDay=()=>new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/Paris',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
 function element(tag,cls,text){
  const el=document.createElement(tag);if(cls)el.className=cls;if(text!==undefined)el.textContent=String(text);return el;
@@ -69,19 +69,21 @@ async function refreshShop(force=false){
  const root=mountShop();
  if(!root)return;
  const day=parisDay();
- if(!force&&latestDay===day)return;
+ if(!force&&latestDay===day&&latestUser===(currentUser?.id||null))return;
  if(fetching)return;
  if(!currentUser){
   root.replaceChildren();
   root.append(element('h3',null,'Packs quotidiens de rareté'));
   root.append(element('p','v463-subtitle','Connecte-toi pour découvrir la sélection quotidienne et acheter tes packs en Urabucks.'));
-  latestDay=null;return;
+  latestDay=null;latestUser=null;return;
  }
  fetching=true;
+ const uid=currentUser.id;
  try{
   const {data,error}=await supabaseClient.rpc('vacre_463_daily_packs');
   if(error)throw error;
-  latestDay=String(data.day||day);
+  if(!currentUser||currentUser.id!==uid){latestDay=null;latestUser=null;return}
+  latestDay=String(data.day||day);latestUser=uid;
   root.replaceChildren();
   root.append(element('h3',null,'Packs quotidiens de rareté'));
   root.append(element('p','v463-subtitle','Trois sélections renouvelées chaque jour à minuit (Paris). Un achat possible par type de pack et par jour. Les cartes niveau 3 sont exclues de tes sélections.'));
@@ -106,7 +108,7 @@ async function refreshShop(force=false){
   const foot=element('p','v463-next','Prochaine rotation : '+new Date(data.next_rotation).toLocaleString('fr-FR',{dateStyle:'full',timeStyle:'short',timeZone:'Europe/Paris'})+' (heure de Paris).');
   root.append(foot);
  }catch(e){
-  latestDay=null;root.replaceChildren(element('h3',null,'Packs quotidiens de rareté'),element('p','v463-subtitle','Sélection temporairement indisponible : '+e.message));
+  latestDay=null;latestUser=null;root.replaceChildren(element('h3',null,'Packs quotidiens de rareté'),element('p','v463-subtitle','Sélection temporairement indisponible : '+e.message));
  }finally{fetching=false}
 }
 async function buyDailyPack(pack,button){
