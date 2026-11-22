@@ -39,6 +39,7 @@
   group.append(title,subtitle);head.append(symbol,group);box.append(head);
   const rarity=card.rarity,level=Math.max(1,Math.min(3,Number(v37.levels.get(card.name)||1))),owned=Number(v23Inventory?.[card.name]||0);
   const costs={common:50,rare:35,epic:20,legendary:10,mythic:5};
+  const rewards={common:225,rare:450,epic:750,legendary:1125,mythic:1500};
   const damage={common:2,rare:7,epic:12,legendary:17,mythic:23};
   const heading=document.createElement('div');heading.className='v42-info-section';heading.textContent='Statistiques';box.append(heading);
   row('Rareté',(typeof rarityText==='function'?rarityText(rarity):rarity));
@@ -50,7 +51,7 @@
    row('Dégâts en coup critique',(damage[rarity]+(level===3?8:level===2?3:0))*2);
    const highlight=document.createElement('div');highlight.className='v42-info-highlight';
    const label=document.createElement('span');label.textContent=level===3?'ÉVOLUTION TERMINÉE':'PROCHAINE ÉVOLUTION';
-   const value=document.createElement('strong');value.textContent=level===3?'NIVEAU MAXIMUM':costs[rarity]+' exemplaires nécessaires · '+owned+' possédés';
+   const value=document.createElement('strong');value.textContent=level===3?'NIVEAU MAXIMUM':(costs[rarity]+1)+' requis (dont 1 conservé) · '+owned+' possédés · +'+rewards[rarity]+' U';
    highlight.append(label,value);box.append(highlight);
   }
   const sect=document.createElement('div');sect.className='v42-info-section';sect.textContent='Description du Vacre';box.append(sect);
