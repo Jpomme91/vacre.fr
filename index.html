@@ -3317,6 +3317,8 @@ cardsOpened
 // Le bilan du booster précédent se trouvait dans l'espace d'animation.
 // Le remettre à sa place avant la révélation de nouvelles cartes.
 const v463Stage=document.getElementById('reveal-stage');
+// Le halo est neutralisé pendant le bilan seulement : réactiver les animations au prochain booster.
+if(v463Stage)v463Stage.style.removeProperty('animation');
 const v463Results=document.getElementById('pack-results');
 if(v463Stage&&v463Results&&v463Stage.contains(v463Results)){
  v463Stage.parentElement.append(v463Results);
